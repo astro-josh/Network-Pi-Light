@@ -28,8 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.component.switches.SwitchListener;
 import com.pi4j.component.switches.SwitchState;
 import com.pi4j.component.switches.SwitchStateChangeEvent;
@@ -44,8 +42,8 @@ import java.io.IOException;
 
 /**
  * <p>
- * This example code demonstrates how to use the PiFace device interface
- * for GPIO pin state control and monitoring.
+ * This example code demonstrates how to use the PiFace device interface for
+ * GPIO pin state control and monitoring.
  * </p>
  *
  * @author Robert Savage
@@ -69,11 +67,10 @@ public class PiFaceExample {
         piface.getSwitch(PiFaceSwitch.S1).addListener(new SwitchListener() {
             @Override
             public void onStateChange(SwitchStateChangeEvent event) {
-                if(event.getNewState() == SwitchState.ON){
+                if (event.getNewState() == SwitchState.ON) {
                     System.out.println("[SWITCH S1 PRESSED ] Turn RELAY-K0 <ON>");
                     piface.getRelay(PiFaceRelay.K0).close(); // turn on relay
-                }
-                else{
+                } else {
                     System.out.println("[SWITCH S1 RELEASED] Turn RELAY-K0 <OFF>");
                     piface.getRelay(PiFaceRelay.K0).open(); // turn off relay
                 }
@@ -87,11 +84,10 @@ public class PiFaceExample {
         piface.getSwitch(PiFaceSwitch.S2).addListener(new SwitchListener() {
             @Override
             public void onStateChange(SwitchStateChangeEvent event) {
-                if(event.getNewState() == SwitchState.ON){
+                if (event.getNewState() == SwitchState.ON) {
                     System.out.println("[SWITCH S2 PRESSED ] Toggle RELAY-K1");
                     piface.getRelay(PiFaceRelay.K1).toggle(); // toggle relay state
-                }
-                else{
+                } else {
                     System.out.println("[SWITCH S2 RELEASED] do nothing");
                 }
             }
@@ -105,11 +101,10 @@ public class PiFaceExample {
         piface.getSwitch(PiFaceSwitch.S3).addListener(new SwitchListener() {
             @Override
             public void onStateChange(SwitchStateChangeEvent event) {
-                if(event.getNewState() == SwitchState.ON){
+                if (event.getNewState() == SwitchState.ON) {
                     System.out.println("[SWITCH S3 PRESSED ] LED02 <BLINK>");
                     piface.getLed(PiFaceLed.LED2).blink(125); // start blinking 8 times per second
-                }
-                else{
+                } else {
                     System.out.println("[SWITCH S3 RELEASED] LED02 <OFF>");
                     piface.getLed(PiFaceLed.LED2).blink(0); // stop blinking
                     piface.getLed(PiFaceLed.LED2).off();    // turn off led
@@ -125,11 +120,10 @@ public class PiFaceExample {
         piface.getSwitch(PiFaceSwitch.S4).addListener(new SwitchListener() {
             @Override
             public void onStateChange(SwitchStateChangeEvent event) {
-                if(event.getNewState() == SwitchState.ON){
+                if (event.getNewState() == SwitchState.ON) {
                     System.out.println("[SWITCH S4 PRESSED ] CYLON <FAST>");;
                     cylonSpeed = 30;
-                }
-                else{
+                } else {
                     System.out.println("[SWITCH S4 RELEASED] CYLON <SLOW>");
                     cylonSpeed = 100;
                 }
@@ -137,16 +131,16 @@ public class PiFaceExample {
         });
 
         // run continuously until user aborts with CTRL-C
-        while(true) {
+        while (true) {
 
             // step up the ladder
-            for(int index = PiFaceLed.LED3.getIndex(); index <= PiFaceLed.LED7.getIndex(); index++) {
+            for (int index = PiFaceLed.LED3.getIndex(); index <= PiFaceLed.LED7.getIndex(); index++) {
                 piface.getLed(index).pulse(cylonSpeed);
                 Thread.sleep(cylonSpeed);
             }
 
             // step down the ladder
-            for(int index = PiFaceLed.LED7.getIndex(); index >= PiFaceLed.LED3.getIndex(); index--) {
+            for (int index = PiFaceLed.LED7.getIndex(); index >= PiFaceLed.LED3.getIndex(); index--) {
                 piface.getLed(index).pulse(cylonSpeed);
                 Thread.sleep(cylonSpeed);
             }
@@ -157,4 +151,3 @@ public class PiFaceExample {
         //gpio.shutdown();  // <-- uncomment if your program terminates
     }
 }
-

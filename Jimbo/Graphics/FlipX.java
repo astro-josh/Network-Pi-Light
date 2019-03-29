@@ -15,79 +15,75 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Graphics;
 
 /**
- * This class flips the X coordinates of a point around. So if the input x
- * range is 0 to n the mapped X point will be n - x. The y coordinate remains
- * the same.
- * 
+ * This class flips the X coordinates of a point around. So if the input x range
+ * is 0 to n the mapped X point will be n - x. The y coordinate remains the
+ * same.
+ *
  * @author Jim Darby
  */
-public class FlipX extends Mapping
-{
+public class FlipX extends Mapping {
+
     /**
      * Create a mapping given the width and height of the input. Note that the
      * valid X coordinates are from 0 to width - 1 and the valid Y coordinates
      * are from 0 to height - 1.
-     * 
+     *
      * @param width The input width.
      * @param height The input height.
      */
-    public FlipX (int width, int height)
-    {
-	super (new Point (width - 1, height - 1));
+    public FlipX(int width, int height) {
+        super(new Point(width - 1, height - 1));
     }
 
     /**
      * Create a mapping given a previous mapping. The width and height are
      * inherited from the previous item.
-     * 
+     *
      * @param before The previous mapping.
      */
-    public FlipX (Mapping before)
-    {
-	super (before, before.getOutMax ());
+    public FlipX(Mapping before) {
+        super(before, before.getOutMax());
     }
-    
+
     /**
-     * Perform a mapping. Given a point p at (X,Y) it returns a point with the
-     * X coordinate reversed (i.e. with X in the range [0,n] it returns n - x.
-     * Y remains unchanged.
-     * 
+     * Perform a mapping. Given a point p at (X,Y) it returns a point with the X
+     * coordinate reversed (i.e. with X in the range [0,n] it returns n - x. Y
+     * remains unchanged.
+     *
      * @param p The input point.
      * @return The mapped result.
      */
     @Override
-    public Point map (Point p)
-    {
-	if (before != null)
-	    p = before.map (p);
-	
-	validateIn (p);
+    public Point map(Point p) {
+        if (before != null) {
+            p = before.map(p);
+        }
 
-	final Point result = new Point (getInMax ().getX () - p.getX (), p.getY ());
+        validateIn(p);
 
-	validateOut (result);
-	
-	return result;
+        final Point result = new Point(getInMax().getX() - p.getX(), p.getY());
+
+        validateOut(result);
+
+        return result;
     }
 
     /**
      * Return a printable form of the mapping.
-     * 
+     *
      * @return The String representation.
      */
     @Override
-    public String toString ()
-    {
-	String result = "FlipX from " + getInMax () + " to " + getOutMax ();
+    public String toString() {
+        String result = "FlipX from " + getInMax() + " to " + getOutMax();
 
-	if (before != null)
-	    result = before.toString () + ' ' + result;
-	
-	return result;
+        if (before != null) {
+            result = before.toString() + ' ' + result;
+        }
+
+        return result;
     }
 }
-

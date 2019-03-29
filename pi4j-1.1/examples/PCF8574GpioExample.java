@@ -42,19 +42,20 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for GPIO pin state control and monitoring.
+ * This example code demonstrates how to setup a custom GpioProvider for GPIO
+ * pin state control and monitoring.
  * </p>
  *
  * <p>
- * This example implements the PCF8574 GPIO expansion board.
- * More information about the board can be found here: *
+ * This example implements the PCF8574 GPIO expansion board. More information
+ * about the board can be found here: *
  * http://www.ti.com/lit/ds/symlink/pcf8574.pdf
  * </p>
  *
  * <p>
  * The PCF8574 is connected via I2C connection to the Raspberry Pi and provides
- * 16 GPIO pins that can be used for either digital input or digital output pins.
+ * 16 GPIO pins that can be used for either digital input or digital output
+ * pins.
  * </p>
  *
  * @author Robert Savage
@@ -73,10 +74,10 @@ public class PCF8574GpioExample {
 
         // provision gpio input pins from MCP23017
         GpioPinDigitalInput myInputs[] = {
-                gpio.provisionDigitalInputPin(provider, PCF8574Pin.GPIO_00),
-                gpio.provisionDigitalInputPin(provider, PCF8574Pin.GPIO_01),
-                gpio.provisionDigitalInputPin(provider, PCF8574Pin.GPIO_02)
-            };
+            gpio.provisionDigitalInputPin(provider, PCF8574Pin.GPIO_00),
+            gpio.provisionDigitalInputPin(provider, PCF8574Pin.GPIO_01),
+            gpio.provisionDigitalInputPin(provider, PCF8574Pin.GPIO_02)
+        };
 
         // create and register gpio pin listener
         gpio.addListener(new GpioPinListenerDigital() {
@@ -93,7 +94,7 @@ public class PCF8574GpioExample {
             gpio.provisionDigitalOutputPin(provider, PCF8574Pin.GPIO_04, PinState.LOW),
             gpio.provisionDigitalOutputPin(provider, PCF8574Pin.GPIO_05, PinState.LOW),
             gpio.provisionDigitalOutputPin(provider, PCF8574Pin.GPIO_06, PinState.LOW)
-          };
+        };
 
         // on program shutdown, set the pins back to their default state: HIGH
         gpio.setShutdownOptions(true, PinState.HIGH, myOutputs);

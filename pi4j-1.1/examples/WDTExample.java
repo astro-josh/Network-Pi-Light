@@ -36,29 +36,29 @@ import java.io.IOException;
  * @author zerog
  */
 public class WDTExample {
+
     public static void main(String[] args) throws IOException, InterruptedException {
 
         //get watchdog instance
-        WDTimer watchdog =  WDTimerImpl.getInstance();
+        WDTimer watchdog = WDTimerImpl.getInstance();
 
         watchdog.open();
         System.out.println("WatchDog working!");
 
         int timeout = watchdog.getTimeOut();
-        System.out.println("Timeout of WatchDog is "+timeout);
+        System.out.println("Timeout of WatchDog is " + timeout);
 
         //set new timeout
         watchdog.setTimeOut(15);
         timeout = watchdog.getTimeOut();
-        System.out.println("Timeout of WatchDog is "+timeout);
+        System.out.println("Timeout of WatchDog is " + timeout);
 
         //4x ping watchdog
         for (int i = 0; i < 4; i++) {
             watchdog.heartbeat();
             System.out.println("Watchdog heartbeat (pinging)");
-            Thread.sleep(1000*13);
+            Thread.sleep(1000 * 13);
         }
-
 
         watchdog.disable(); //comment this line causes RaspberryPi reboot
         System.out.println("WatchDog disabled!");

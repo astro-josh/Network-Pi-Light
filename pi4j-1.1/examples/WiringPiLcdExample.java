@@ -50,20 +50,19 @@ public class WiringPiLcdExample {
         }
 
         // initialize LCD
-        int lcdHandle= Lcd.lcdInit(LCD_ROWS,     // number of row supported by LCD
-                                   LCD_COLUMNS,  // number of columns supported by LCD
-                                   LCD_BITS,     // number of bits used to communicate to LCD
-                                   11,           // LCD RS pin
-                                   10,           // LCD strobe pin
-                                   0,            // LCD data bit 1
-                                   1,            // LCD data bit 2
-                                   2,            // LCD data bit 3
-                                   3,            // LCD data bit 4
-                                   0,            // LCD data bit 5 (set to 0 if using 4 bit communication)
-                                   0,            // LCD data bit 6 (set to 0 if using 4 bit communication)
-                                   0,            // LCD data bit 7 (set to 0 if using 4 bit communication)
-                                   0);           // LCD data bit 8 (set to 0 if using 4 bit communication)
-
+        int lcdHandle = Lcd.lcdInit(LCD_ROWS, // number of row supported by LCD
+                LCD_COLUMNS, // number of columns supported by LCD
+                LCD_BITS, // number of bits used to communicate to LCD
+                11, // LCD RS pin
+                10, // LCD strobe pin
+                0, // LCD data bit 1
+                1, // LCD data bit 2
+                2, // LCD data bit 3
+                3, // LCD data bit 4
+                0, // LCD data bit 5 (set to 0 if using 4 bit communication)
+                0, // LCD data bit 6 (set to 0 if using 4 bit communication)
+                0, // LCD data bit 7 (set to 0 if using 4 bit communication)
+                0);           // LCD data bit 8 (set to 0 if using 4 bit communication)
 
         // verify initialization
         if (lcdHandle == -1) {
@@ -78,21 +77,20 @@ public class WiringPiLcdExample {
         // write line 1 to LCD
         Lcd.lcdHome(lcdHandle);
         //Lcd.lcdPosition (lcdHandle, 0, 0) ;
-        Lcd.lcdPuts (lcdHandle, "The Pi4J Project") ;
+        Lcd.lcdPuts(lcdHandle, "The Pi4J Project");
 
         // write line 2 to LCD
-        Lcd.lcdPosition (lcdHandle, 0, 1) ;
-        Lcd.lcdPuts (lcdHandle, "----------------") ;
+        Lcd.lcdPosition(lcdHandle, 0, 1);
+        Lcd.lcdPuts(lcdHandle, "----------------");
 
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 
         // update time every one second
-        while(true){
+        while (true) {
             // write time to line 2 on LCD
-            Lcd.lcdPosition (lcdHandle, 0, 1) ;
-            Lcd.lcdPuts (lcdHandle, "--- " + formatter.format(new Date()) + " ---");
+            Lcd.lcdPosition(lcdHandle, 0, 1);
+            Lcd.lcdPuts(lcdHandle, "--- " + formatter.format(new Date()) + " ---");
             Thread.sleep(1000);
         }
     }
 }
-

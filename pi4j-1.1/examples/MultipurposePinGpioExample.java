@@ -36,8 +36,8 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 /**
- * This example code demonstrates how to setup a multi-purpose
- * digital pin on the Raspberry Pi.
+ * This example code demonstrates how to setup a multi-purpose digital pin on
+ * the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -66,7 +66,7 @@ public class MultipurposePinGpioExample {
         System.out.println(" ... complete the GPIO #02 circuit and see the listener feedback here in the console.");
 
         // keep program running until user aborts (CTRL-C)
-        while(true){
+        while (true) {
             Thread.sleep(5000);
 
             // here we want to control the multi-purpose GPIO pin

@@ -37,17 +37,19 @@ import com.pi4j.io.spi.SpiDevice;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for analog output pin using the MCP3208 ADC chip.  This example
- * configures the MCP3208 without background monitoring and eventing.
+ * This example code demonstrates how to setup a custom GpioProvider for analog
+ * output pin using the MCP3208 ADC chip. This example configures the MCP3208
+ * without background monitoring and eventing.
  * </p>
  *
  * <p>
- * This GPIO provider implements the MCP3208 12-Bit Analog-to-Digital Converter (ADC) as native Pi4J GPIO pins.
+ * This GPIO provider implements the MCP3208 12-Bit Analog-to-Digital Converter
+ * (ADC) as native Pi4J GPIO pins.
  * </p>
  *
  * <p>
- * The MCP3208 is connected via SPI connection to the Raspberry Pi and provides 8 GPIO analog input pins.
+ * The MCP3208 is connected via SPI connection to the Raspberry Pi and provides
+ * 8 GPIO analog input pins.
  * </p>
  *
  * @author Robert Savage
@@ -80,26 +82,25 @@ public class MCP3208GpioExampleNonMonitored {
         // in your process call.  If background monitoring is enabled, then calls to
         // pin.getValue() return you the last acquired (cached) value and does not
         // perform an immediate data acquisition.
-
         // Provision gpio analog input pins for all channels of the MCP3208.
         // (you don't have to define them all if you only use a subset in your project)
         final GpioPinAnalogInput inputs[] = {
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH0, "MyAnalogInput-CH0"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH1, "MyAnalogInput-CH1"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH2, "MyAnalogInput-CH2"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH3, "MyAnalogInput-CH3"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH4, "MyAnalogInput-CH4"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH5, "MyAnalogInput-CH5"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH6, "MyAnalogInput-CH6"),
-                gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH7, "MyAnalogInput-CH7")
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH0, "MyAnalogInput-CH0"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH1, "MyAnalogInput-CH1"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH2, "MyAnalogInput-CH2"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH3, "MyAnalogInput-CH3"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH4, "MyAnalogInput-CH4"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH5, "MyAnalogInput-CH5"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH6, "MyAnalogInput-CH6"),
+            gpio.provisionAnalogInputPin(provider, MCP3208Pin.CH7, "MyAnalogInput-CH7")
         };
 
         // Keep this sample program running for 10 minutes
         for (int count = 0; count < 600; count++) {
-            StringBuilder sb  = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             // Print current analog input conversion values from each input channel
-            for(GpioPinAnalogInput input : inputs){
+            for (GpioPinAnalogInput input : inputs) {
                 sb.append(" \t[" + input.getValue() + "] ");
             }
 

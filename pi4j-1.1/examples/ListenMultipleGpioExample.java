@@ -29,7 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
@@ -39,8 +38,8 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 /**
- * This example code demonstrates how to setup a listener
- * for GPIO pin state changes on the Raspberry Pi.
+ * This example code demonstrates how to setup a listener for GPIO pin state
+ * changes on the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -54,7 +53,7 @@ public class ListenMultipleGpioExample {
         final GpioController gpio = GpioFactory.getInstance();
 
         // create GPIO listener
-        GpioPinListenerDigital listener  = new GpioPinListenerDigital() {
+        GpioPinListenerDigital listener = new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 // display pin state on console
@@ -64,15 +63,14 @@ public class ListenMultipleGpioExample {
 
         // provision gpio input pins with its internal pull down resistor enabled
         GpioPinDigitalInput[] pins = {
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_01, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_03, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_05, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, PinPullResistance.PULL_DOWN),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_07, PinPullResistance.PULL_DOWN),
-        };
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_01, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_03, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_05, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, PinPullResistance.PULL_DOWN),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_07, PinPullResistance.PULL_DOWN),};
 
         // create and register gpio pin listener
         gpio.addListener(listener, pins);
@@ -80,7 +78,7 @@ public class ListenMultipleGpioExample {
         System.out.println(" ... complete the GPIO circuit and see the listener feedback here in the console.");
 
         // keep program running until user aborts (CTRL-C)
-        while(true) {
+        while (true) {
             Thread.sleep(500);
         }
 

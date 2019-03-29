@@ -33,9 +33,8 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.wiringpi.GpioUtil;
 
 /**
- * This example code demonstrates how to use Pi4J with
- * non-privileged access (non-root/sudo) to GPIO pins on
- * the Raspberry Pi.
+ * This example code demonstrates how to use Pi4J with non-privileged access
+ * (non-root/sudo) to GPIO pins on the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -47,7 +46,7 @@ public class NonPrivilegedGpioExample {
 
         // we can use this utility method to pre-check to determine if
         // privileged access is required on the running system
-        if(GpioUtil.isPrivilegedAccessRequired()){
+        if (GpioUtil.isPrivilegedAccessRequired()) {
             System.err.println("*****************************************************************");
             System.err.println("Privileged access is required on this system to access GPIO pins!");
             System.err.println("*****************************************************************");
@@ -67,7 +66,6 @@ public class NonPrivilegedGpioExample {
         // ------------
         // OUTPUT PIN
         // ------------
-
         // provision gpio pin #01 as an output pin and blink it
         final GpioPinDigitalOutput output = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
 
@@ -83,7 +81,6 @@ public class NonPrivilegedGpioExample {
         // ------------
         // INPUT PIN
         // ------------
-
         // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
         final GpioPinDigitalInput input = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
 
@@ -105,7 +102,6 @@ public class NonPrivilegedGpioExample {
         // ----------------
         // WAIT & SHUTDOWN
         // ----------------
-
         // sleep for 1 minute, then shutdown
         Thread.sleep(60000);
 

@@ -33,7 +33,7 @@ public class WiringPiSPIExample {
 
     // SPI operations
     public static byte WRITE_CMD = 0x40;
-    public static byte READ_CMD  = 0x41;
+    public static byte READ_CMD = 0x41;
 
     @SuppressWarnings("unused")
     public static void main(String args[]) throws InterruptedException {
@@ -55,19 +55,18 @@ public class WiringPiSPIExample {
         //
         // see the link below for the data sheet on the MCP23S17 chip:
         // http://ww1.microchip.com/downloads/en/devicedoc/21952b.pdf
-
         System.out.println("<--Pi4J--> SPI test program using MCP23S17 I/O Expander Chip");
 
         // configuration
         byte IODIRA = 0x00; // I/O direction A
         byte IODIRB = 0x01; // I/O direction B
-        byte IOCON  = 0x0A; // I/O config
-        byte GPIOA  = 0x12; // port A
-        byte GPIOB  = 0x13; // port B
-        byte GPPUA  = 0x0C; // port A pullups
-        byte GPPUB  = 0x0D; // port B pullups
+        byte IOCON = 0x0A; // I/O config
+        byte GPIOA = 0x12; // port A
+        byte GPIOB = 0x13; // port B
+        byte GPPUA = 0x0C; // port A pullups
+        byte GPPUB = 0x0D; // port B pullups
         byte OUTPUT_PORT = GPIOA;
-        byte INPUT_PORT  = GPIOB;
+        byte INPUT_PORT = GPIOB;
         byte INPUT_PULLUPS = GPPUB;
 
         // setup SPI for communication
@@ -78,23 +77,24 @@ public class WiringPiSPIExample {
         }
 
         // initialize
-        write(IOCON,  0x08);  // enable hardware addressing
-        write(GPIOA,  0x00);  // set port A off
+        write(IOCON, 0x08);  // enable hardware addressing
+        write(GPIOA, 0x00);  // set port A off
         write(IODIRA, 0);     // set port A as outputs
         write(IODIRB, 0xFF);  // set port B as inputs
-        write(GPPUB,  0xFF);  // set port B pullups on
+        write(GPPUB, 0xFF);  // set port B pullups on
 
         int pins = 1;
 
         // infinite loop
-        while(true) {
+        while (true) {
 
             // shift the bit to the left in the A register
             // this will cause the next LED to light up and
             // the current LED to turn off.
-            if(pins >= 255)
-                pins=1;
-            write(GPIOA,  (byte)pins);
+            if (pins >= 255) {
+                pins = 1;
+            }
+            write(GPIOA, (byte) pins);
             pins = pins << 1;
             Thread.sleep(1000);
 
@@ -103,13 +103,13 @@ public class WiringPiSPIExample {
         }
     }
 
-    public static void write(byte register, int data){
+    public static void write(byte register, int data) {
 
         // send test ASCII message
         byte packet[] = new byte[3];
         packet[0] = WRITE_CMD;  // address byte
         packet[1] = register;  // register byte
-        packet[2] = (byte)data;  // data byte
+        packet[2] = (byte) data;  // data byte
 
         System.out.println("-----------------------------------------------");
         System.out.println("[TX] " + bytesToHex(packet));
@@ -118,7 +118,7 @@ public class WiringPiSPIExample {
         System.out.println("-----------------------------------------------");
     }
 
-    public static void read(byte register){
+    public static void read(byte register) {
 
         // send test ASCII message
         byte packet[] = new byte[3];
@@ -134,10 +134,10 @@ public class WiringPiSPIExample {
     }
 
     public static String bytesToHex(byte[] bytes) {
-        final char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        final char[] hexArray = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         char[] hexChars = new char[bytes.length * 2];
         int v;
-        for ( int j = 0; j < bytes.length; j++ ) {
+        for (int j = 0; j < bytes.length; j++) {
             v = bytes[j] & 0xFF;
             hexChars[j * 2] = hexArray[v >>> 4];
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];

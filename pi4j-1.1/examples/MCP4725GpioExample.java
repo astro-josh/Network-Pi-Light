@@ -37,18 +37,19 @@ import com.pi4j.io.i2c.I2CBus;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for analog output pin.
+ * This example code demonstrates how to setup a custom GpioProvider for analog
+ * output pin.
  * </p>
  *
  * <p>
- * This GPIO provider implements the MCP4725 12-Bit Digital-to-Analog Converter as native Pi4J GPIO pins.
- * More information about the board can be found here:
+ * This GPIO provider implements the MCP4725 12-Bit Digital-to-Analog Converter
+ * as native Pi4J GPIO pins. More information about the board can be found here:
  * http://http://www.adafruit.com/product/935
  * </p>
  *
  * <p>
- * The MCP4725 is connected via I2C connection to the Raspberry Pi and provides 1 GPIO analog output pin.
+ * The MCP4725 is connected via I2C connection to the Raspberry Pi and provides
+ * 1 GPIO analog output pin.
  * </p>
  *
  * @author Christian Wehrli, Robert Savage
@@ -62,8 +63,8 @@ public class MCP4725GpioExample {
 
         // create gpio provider
         final DacGpioProvider provider = new MCP4725GpioProvider(
-                I2CBus.BUS_1,                          // I2C BUS 1 on newer Raspberry Pi's
-                MCP4725GpioProvider.MCP4725_ADDRESS_1  // default address
+                I2CBus.BUS_1, // I2C BUS 1 on newer Raspberry Pi's
+                MCP4725GpioProvider.MCP4725_ADDRESS_1 // default address
         );
 
         // create output pin
@@ -85,7 +86,9 @@ public class MCP4725GpioExample {
             provider.setPercentValue(output, y);
 
             // rollover
-            if (i == 359) { i = 0; }
+            if (i == 359) {
+                i = 0;
+            }
         }
 
         // generate a square wave on output pin
@@ -95,7 +98,6 @@ public class MCP4725GpioExample {
 //            output.setValue(gpioProvider.getMinSupportedValue());
 //            Thread.sleep(2);
 //        }
-
         // When your program is finished, make sure to stop all GPIO activity/threads by shutting
         // down the GPIO controller (this method will forcefully shutdown all GPIO monitoring threads
         // and background scheduled tasks)

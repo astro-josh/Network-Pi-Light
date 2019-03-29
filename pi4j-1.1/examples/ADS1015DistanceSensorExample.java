@@ -28,8 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -47,14 +45,13 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 /**
  * <p>
- * This example code demonstrates how to use the ADS1015 Pi4J GPIO interface
- * for analog input pins.
+ * This example code demonstrates how to use the ADS1015 Pi4J GPIO interface for
+ * analog input pins.
  * </p>
  *
  * @author Robert Savage
  */
 public class ADS1015DistanceSensorExample {
-
 
     public static void main(String args[]) throws InterruptedException, UnsupportedBusNumberException, IOException {
 
@@ -85,11 +82,9 @@ public class ADS1015DistanceSensorExample {
         // so the output values are in direct proportion to the detected voltage on the input pins
         gpioProvider.setProgrammableGainAmplifier(ProgrammableGainAmplifierValue.PGA_4_096V, ADS1015Pin.ALL);
 
-
         // Define a threshold value for each pin for analog value change events to be raised.
         // It is important to set this threshold high enough so that you don't overwhelm your program with change events for insignificant changes
         gpioProvider.setEventThreshold(150, ADS1015Pin.ALL);
-
 
         // Define the monitoring thread refresh interval (in milliseconds).
         // This governs the rate at which the monitoring thread will read input values from the ADC chip
@@ -110,27 +105,25 @@ public class ADS1015DistanceSensorExample {
         distanceSensor.addCalibrationCoordinate(20000, 20);
         distanceSensor.addCalibrationCoordinate(15000, 30);
         distanceSensor.addCalibrationCoordinate(12000, 40);
-        distanceSensor.addCalibrationCoordinate(9200,  50);
-        distanceSensor.addCalibrationCoordinate(8200,  60);
-        distanceSensor.addCalibrationCoordinate(6200,  70);
-        distanceSensor.addCalibrationCoordinate(4200,  80);
+        distanceSensor.addCalibrationCoordinate(9200, 50);
+        distanceSensor.addCalibrationCoordinate(8200, 60);
+        distanceSensor.addCalibrationCoordinate(6200, 70);
+        distanceSensor.addCalibrationCoordinate(4200, 80);
 
-        distanceSensor.addListener(new DistanceSensorListener()
-        {
+        distanceSensor.addListener(new DistanceSensorListener() {
             @Override
-            public void onDistanceChange(DistanceSensorChangeEvent event)
-            {
+            public void onDistanceChange(DistanceSensorChangeEvent event) {
                 // RAW value
                 double value = event.getRawValue();
 
                 // Estimated distance
-                double distance =  event.getDistance();
+                double distance = event.getDistance();
 
                 // percentage
-                double percent =  ((value * 100) / ADS1015GpioProvider.ADS1015_RANGE_MAX_VALUE);
+                double percent = ((value * 100) / ADS1015GpioProvider.ADS1015_RANGE_MAX_VALUE);
 
                 // approximate voltage ( *scaled based on PGA setting )
-                double voltage = gpioProvider.getProgrammableGainAmplifier(distanceSensorPin).getVoltage() * (percent/100);
+                double voltage = gpioProvider.getProgrammableGainAmplifier(distanceSensorPin).getVoltage() * (percent / 100);
 
                 // display output
                 System.out.println("\r DISTANCE=" + df.format(distance) + "cm : VOLTS=" + df.format(voltage) + "  | PERCENT=" + pdf.format(percent) + "% | RAW=" + value);
@@ -148,5 +141,3 @@ public class ADS1015DistanceSensorExample {
         System.out.println("Exiting ADS1015DistanceSensorExample");
     }
 }
-
-

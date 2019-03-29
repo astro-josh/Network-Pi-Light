@@ -15,35 +15,31 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Graphics;
 
 import java.io.IOException;
 
 /**
  * Do a demo on an arbitrary ColourMatrix.
- * 
+ *
  * @author Jim Darby
  */
+public class ColourMatrixDemo {
 
-public class ColourMatrixDemo
-{
     /**
      * Run the demo given a ColourMatrix.
-     * 
+     *
      * @param m The ColourMatrix to use.
-     * 
+     *
      * @throws InterruptedException In case of thread badness.
      * @throws java.io.IOException In case of trouble.
      */
-    public static void run (ColourMatrix m) throws InterruptedException, IOException
-    {
-        final Point limits = m.getMax ();
-        final int max_x = limits.getX ();
-        final int max_y = limits.getY ();
-        
+    public static void run(ColourMatrix m) throws InterruptedException, IOException {
+        final Point limits = m.getMax();
+        final int max_x = limits.getX();
+        final int max_y = limits.getY();
+
         // Basic scan
-        
         int phase = 0;
         /*
         for (int y = 0; y <= max_y; ++y)
@@ -62,41 +58,42 @@ public class ColourMatrixDemo
                 
                 phase = (phase + 1) % 3;
             }
-        */
+         */
         // "I made it rainbow!" TM
-        
+
         phase = 0;
         int i = 0;
-        
-        final double max_distance = Math.sqrt (max_x * max_x + max_y * max_y);
-        
-        while (i < 1000)
-        {
+
+        final double max_distance = Math.sqrt(max_x * max_x + max_y * max_y);
+
+        while (i < 1000) {
             ++i;
-            for (int y = 0; y <= limits.getY (); ++y)
-                for (int x = 0; x <= limits.getX (); ++x)
-                {
-                    final double distance = Math.sqrt (x*x + y*y);
+            for (int y = 0; y <= limits.getY(); ++y) {
+                for (int x = 0; x <= limits.getX(); ++x) {
+                    final double distance = Math.sqrt(x * x + y * y);
                     final double fraction = distance / max_distance;
-                    
+
                     double value = 360 * (1 - fraction) + phase;
-                    
-                    if (value > 360)
+
+                    if (value > 360) {
                         value -= 360;
-                    
-                    final Colour c = new Colour (value);
-                    
-                    m.setPixel (new Point (x, y), c);
+                    }
+
+                    final Colour c = new Colour(value);
+
+                    m.setPixel(new Point(x, y), c);
                 }
-            
-            m.show ();
-            
+            }
+
+            m.show();
+
             phase += 1;
-            
-            if (phase == 360)
+
+            if (phase == 360) {
                 phase = 0;
-            
-            Thread.sleep (10);
+            }
+
+            Thread.sleep(10);
         }
     }
 }

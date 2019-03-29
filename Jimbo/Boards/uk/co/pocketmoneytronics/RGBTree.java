@@ -15,7 +15,6 @@
  * License along with this library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Boards.uk.co.pocketmoneytronics;
 
 import Jimbo.Devices.WS2811.WS2811;
@@ -28,81 +27,80 @@ import Jimbo.Graphics.Colour;
 /**
  * The class controls the WS2811-based RGB Christmas tree from
  * PocketMoneyTronics.
- * 
+ *
  * @author Jim Darby
  */
-public class RGBTree
-{
+public class RGBTree {
+
     /**
      * Construct the tree.
      */
-    public RGBTree ()
-    {
-        tree = new WS2811 (PIXELS, 1, new Identity (PIXELS, 1), WS2811Raw.WS2811_STRIP_RGB, 0.25);
+    public RGBTree() {
+        tree = new WS2811(PIXELS, 1, new Identity(PIXELS, 1), WS2811Raw.WS2811_STRIP_RGB, 0.25);
     }
-    
+
     /**
      * Set a specific pixel to a specific Colour value.
-     * 
+     *
      * @param n The pixel number.
      * @param r The red value.
      * @param g The green value.
      * @param b The blue value.
      */
-    public void setPixel (int n, int r, int g, int b)
-    {
-        tree.setPixel (new Point (n, 0), r, g, b);
+    public void setPixel(int n, int r, int g, int b) {
+        tree.setPixel(new Point(n, 0), r, g, b);
     }
-    
+
     /**
      * Set a specific pixel to a specific Colour value.
-     * 
+     *
      * @param n The pixel number.
      * @param c The colour to set it to.
      */
-    public void setPixel (int n, Colour c)
-    {
-        tree.setPixel (new Point (n, 0), c);
+    public void setPixel(int n, Colour c) {
+        tree.setPixel(new Point(n, 0), c);
     }
-    
+
     /**
      * Update the display.
      */
-    public void show ()
-    {
-        tree.show ();
+    public void show() {
+        tree.show();
     }
-    
+
     /**
      * Demo program.
-     * 
+     *
      * @param args Command line parameters.
-     * 
+     *
      * @throws java.lang.InterruptedException In case of interruption.
      */
-    public static void main (String args[]) throws InterruptedException
-    {
-        RGBTree t = new RGBTree ();
-        
+    public static void main(String args[]) throws InterruptedException {
+        RGBTree t = new RGBTree();
+
         final Colour[] colours = new Colour[3];
-        
-        colours[0] = new Colour (255, 0, 0);
-        colours[1] = new Colour (0, 255, 0);
-        colours[2] = new Colour (0, 0, 255);
-        
-        for (int i = 0; i < colours.length; ++i)
-        {
-            for (int j = 0; j < PIXELS; ++j)
-                t.setPixel (j, colours[i]);
-            
-            t.show ();
-            
-            Thread.sleep (500);
+
+        colours[0] = new Colour(255, 0, 0);
+        colours[1] = new Colour(0, 255, 0);
+        colours[2] = new Colour(0, 0, 255);
+
+        for (int i = 0; i < colours.length; ++i) {
+            for (int j = 0; j < PIXELS; ++j) {
+                t.setPixel(j, colours[i]);
+            }
+
+            t.show();
+
+            Thread.sleep(500);
         }
     }
-    
-    /** Number of pixels. */
+
+    /**
+     * Number of pixels.
+     */
     public final static int PIXELS = 6;
-    /** The tree. */
+    /**
+     * The tree.
+     */
     private final WS2811 tree;
 }

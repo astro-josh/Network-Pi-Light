@@ -1,3 +1,6 @@
+package PiLight;
+
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -11,11 +14,11 @@ public class NetPiLight_Client extends javax.swing.JFrame {
     private static Socket s;
     private static DataInputStream dataIn;
     private static DataOutputStream dataOut;
-    
+
     public NetPiLight_Client() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -202,10 +205,10 @@ public class NetPiLight_Client extends javax.swing.JFrame {
 
     private void pulseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pulseBtnActionPerformed
         String color;
-        
+
         try {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
-            
+
             dataOut.writeUTF("pulse-".concat(color));
         } catch (Exception e) {
 
@@ -230,23 +233,23 @@ public class NetPiLight_Client extends javax.swing.JFrame {
 
     private void solidBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solidBtnActionPerformed
         String color;
-        
+
         try {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
-            
+
             dataOut.writeUTF("solid-".concat(color));
         } catch (Exception e) {
 
         }
-            
+
     }//GEN-LAST:event_solidBtnActionPerformed
 
     private void blinkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blinkBtnActionPerformed
         String color;
-        
+
         try {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
-            
+
             dataOut.writeUTF("blink-".concat(color));
         } catch (Exception e) {
 
@@ -255,10 +258,10 @@ public class NetPiLight_Client extends javax.swing.JFrame {
 
     private void seqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seqBtnActionPerformed
         String color;
-        
+
         try {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
-            
+
             dataOut.writeUTF("seq-".concat(color));
         } catch (Exception e) {
 
@@ -306,13 +309,13 @@ public class NetPiLight_Client extends javax.swing.JFrame {
                 new NetPiLight_Client().setVisible(true);
             }
         });
-        
+
         try {
             s = new Socket("192.168.137.40", 9001);
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
             String msgIn = "";
-            
+
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
                 jTextArea1.append(msgIn + "\n");
@@ -320,7 +323,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

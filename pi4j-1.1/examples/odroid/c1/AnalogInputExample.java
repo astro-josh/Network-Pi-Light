@@ -1,4 +1,5 @@
 package odroid.c1;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package odroid.c1;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
@@ -35,8 +35,8 @@ import com.pi4j.platform.PlatformManager;
 import com.pi4j.util.Console;
 
 /**
- * This example code demonstrates how to read the 10-bit analog
- * int pins values from the Odroid C1/C1+ platform.
+ * This example code demonstrates how to read the 10-bit analog int pins values
+ * from the Odroid C1/C1+ platform.
  *
  * @author Robert Savage
  */
@@ -55,7 +55,6 @@ public class AnalogInputExample {
         //          DO NOT APPLY A HIGHER VOLTAGE THAN 1.8VDC TO THESE PINS.
         //
         // ####################################################################
-
         // ####################################################################
         //
         // since we are not using the default Raspberry Pi platform, we should
@@ -80,11 +79,10 @@ public class AnalogInputExample {
         //    When provisioning a pin, use the OdroidC1Pin class.
         //
         // ####################################################################
-
         // provision analog input pins
         final GpioPinAnalogInput[] inputs = {
-                gpio.provisionAnalogInputPin(OdroidC1Pin.AIN0, "Analog Input 0"),
-                gpio.provisionAnalogInputPin(OdroidC1Pin.AIN1, "Analog Input 1")
+            gpio.provisionAnalogInputPin(OdroidC1Pin.AIN0, "Analog Input 0"),
+            gpio.provisionAnalogInputPin(OdroidC1Pin.AIN1, "Analog Input 1")
         };
 
         // set shutdown state for this pin: unexport the pins
@@ -95,12 +93,12 @@ public class AnalogInputExample {
         console.println(" ... Successfully provisioned [" + inputs[1] + "]");
         console.emptyLine();
         console.box("Below is the 10-bit conversion value (a number ",
-                    "between 0 and 1023) from the two analog input ",
-                    "pins which represents a voltage applied to each",
-                    "pin between 0VDC (Ground) and +1.8VDC.  If no ",
-                    "voltage is currently applied to the analog input",
-                    "pins then they may 'float' between a value of 0" ,
-                    "to 1023.");
+                "between 0 and 1023) from the two analog input ",
+                "pins which represents a voltage applied to each",
+                "pin between 0VDC (Ground) and +1.8VDC.  If no ",
+                "voltage is currently applied to the analog input",
+                "pins then they may 'float' between a value of 0",
+                "to 1023.");
 
         // display current pin values
         console.emptyLine();
@@ -121,13 +119,13 @@ public class AnalogInputExample {
     }
 
     /**
-     * calculate relative analog input voltage based on the 10-bit conversion value
-     * read from the hardware
+     * calculate relative analog input voltage based on the 10-bit conversion
+     * value read from the hardware
      *
      * @param value 10-bit conversion value for analog input pin
      * @return relative voltage for analog input pin
      */
-    private static double getVoltage(double value){
+    private static double getVoltage(double value) {
         // 10-bit == range between 0 and 1023 (1024 possible values)
         return (value / 1024) * 1.8f; // 1.8VDC maximum allowed voltage per the hardware spec
     }

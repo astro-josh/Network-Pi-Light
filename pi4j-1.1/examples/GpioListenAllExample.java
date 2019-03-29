@@ -43,19 +43,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This example code demonstrates how to setup a listener
- * for all available GPIO pins on the RaspberryPi (by specific model).
+ * This example code demonstrates how to setup a listener for all available GPIO
+ * pins on the RaspberryPi (by specific model).
  *
  * @author Robert Savage
  */
 public class GpioListenAllExample {
 
     /**
-     * [ARGUMENT/OPTION "--pull (up|down|off)" | "-l (up|down|off)" | "--up" | "--down" ]
-     * This example program accepts an optional argument for specifying pin pull resistance.
-     * Supported values: "up|down" (or simply "1|0").   If no value is specified in the command
-     * argument, then the pin pull resistance will be set to PULL_UP by default.
-     * -- EXAMPLES: "--pull up", "-pull down", "--pull off", "--up", "--down", "-pull 0", "--pull 1", "-l up", "-l down".
+     * [ARGUMENT/OPTION "--pull (up|down|off)" | "-l (up|down|off)" | "--up" |
+     * "--down" ] This example program accepts an optional argument for
+     * specifying pin pull resistance. Supported values: "up|down" (or simply
+     * "1|0"). If no value is specified in the command argument, then the pin
+     * pull resistance will be set to PULL_UP by default. -- EXAMPLES: "--pull
+     * up", "-pull down", "--pull off", "--up", "--down", "-pull 0", "--pull 1",
+     * "-l up", "-l down".
      *
      * @param args
      * @throws InterruptedException
@@ -80,7 +82,7 @@ public class GpioListenAllExample {
         // by default we will use gpio pin PULL-DOWN; however, if an argument
         // has been provided, then use the specified pull resistance
         PinPullResistance pull = CommandArgumentParser.getPinPullResistance(
-                PinPullResistance.PULL_UP,  // default pin pull resistance if no pull argument found
+                PinPullResistance.PULL_UP, // default pin pull resistance if no pull argument found
                 args);                      // argument array to search in
 
         // prompt user to wait
@@ -92,11 +94,10 @@ public class GpioListenAllExample {
 
         // get a collection of raw pins based on the board type (model)
         SystemInfo.BoardType board = SystemInfo.getBoardType();
-        if(board == SystemInfo.BoardType.RaspberryPi_ComputeModule) {
+        if (board == SystemInfo.BoardType.RaspberryPi_ComputeModule) {
             // get all pins for compute module
             pins = RCMPin.allPins();
-        }
-        else {
+        } else {
             // get exclusive set of pins based on RaspberryPi model (board type)
             pins = RaspiPin.allPins(board);
         }
@@ -109,8 +110,7 @@ public class GpioListenAllExample {
 
                 // unexport the provisioned GPIO pins when program exits
                 provisionedPin.setShutdownOptions(true);
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         }
@@ -125,17 +125,16 @@ public class GpioListenAllExample {
         // --------------------------------
         // EVENT-BASED GPIO PIN MONITORING
         // --------------------------------
-
         // create and register gpio pin listeners for event pins
         gpio.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 // display pin state on console
-                console.println(" --> GPIO PIN STATE CHANGE (EVENT): " + event.getPin() + " = " +
-                        ConsoleColor.conditional(
+                console.println(" --> GPIO PIN STATE CHANGE (EVENT): " + event.getPin() + " = "
+                        + ConsoleColor.conditional(
                                 event.getState().isHigh(), // conditional expression
-                                ConsoleColor.GREEN,        // positive conditional color
-                                ConsoleColor.RED,          // negative conditional color
+                                ConsoleColor.GREEN, // positive conditional color
+                                ConsoleColor.RED, // negative conditional color
                                 event.getState()));        // text to display
             }
         }, provisionedPins.toArray(new GpioPinDigitalInput[0]));
@@ -148,4 +147,3 @@ public class GpioListenAllExample {
         gpio.shutdown();
     }
 }
-

@@ -30,7 +30,6 @@ import com.pi4j.component.servo.ServoDriver;
 import com.pi4j.component.servo.ServoProvider;
 import com.pi4j.component.servo.impl.RPIServoBlasterProvider;
 
-
 public class RPIServoBlasterExample {
 
     public static void main(String[] args) throws Exception {
@@ -51,4 +50,3 @@ public class RPIServoBlasterExample {
         System.out.println("Exiting RPIServoBlasterExample");
     }
 }
-

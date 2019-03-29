@@ -15,36 +15,33 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Graphics;
 
 /**
  * This interface describes a matrix of bit values.
- * 
+ *
  * @author Jim Darby
  */
-public interface BitMatrix extends Matrix <Boolean>
-{
+public interface BitMatrix extends Matrix<Boolean> {
+
     /**
      * Sets a pixel to a specific colour.
-     * 
+     *
      * @param p The address of the Pixel.
      * @param on If the pixel is on.
      */
-    default public void setPixel (Point p, boolean on)
-    {
-        setPixel (p, new Boolean (on));
+    default public void setPixel(Point p, boolean on) {
+        setPixel(p, new Boolean(on));
     }
-    
-     /**
+
+    /**
      * Sets a pixel to a specific colour.
-     * 
+     *
      * @param x The X coordinate of the pixel.
      * @param y The Y coordinate of the pixel.
      * @param on If the pixel is on.
      */
-    default public void setPixel (int x, int y, boolean on)
-    {
-        setPixel (new Point (x, y), new Boolean (on));
+    default public void setPixel(int x, int y, boolean on) {
+        setPixel(new Point(x, y), new Boolean(on));
     }
 }

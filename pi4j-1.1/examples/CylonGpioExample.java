@@ -29,8 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
@@ -38,8 +36,8 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
 /**
- * This example code demonstrates how to perform a blinking cycle
- * (cylon effect) of a series of GPIO pins on the Raspberry Pi.
+ * This example code demonstrates how to perform a blinking cycle (cylon effect)
+ * of a series of GPIO pins on the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -54,28 +52,28 @@ public class CylonGpioExample {
 
         // provision gpio pin #01 as an output pin and turn on
         final GpioPinDigitalOutput[] pins = {
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07, PinState.LOW)};
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07, PinState.LOW)};
         System.out.println("--> GPIO state should be: ON");
 
         // set shutdown options on all pins
         gpio.setShutdownOptions(true, PinState.LOW, pins);
 
         // infinite loop
-        while(true) {
+        while (true) {
 
-            for(int index = 0; index <= 6; index++) {
+            for (int index = 0; index <= 6; index++) {
                 pins[index].pulse(50);
                 Thread.sleep(50);
             }
 
-            for(int index = 6; index >= 0; index--) {
+            for (int index = 6; index >= 0; index--) {
                 pins[index].pulse(50);
                 Thread.sleep(50);
             }

@@ -35,8 +35,8 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
 /**
- * This example code demonstrates how to control a stepper motor
- * using the GPIO pins on the Raspberry Pi.
+ * This example code demonstrates how to control a stepper motor using the GPIO
+ * pins on the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -51,10 +51,10 @@ public class StepperMotorGpioExample {
 
         // provision gpio pins #00 to #03 as output pins and ensure in LOW state
         final GpioPinDigitalOutput[] pins = {
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, PinState.LOW),
-                gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03, PinState.LOW)};
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, PinState.LOW),
+            gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03, PinState.LOW)};
 
         // this will ensure that the motor is stopped when the program terminates
         gpio.setShutdownOptions(true, PinState.LOW, pins);
@@ -64,7 +64,6 @@ public class StepperMotorGpioExample {
 
         // @see http://www.lirtex.com/robotics/stepper-motor-controller-circuit/
         //      for additional details on stepping techniques
-
         // create byte array to demonstrate a single-step sequencing
         // (This is the most basic method, turning on a single electromagnet every time.
         //  This sequence requires the least amount of energy and generates the smoothest movement.)

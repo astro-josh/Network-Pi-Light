@@ -28,8 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -46,14 +44,13 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 /**
  * <p>
- * This example code demonstrates how to use the ADS1015 Pi4J GPIO interface
- * for analog input pins.
+ * This example code demonstrates how to use the ADS1015 Pi4J GPIO interface for
+ * analog input pins.
  * </p>
  *
  * @author Robert Savage
  */
 public class ADS1015GpioExample {
-
 
     public static void main(String args[]) throws InterruptedException, UnsupportedBusNumberException, IOException {
 
@@ -71,11 +68,10 @@ public class ADS1015GpioExample {
 
         // provision gpio analog input pins from ADS1015
         GpioPinAnalogInput myInputs[] = {
-                gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A0, "MyAnalogInput-A0"),
-                gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A1, "MyAnalogInput-A1"),
-                gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A2, "MyAnalogInput-A2"),
-                gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A3, "MyAnalogInput-A3"),
-            };
+            gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A0, "MyAnalogInput-A0"),
+            gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A1, "MyAnalogInput-A1"),
+            gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A2, "MyAnalogInput-A2"),
+            gpio.provisionAnalogInputPin(gpioProvider, ADS1015Pin.INPUT_A3, "MyAnalogInput-A3"),};
 
         // ATTENTION !!
         // It is important to set the PGA (Programmable Gain Amplifier) for all analog input pins.
@@ -89,35 +85,30 @@ public class ADS1015GpioExample {
         // so the output values are in direct proportion to the detected voltage on the input pins
         gpioProvider.setProgrammableGainAmplifier(ProgrammableGainAmplifierValue.PGA_4_096V, ADS1015Pin.ALL);
 
-
         // Define a threshold value for each pin for analog value change events to be raised.
         // It is important to set this threshold high enough so that you don't overwhelm your program with change events for insignificant changes
         gpioProvider.setEventThreshold(500, ADS1015Pin.ALL);
-
 
         // Define the monitoring thread refresh interval (in milliseconds).
         // This governs the rate at which the monitoring thread will read input values from the ADC chip
         // (a value less than 50 ms is not permitted)
         gpioProvider.setMonitorInterval(100);
 
-
         // create analog pin value change listener
-        GpioPinListenerAnalog listener = new GpioPinListenerAnalog()
-        {
+        GpioPinListenerAnalog listener = new GpioPinListenerAnalog() {
             @Override
-            public void handleGpioPinAnalogValueChangeEvent(GpioPinAnalogValueChangeEvent event)
-            {
+            public void handleGpioPinAnalogValueChangeEvent(GpioPinAnalogValueChangeEvent event) {
                 // RAW value
                 double value = event.getValue();
 
                 // percentage
-                double percent =  ((value * 100) / ADS1015GpioProvider.ADS1015_RANGE_MAX_VALUE);
+                double percent = ((value * 100) / ADS1015GpioProvider.ADS1015_RANGE_MAX_VALUE);
 
                 // approximate voltage ( *scaled based on PGA setting )
-                double voltage = gpioProvider.getProgrammableGainAmplifier(event.getPin()).getVoltage() * (percent/100);
+                double voltage = gpioProvider.getProgrammableGainAmplifier(event.getPin()).getVoltage() * (percent / 100);
 
                 // display output
-                System.out.println(" (" + event.getPin().getName() +") : VOLTS=" + df.format(voltage) + "  | PERCENT=" + pdf.format(percent) + "% | RAW=" + value + "       ");
+                System.out.println(" (" + event.getPin().getName() + ") : VOLTS=" + df.format(voltage) + "  | PERCENT=" + pdf.format(percent) + "% | RAW=" + value + "       ");
             }
         };
 
@@ -136,4 +127,3 @@ public class ADS1015GpioExample {
         System.out.println("Exiting ADS1015GpioExample");
     }
 }
-

@@ -15,40 +15,40 @@
  * License along with this library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Graphics;
 
 import java.io.IOException;
 
 /**
  * Do a demo on an arbitrary BitMatrix.
- * 
+ *
  * @author Jim Darby
  */
-public class BitMatrixDemo
-{
+public class BitMatrixDemo {
+
     /**
      * Run the demo given a ColourMatrix.
-     * 
+     *
      * @param m The ColourMatrix to use.
-     * 
+     *
      * @throws InterruptedException In case of thread badness.
      * @throws java.io.IOException In case of trouble.
      */
-    public static void run (BitMatrix m) throws InterruptedException, IOException
-    {
-        final Point limits = m.getMax ();
-        final int max_x = limits.getX ();
-        final int max_y = limits.getY ();
-        
-        while (true)
-            for (int on = 0; on < 2; ++on)
-                for (int x = 0; x <= max_x; ++x)
-                    for (int y = 0; y <= max_y; ++y)
-                    {
-                        m.setPixel (x, y, on == 0);
-                        m.show ();
-                        Thread.sleep (50);
+    public static void run(BitMatrix m) throws InterruptedException, IOException {
+        final Point limits = m.getMax();
+        final int max_x = limits.getX();
+        final int max_y = limits.getY();
+
+        while (true) {
+            for (int on = 0; on < 2; ++on) {
+                for (int x = 0; x <= max_x; ++x) {
+                    for (int y = 0; y <= max_y; ++y) {
+                        m.setPixel(x, y, on == 0);
+                        m.show();
+                        Thread.sleep(50);
                     }
+                }
+            }
+        }
     }
 }

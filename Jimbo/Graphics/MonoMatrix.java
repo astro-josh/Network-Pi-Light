@@ -15,65 +15,62 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Graphics;
 
 /**
  * This interface describes a matrix of monochrome Pixels.
- * 
+ *
  * @author Jim Darby
  */
-public interface MonoMatrix extends Matrix <Integer>
-{
+public interface MonoMatrix extends Matrix<Integer> {
+
     /**
      * Sets a pixel to a specific value.
-     * 
+     *
      * @param p The address of the Pixel.
      * @param value The value to set in the range 0 to 255.
      */
-    default public void setPixel (Point p, int value)
-    {
-        setPixel (p, new Integer (value));
+    default public void setPixel(Point p, int value) {
+        setPixel(p, new Integer(value));
     }
-    
+
     /**
      * Sets a pixel to a specific value.
-     * 
+     *
      * @param x The X coordinate of the pixel.
      * @param y The Y coordinate of the pixel.
      * @param value The value to set in the range 0 to 255.
      */
-    default public void setPixel (int x, int y, int value)
-    {
-        setPixel (new Point (x, y), new Integer (value));
+    default public void setPixel(int x, int y, int value) {
+        setPixel(new Point(x, y), new Integer(value));
     }
-    
+
     /**
      * Sets a pixel to a specific value.
-     * 
+     *
      * @param p The pixel to set.
      * @param value The value to set in the range 0.0 to 1.0.
      */
-    default public void setPixel (Point p, double value)
-    {
-        if (value < 0 || value > 1)
-            throw new IllegalArgumentException ("Invalid pixel value " + value);
-        
-        setPixel (p, new Integer ((int) (value * 255 + 0.5)));
+    default public void setPixel(Point p, double value) {
+        if (value < 0 || value > 1) {
+            throw new IllegalArgumentException("Invalid pixel value " + value);
+        }
+
+        setPixel(p, new Integer((int) (value * 255 + 0.5)));
     }
-    
+
     /**
      * Sets a pixel to a specific value.
-     * 
+     *
      * @param x The X coordinate of the pixel.
      * @param y The Y coordinate of the pixel.
      * @param value The value to set in the range 0.0 to 1.0.
      */
-    default public void setPixel (int x, int y, double value)
-    {
-        if (value < 0 || value > 1)
-            throw new IllegalArgumentException ("Invalid pixel value " + value);
-        
-        setPixel (new Point (x, y), new Integer ((int) (value * 255 + 0.5)));
+    default public void setPixel(int x, int y, double value) {
+        if (value < 0 || value > 1) {
+            throw new IllegalArgumentException("Invalid pixel value " + value);
+        }
+
+        setPixel(new Point(x, y), new Integer((int) (value * 255 + 0.5)));
     }
 }

@@ -37,8 +37,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * This example code demonstrates how to perform simple state
- * control of a GPIO pin on the BananaPi.
+ * This example code demonstrates how to perform simple state control of a GPIO
+ * pin on the BananaPi.
  *
  * @author Robert Savage
  */
@@ -63,7 +63,7 @@ public class GpioTest {
 
         System.out.println("<--Pi4J--> GPIO Test Program ... started.");
 
-        while(!exit) {
+        while (!exit) {
             System.out.println();
             System.out.println();
             System.out.println("----------------------------------------");
@@ -77,15 +77,15 @@ public class GpioTest {
             // get user input selection
             String selection = in.next();
 
-            switch(selection.toUpperCase()){
-                case "O":{
+            switch (selection.toUpperCase()) {
+                case "O": {
                     gpioOutputsMenu(); // GPIO OUTPUTS
                     break;
                 }
-                case "I":{
+                case "I": {
                     break;
                 }
-                case "X":{
+                case "X": {
                     exit = true;
                     break;
                 }
@@ -107,8 +107,7 @@ public class GpioTest {
         gpio.shutdown();
     }
 
-
-    public static void gpioOutputsMenu(){
+    public static void gpioOutputsMenu() {
 
         System.out.println();
         System.out.println();
@@ -116,20 +115,20 @@ public class GpioTest {
         System.out.println("GPIO OUTPUTS TEST:");
         System.out.println("----------------------------------------");
 
-        switch(PlatformManager.getPlatform()){
-            case RASPBERRYPI:{
+        switch (PlatformManager.getPlatform()) {
+            case RASPBERRYPI: {
                 Pin pins[] = RaspiPin.allPins();
                 Arrays.sort(pins);
                 gpioOutputsTest(pins);
                 break;
             }
-            case BANANAPI:{
+            case BANANAPI: {
                 Pin pins[] = BananaPiPin.allPins();
                 Arrays.sort(pins);
                 gpioOutputsTest(pins);
                 break;
             }
-            case BANANAPRO:{
+            case BANANAPRO: {
                 Pin pins[] = BananaProPin.allPins();
                 Arrays.sort(pins);
                 gpioOutputsTest(pins);
@@ -138,10 +137,10 @@ public class GpioTest {
         }
     }
 
-    public static void gpioOutputsTest(Pin pins[]){
+    public static void gpioOutputsTest(Pin pins[]) {
         final Scanner in = new Scanner(System.in);
         final GpioController gpio = GpioFactory.getInstance();
-        for(Pin pin : pins){
+        for (Pin pin : pins) {
             // provision pin
             System.out.println("... provisioning pin: " + pin.toString());
             GpioPinDigitalOutput outputPin = gpio.provisionDigitalOutputPin(pin, PinState.LOW);

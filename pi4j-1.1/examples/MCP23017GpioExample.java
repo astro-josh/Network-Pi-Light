@@ -28,8 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import java.io.IOException;
 
 import com.pi4j.gpio.extension.mcp.MCP23017GpioProvider;
@@ -47,19 +45,20 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for GPIO pin state control and monitoring.
+ * This example code demonstrates how to setup a custom GpioProvider for GPIO
+ * pin state control and monitoring.
  * </p>
  *
  * <p>
- * This example implements the MCP23017 GPIO expansion board.
- * More information about the board can be found here: *
+ * This example implements the MCP23017 GPIO expansion board. More information
+ * about the board can be found here: *
  * http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf
  * </p>
  *
  * <p>
  * The MCP23017 is connected via I2C connection to the Raspberry Pi and provides
- * 16 GPIO pins that can be used for either digital input or digital output pins.
+ * 16 GPIO pins that can be used for either digital input or digital output
+ * pins.
  * </p>
  *
  * @author Robert Savage
@@ -78,15 +77,14 @@ public class MCP23017GpioExample {
 
         // provision gpio input pins from MCP23017
         GpioPinDigitalInput myInputs[] = {
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A0, "MyInput-A0", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A1, "MyInput-A1", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A2, "MyInput-A2", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A3, "MyInput-A3", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A4, "MyInput-A4", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A5, "MyInput-A5", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A6, "MyInput-A6", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A7, "MyInput-A7", PinPullResistance.PULL_UP),
-            };
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A0, "MyInput-A0", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A1, "MyInput-A1", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A2, "MyInput-A2", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A3, "MyInput-A3", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A4, "MyInput-A4", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A5, "MyInput-A5", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A6, "MyInput-A6", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(provider, MCP23017Pin.GPIO_A7, "MyInput-A7", PinPullResistance.PULL_UP),};
 
         // create and register gpio pin listener
         gpio.addListener(new GpioPinListenerDigital() {
@@ -108,7 +106,7 @@ public class MCP23017GpioExample {
             gpio.provisionDigitalOutputPin(provider, MCP23017Pin.GPIO_B5, "MyOutput-B5", PinState.LOW),
             gpio.provisionDigitalOutputPin(provider, MCP23017Pin.GPIO_B6, "MyOutput-B6", PinState.LOW),
             gpio.provisionDigitalOutputPin(provider, MCP23017Pin.GPIO_B7, "MyOutput-B7", PinState.LOW)
-          };
+        };
 
         // keep program running for 20 seconds
         for (int count = 0; count < 10; count++) {
@@ -125,4 +123,3 @@ public class MCP23017GpioExample {
         System.out.println("Exiting MCP23017GpioExample");
     }
 }
-

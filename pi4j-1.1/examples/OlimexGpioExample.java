@@ -28,8 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.gpio.extension.olimex.OlimexAVRIOGpioProvider;
 import com.pi4j.gpio.extension.olimex.OlimexAVRIOPin;
 import com.pi4j.io.gpio.GpioController;
@@ -50,19 +48,20 @@ import java.io.IOException;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for GPIO pin state control and monitoring.
+ * This example code demonstrates how to setup a custom GpioProvider for GPIO
+ * pin state control and monitoring.
  * </p>
  *
  * <p>
- * This example implements the Olimex AVR-IO-M-16 expansion board.
- * More information about the board can be found here: *
+ * This example implements the Olimex AVR-IO-M-16 expansion board. More
+ * information about the board can be found here: *
  * https://www.olimex.com/Products/AVR/Development/AVR-IO-M16/
  * </p>
  *
  * <p>
- * The Olimex AVR-IO board is connected via RS232 serial connection to the Raspberry Pi and provides
- * 4 electromechanical RELAYs and 4 opto-isolated INPUT pins.
+ * The Olimex AVR-IO board is connected via RS232 serial connection to the
+ * Raspberry Pi and provides 4 electromechanical RELAYs and 4 opto-isolated
+ * INPUT pins.
  * </p>
  *
  * @link https://www.olimex.com/Products/AVR/Development/AVR-IO-M16/
@@ -106,7 +105,7 @@ public class OlimexGpioExample {
             gpio.provisionDigitalOutputPin(olimexProvider, OlimexAVRIOPin.RELAY_02, "RELAY #2", PinState.LOW),
             gpio.provisionDigitalOutputPin(olimexProvider, OlimexAVRIOPin.RELAY_03, "RELAY #3", PinState.LOW),
             gpio.provisionDigitalOutputPin(olimexProvider, OlimexAVRIOPin.RELAY_04, "RELAY #4", PinState.LOW)
-          };
+        };
 
         // create a gpio control trigger on the input pin ; when the input goes HIGH, also set gpio pin #04 to HIGH
         myButton.addTrigger(new GpioSetStateTrigger(PinState.HIGH, myRelays[0], PinState.HIGH));

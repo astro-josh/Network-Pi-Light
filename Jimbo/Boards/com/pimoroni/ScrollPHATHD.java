@@ -15,7 +15,6 @@
  * License along with this library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-
 package Jimbo.Boards.com.pimoroni;
 
 import java.io.IOException;
@@ -31,131 +30,138 @@ import Jimbo.Graphics.MonoMatrixDemo;
 
 /**
  * This class controls a Pimoroni ScrollpHAT HD.
- * 
+ *
  * @author Jim Darby
  */
-public class ScrollPHATHD implements MonoMatrix
-{
-   /**
+public class ScrollPHATHD implements MonoMatrix {
+
+    /**
      * Create a ScrollPHATHD object.
-     * 
+     *
      * @throws IOException In case of issues.
      * @throws I2CFactory.UnsupportedBusNumberException In case it can't find
      * the correct I2C bus.
      * @throws java.lang.InterruptedException In case of issues.
      */
-    public ScrollPHATHD () throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException
-    {
-        phat =  new IS31FL3731 (I2CFactory.getInstance (I2CBus.BUS_1), 0x74);
+    public ScrollPHATHD() throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException {
+        phat = new IS31FL3731(I2CFactory.getInstance(I2CBus.BUS_1), 0x74);
     }
-    
-   /**
+
+    /**
      * Update the displayed data. Call this after setting up what you want
      * displayed and it will transfer it to the device and hence actually
      * display it.
-     * 
+     *
      * @throws IOException In case of problems.
      */
     @Override
-    public void show () throws IOException
-    {
-        phat.update ();
+    public void show() throws IOException {
+        phat.update();
     }
-    
+
     /**
-     * Set a specific pixel on or off. This works in the most efficient
-     * way.
-     * 
+     * Set a specific pixel on or off. This works in the most efficient way.
+     *
      * @param x The x coordinate.
      * @param y The y coordinate.
      * @param pwm The PWM value.
      */
     @Override
-    public void setPixel (int x, int y, int pwm)
-    {
-        if (x < 0 || x > MAX_X || y < 0 || y > MAX_Y)
-            throw new IllegalArgumentException ("Invalid co-ordinates for set");
-        
-        if (flip_x)
+    public void setPixel(int x, int y, int pwm) {
+        if (x < 0 || x > MAX_X || y < 0 || y > MAX_Y) {
+            throw new IllegalArgumentException("Invalid co-ordinates for set");
+        }
+
+        if (flip_x) {
             x = MAX_X - x;
-        
-        if (flip_y)
+        }
+
+        if (flip_y) {
             y = MAX_Y - y;
-        
+        }
+
         // Piratical wiring madness!
-        
-        if (x >= 8)
-        {
+        if (x >= 8) {
             x = (x - 8) * 2;
             y = MAX_Y - y;
-        }
-        else
-        {
+        } else {
             x = 15 - x * 2;
         }
-        
-        phat.setLed (0, x * 8 + y, pwm);
+
+        phat.setLed(0, x * 8 + y, pwm);
     }
-    
+
     /**
      * Set a pixel in the generic way.
-     * 
+     *
      * @param p The pixel.
      * @param value The value.
      */
     @Override
-    public void setPixel (Point p, Integer value)
-    {
-        setPixel (p.getX (), p.getY (), value.intValue ());
+    public void setPixel(Point p, Integer value) {
+        setPixel(p.getX(), p.getY(), value.intValue());
     }
-    
+
     /**
-     * Optionally flip the x, y or both arguments. Useful for rotating
-     * and other general diddling of the display,
-     * 
+     * Optionally flip the x, y or both arguments. Useful for rotating and other
+     * general diddling of the display,
+     *
      * @param x Flip the x coordinates?
      * @param y Flip the y coordinates?
      */
-    public void flip (boolean x, boolean y)
-    {
+    public void flip(boolean x, boolean y) {
         flip_x = x;
         flip_y = y;
     }
-    
+
     /**
      * Get the maximum values for X and Y.
-     * 
+     *
      * @return A Point containing the maximum values.
      */
     @Override
-    public Point getMax ()
-    {
+    public Point getMax() {
         return MAX;
     }
-    
-    public static void main (String args[]) throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException
-    {
-        ScrollPHATHD p = new ScrollPHATHD ();
-        
-        MonoMatrixDemo.run (p);
+
+    public static void main(String args[]) throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException {
+        ScrollPHATHD p = new ScrollPHATHD();
+
+        MonoMatrixDemo.run(p);
     }
-    
-    /** Device width. */
+
+    /**
+     * Device width.
+     */
     public final static int WIDTH = 17;
-    /** Device height. */
+    /**
+     * Device height.
+     */
     public final static int HEIGHT = 7;
-    /** The maximum X value. */
+    /**
+     * The maximum X value.
+     */
     public final static int MAX_X = WIDTH - 1;
-    /** The maximum Y value. */
+    /**
+     * The maximum Y value.
+     */
     public final static int MAX_Y = HEIGHT - 1;
-    
-    /** The maximum values as a Point. */
-    private final static Point MAX = new Point (MAX_X, MAX_Y);
-    
-    /** The device itself. */
+
+    /**
+     * The maximum values as a Point.
+     */
+    private final static Point MAX = new Point(MAX_X, MAX_Y);
+
+    /**
+     * The device itself.
+     */
     private final IS31FL3731 phat;
-    /** Flag to flip the x coordinate. */
+    /**
+     * Flag to flip the x coordinate.
+     */
     private boolean flip_x = false;
-    /** Flag to flip the y coordinate. */
+    /**
+     * Flag to flip the y coordinate.
+     */
     private boolean flip_y = false;
 }

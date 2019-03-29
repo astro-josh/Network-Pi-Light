@@ -1,4 +1,5 @@
 package odroid.xu4;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package odroid.xu4;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
@@ -37,7 +37,8 @@ import com.pi4j.util.Console;
 
 /**
  * <p>
- * This example code demonstrates how to setup a software emulated PWM pin using the Odroid XU4 GPIO pins.
+ * This example code demonstrates how to setup a software emulated PWM pin using
+ * the Odroid XU4 GPIO pins.
  * </p>
  *
  * @author Robert Savage
@@ -45,10 +46,10 @@ import com.pi4j.util.Console;
 public class SoftPwmExample {
 
     /**
-     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ]
-     * This example program accepts an optional argument for specifying the GPIO pin (by number)
-     * to use with this GPIO listener example. If no argument is provided, then GPIO #1 will be used.
-     * -- EXAMPLE: "--pin 4" or "-p 0".
+     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ] This example program accepts an
+     * optional argument for specifying the GPIO pin (by number) to use with
+     * this GPIO listener example. If no argument is provided, then GPIO #1 will
+     * be used. -- EXAMPLE: "--pin 4" or "-p 0".
      *
      * @param args
      * @throws InterruptedException
@@ -82,12 +83,11 @@ public class SoftPwmExample {
         // When provisioning a pin, use the OdroidXU4Pin class.
         //
         // ####################################################################
-
         // by default we will use gpio pin #01; however, if an argument
         // has been provided, then lookup the pin by address
         Pin pin = CommandArgumentParser.getPin(
-                OdroidXU4Pin.class,    // pin provider class to obtain pin instance from
-                OdroidXU4Pin.GPIO_01,  // default pin if no pin argument found
+                OdroidXU4Pin.class, // pin provider class to obtain pin instance from
+                OdroidXU4Pin.GPIO_01, // default pin if no pin argument found
                 args);                 // argument array to search in
 
         // we will provision the pin as a software emulated PWM output
