@@ -1,7 +1,8 @@
-package NetPiLight;
+package NetPiLight.Commands;
 
 import Jimbo.Boards.com.pimoroni.Blinkt;
 import Jimbo.Graphics.ColourMatrixDemo;
+import NetPiLight.Command;
 import java.io.IOException;
 
 /**

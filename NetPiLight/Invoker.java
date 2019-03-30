@@ -1,5 +1,6 @@
 package NetPiLight;
 
+import NetPiLight.Commands.*;
 import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

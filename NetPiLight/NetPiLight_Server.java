@@ -1,12 +1,5 @@
 package NetPiLight;
 
-
-import Jimbo.Boards.com.pimoroni.Blinkt;
-import Jimbo.Graphics.Colour;
-import Jimbo.Graphics.ColourMatrixDemo;
-import Jimbo.Graphics.Point;
-import java.util.Random;
-
 /**
  *
  * @author Joshua Alexander
