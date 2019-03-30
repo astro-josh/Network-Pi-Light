@@ -1,11 +1,12 @@
 package NetPiLight;
 
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Joshua Alexander
  */
 public class Server extends javax.swing.JFrame {
-    
 
     public Server() {
         initComponents();
@@ -107,7 +108,12 @@ public class Server extends javax.swing.JFrame {
             }
         });
 
-        Invoker invoker = new Invoker(jTextArea1);
+        Invoker invoker = new Invoker();
+        invoker.start();
+    }
+
+    public static void taAppend(String str) {
+        jTextArea1.append(str);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -116,4 +122,5 @@ public class Server extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
 }

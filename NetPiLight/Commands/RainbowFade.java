@@ -9,9 +9,10 @@ import java.util.Random;
  * @author Joshua Alexander
  */
 public class RainbowFade implements Command {
+
     private final Blinkt blinkt;
     private final Random rand;
-    
+
     public RainbowFade(Blinkt b) {
         blinkt = b;
         rand = new Random();
@@ -61,7 +62,7 @@ public class RainbowFade implements Command {
             }
         }
         blinkt.setOff();
-        
+
         return "Running Rainbow Fade";
     }
 

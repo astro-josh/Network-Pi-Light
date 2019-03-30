@@ -10,8 +10,9 @@ import java.io.IOException;
  * @author Joshua Alexander
  */
 public class Rainbow implements Command {
+
     private final Blinkt blinkt;
-    
+
     public Rainbow(Blinkt b) {
         blinkt = b;
     }
@@ -23,8 +24,8 @@ public class Rainbow implements Command {
         } catch (InterruptedException | IOException ex) {
 
         }
-        
+
         return "Running Rainbow.";
     }
-    
+
 }

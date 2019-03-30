@@ -313,7 +313,7 @@ public class Client extends javax.swing.JFrame {
         });
 
         try {
-            s = new Socket("192.168.137.40", 9001);
+            s = new Socket("127.0.0.1", 9001);
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
             String msgIn = "";
