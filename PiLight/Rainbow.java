@@ -3,8 +3,6 @@ package PiLight;
 import Jimbo.Boards.com.pimoroni.Blinkt;
 import Jimbo.Graphics.ColourMatrixDemo;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +20,7 @@ public class Rainbow implements Command {
         try {
             ColourMatrixDemo.run(this.b);
         } catch (InterruptedException | IOException ex) {
-            Logger.getLogger(Rainbow.class.getName()).log(Level.SEVERE, null, ex);
+
         }
         
         return "Running Rainbow.";

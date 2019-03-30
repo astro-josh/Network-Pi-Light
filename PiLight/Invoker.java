@@ -3,6 +3,7 @@ package PiLight;
 import Jimbo.Boards.com.pimoroni.Blinkt;
 import Jimbo.Graphics.Colour;
 import Jimbo.Graphics.Point;
+import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -57,320 +58,53 @@ public class Invoker {
                         break;
                     case "rgb-bounce":
                         this.jta.append("Running RGB Bounce\n");
-
-                        int phase = 0;
-                        final double max_distance = 8;
-
-                        for (int i = 0; i < 4; i++) {
-                            for (int j = 0, k = 7; j < 8 && k >= 0; j++, k--) {
-                                double fraction = j / max_distance;
-
-                                double value1 = 360 * (1 - fraction) + phase;
-
-                                if (value1 > 360) {
-                                    value1 -= 360;
-                                }
-
-                                Colour c1 = new Colour(value1);
-
-                                b.setPixel(new Point(j, 0), c1);
-                                b.setPixel(new Point(k, 0), c1);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                Thread.sleep(50);
-                                phase++;
-                            }
-                        }
-                        b.setOff();
+                        cmd = new RGBBounce(b);
+                        cmd.execute();
                         break;
                     case "pulse-white":
                         this.jta.append("Running White Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 255, 255, 255, j);
-                                b.set(1, 255, 255, 255, j);
-                                b.set(2, 255, 255, 255, j);
-                                b.set(3, 255, 255, 255, j);
-                                b.set(4, 255, 255, 255, j);
-                                b.set(5, 255, 255, 255, j);
-                                b.set(6, 255, 255, 255, j);
-                                b.set(7, 255, 255, 255, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 255, 255, 255, k);
-                                b.set(1, 255, 255, 255, k);
-                                b.set(2, 255, 255, 255, k);
-                                b.set(3, 255, 255, 255, k);
-                                b.set(4, 255, 255, 255, k);
-                                b.set(5, 255, 255, 255, k);
-                                b.set(6, 255, 255, 255, k);
-                                b.set(7, 255, 255, 255, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.white);
+                        cmd.execute();
                         break;
                     case "pulse-purple":
                         this.jta.append("Running Purple Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 128, 0, 128, j);
-                                b.set(1, 128, 0, 128, j);
-                                b.set(2, 128, 0, 128, j);
-                                b.set(3, 128, 0, 128, j);
-                                b.set(4, 128, 0, 128, j);
-                                b.set(5, 128, 0, 128, j);
-                                b.set(6, 128, 0, 128, j);
-                                b.set(7, 128, 0, 128, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 128, 0, 128, k);
-                                b.set(1, 128, 0, 128, k);
-                                b.set(2, 128, 0, 128, k);
-                                b.set(3, 128, 0, 128, k);
-                                b.set(4, 128, 0, 128, k);
-                                b.set(5, 128, 0, 128, k);
-                                b.set(6, 128, 0, 128, k);
-                                b.set(7, 128, 0, 128, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, new Color(128, 0, 128));
+                        cmd.execute();
                         break;
                     case "pulse-red":
                         this.jta.append("Running Red Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 255, 0, 0, j);
-                                b.set(1, 255, 0, 0, j);
-                                b.set(2, 255, 0, 0, j);
-                                b.set(3, 255, 0, 0, j);
-                                b.set(4, 255, 0, 0, j);
-                                b.set(5, 255, 0, 0, j);
-                                b.set(6, 255, 0, 0, j);
-                                b.set(7, 255, 0, 0, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 255, 0, 0, k);
-                                b.set(1, 255, 0, 0, k);
-                                b.set(2, 255, 0, 0, k);
-                                b.set(3, 255, 0, 0, k);
-                                b.set(4, 255, 0, 0, k);
-                                b.set(5, 255, 0, 0, k);
-                                b.set(6, 255, 0, 0, k);
-                                b.set(7, 255, 0, 0, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.red);
+                        cmd.execute();
                         break;
                     case "pulse-blue":
                         this.jta.append("Running Blue Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 0, 0, 255, j);
-                                b.set(1, 0, 0, 255, j);
-                                b.set(2, 0, 0, 255, j);
-                                b.set(3, 0, 0, 255, j);
-                                b.set(4, 0, 0, 255, j);
-                                b.set(5, 0, 0, 255, j);
-                                b.set(6, 0, 0, 255, j);
-                                b.set(7, 0, 0, 255, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 0, 0, 255, k);
-                                b.set(1, 0, 0, 255, k);
-                                b.set(2, 0, 0, 255, k);
-                                b.set(3, 0, 0, 255, k);
-                                b.set(4, 0, 0, 255, k);
-                                b.set(5, 0, 0, 255, k);
-                                b.set(6, 0, 0, 255, k);
-                                b.set(7, 0, 0, 255, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.blue);
+                        cmd.execute();
                         break;
                     case "pulse-green":
                         this.jta.append("Running Green Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 0, 255, 0, j);
-                                b.set(1, 0, 255, 0, j);
-                                b.set(2, 0, 255, 0, j);
-                                b.set(3, 0, 255, 0, j);
-                                b.set(4, 0, 255, 0, j);
-                                b.set(5, 0, 255, 0, j);
-                                b.set(6, 0, 255, 0, j);
-                                b.set(7, 0, 255, 0, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 0, 255, 0, k);
-                                b.set(1, 0, 255, 0, k);
-                                b.set(2, 0, 255, 0, k);
-                                b.set(3, 0, 255, 0, k);
-                                b.set(4, 0, 255, 0, k);
-                                b.set(5, 0, 255, 0, k);
-                                b.set(6, 0, 255, 0, k);
-                                b.set(7, 0, 255, 0, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.green);
+                        cmd.execute();
                         break;
                     case "pulse-yellow":
                         this.jta.append("Running Yellow Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 255, 255, 0, j);
-                                b.set(1, 255, 255, 0, j);
-                                b.set(2, 255, 255, 0, j);
-                                b.set(3, 255, 255, 0, j);
-                                b.set(4, 255, 255, 0, j);
-                                b.set(5, 255, 255, 0, j);
-                                b.set(6, 255, 255, 0, j);
-                                b.set(7, 255, 255, 0, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 255, 255, 0, k);
-                                b.set(1, 255, 255, 0, k);
-                                b.set(2, 255, 255, 0, k);
-                                b.set(3, 255, 255, 0, k);
-                                b.set(4, 255, 255, 0, k);
-                                b.set(5, 255, 255, 0, k);
-                                b.set(6, 255, 255, 0, k);
-                                b.set(7, 255, 255, 0, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.yellow);
+                        cmd.execute();
                         break;
                     case "pulse-cyan":
                         this.jta.append("Running Cyan Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 0, 255, 255, j);
-                                b.set(1, 0, 255, 255, j);
-                                b.set(2, 0, 255, 255, j);
-                                b.set(3, 0, 255, 255, j);
-                                b.set(4, 0, 255, 255, j);
-                                b.set(5, 0, 255, 255, j);
-                                b.set(6, 0, 255, 255, j);
-                                b.set(7, 0, 255, 255, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 0, 255, 255, k);
-                                b.set(1, 0, 255, 255, k);
-                                b.set(2, 0, 255, 255, k);
-                                b.set(3, 0, 255, 255, k);
-                                b.set(4, 0, 255, 255, k);
-                                b.set(5, 0, 255, 255, k);
-                                b.set(6, 0, 255, 255, k);
-                                b.set(7, 0, 255, 255, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.cyan);
+                        cmd.execute();
                         break;
                     case "pulse-magenta":
                         this.jta.append("Running Magenta Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 255, 0, 255, j);
-                                b.set(1, 255, 0, 255, j);
-                                b.set(2, 255, 0, 255, j);
-                                b.set(3, 255, 0, 255, j);
-                                b.set(4, 255, 0, 255, j);
-                                b.set(5, 255, 0, 255, j);
-                                b.set(6, 255, 0, 255, j);
-                                b.set(7, 255, 0, 255, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 255, 0, 255, k);
-                                b.set(1, 255, 0, 255, k);
-                                b.set(2, 255, 0, 255, k);
-                                b.set(3, 255, 0, 255, k);
-                                b.set(4, 255, 0, 255, k);
-                                b.set(5, 255, 0, 255, k);
-                                b.set(6, 255, 0, 255, k);
-                                b.set(7, 255, 0, 255, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.magenta);
+                        cmd.execute();
                         break;
                     case "pulse-pink":
                         this.jta.append("Running Pink Pulse\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 32; j++) {
-                                b.set(0, 255, 20, 147, j);
-                                b.set(1, 255, 20, 147, j);
-                                b.set(2, 255, 20, 147, j);
-                                b.set(3, 255, 20, 147, j);
-                                b.set(4, 255, 20, 147, j);
-                                b.set(5, 255, 20, 147, j);
-                                b.set(6, 255, 20, 147, j);
-                                b.set(7, 255, 20, 147, j);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-
-                            for (int k = 31; k >= 0; k--) {
-                                b.set(0, 255, 20, 147, k);
-                                b.set(1, 255, 20, 147, k);
-                                b.set(2, 255, 20, 147, k);
-                                b.set(3, 255, 20, 147, k);
-                                b.set(4, 255, 20, 147, k);
-                                b.set(5, 255, 20, 147, k);
-                                b.set(6, 255, 20, 147, k);
-                                b.set(7, 255, 20, 147, k);
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.pink);
+                        cmd.execute();
                         break;
                     case "blink-cyan":
                         this.jta.append("Running Blink Cyan\n");
