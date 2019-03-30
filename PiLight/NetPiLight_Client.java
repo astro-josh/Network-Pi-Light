@@ -209,6 +209,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
         try {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
 
+            
             dataOut.writeUTF("pulse-".concat(color));
         } catch (Exception e) {
 
