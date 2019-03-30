@@ -1,8 +1,5 @@
 package NetPiLight;
 
-import Jimbo.Boards.com.pimoroni.Blinkt;
-import Jimbo.Graphics.Colour;
-import Jimbo.Graphics.Point;
 import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -12,6 +9,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextArea;
+import Jimbo.Boards.com.pimoroni.Blinkt;
 
 /**
  *
@@ -27,6 +25,7 @@ public class Invoker {
     private String msgIn;
     private Command cmd;
     private JTextArea jta;
+    private final Color PURPLE = new Color(128, 0, 128);
 
     public Invoker(JTextArea jta) {
         b = new Blinkt();
@@ -68,7 +67,7 @@ public class Invoker {
                         break;
                     case "pulse-purple":
                         this.jta.append("Running Purple Pulse\n");
-                        cmd = new PulseColor(b, new Color(128, 0, 128));
+                        cmd = new PulseColor(b, PURPLE);
                         cmd.execute();
                         break;
                     case "pulse-red":
@@ -143,7 +142,7 @@ public class Invoker {
                         break;
                     case "blink-purple":
                         this.jta.append("Running Blink Purple\n");
-                        cmd = new BlinkColor(b, new Color(128, 0, 128));
+                        cmd = new BlinkColor(b, PURPLE);
                         cmd.execute();
                         break;
                     case "blink-white":
@@ -153,120 +152,48 @@ public class Invoker {
                         break;
                     case "solid-red":
                         this.jta.append("Running Solid Red\n");
-
-                        b.set(0, 255, 0, 0, 30);
-                        b.set(1, 255, 0, 0, 30);
-                        b.set(2, 255, 0, 0, 30);
-                        b.set(3, 255, 0, 0, 30);
-                        b.set(4, 255, 0, 0, 30);
-                        b.set(5, 255, 0, 0, 30);
-                        b.set(6, 255, 0, 0, 30);
-                        b.set(7, 255, 0, 0, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.red);
+                        cmd.execute();
                         break;
                     case "solid-cyan":
                         this.jta.append("Running Solid Cyan\n");
-
-                        b.set(0, 0, 255, 255, 30);
-                        b.set(1, 0, 255, 255, 30);
-                        b.set(2, 0, 255, 255, 30);
-                        b.set(3, 0, 255, 255, 30);
-                        b.set(4, 0, 255, 255, 30);
-                        b.set(5, 0, 255, 255, 30);
-                        b.set(6, 0, 255, 255, 30);
-                        b.set(7, 0, 255, 255, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.cyan);
+                        cmd.execute();
                         break;
                     case "solid-magenta":
                         this.jta.append("Running Solid Magenta\n");
-
-                        b.set(0, 255, 0, 255, 30);
-                        b.set(1, 255, 0, 255, 30);
-                        b.set(2, 255, 0, 255, 30);
-                        b.set(3, 255, 0, 255, 30);
-                        b.set(4, 255, 0, 255, 30);
-                        b.set(5, 255, 0, 255, 30);
-                        b.set(6, 255, 0, 255, 30);
-                        b.set(7, 255, 0, 255, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.magenta);
+                        cmd.execute();
                         break;
                     case "solid-pink":
                         this.jta.append("Running Solid Pink\n");
-
-                        b.set(0, 255, 20, 147, 30);
-                        b.set(1, 255, 20, 147, 30);
-                        b.set(2, 255, 20, 147, 30);
-                        b.set(3, 255, 20, 147, 30);
-                        b.set(4, 255, 20, 147, 30);
-                        b.set(5, 255, 20, 147, 30);
-                        b.set(6, 255, 20, 147, 30);
-                        b.set(7, 255, 20, 147, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.pink);
+                        cmd.execute();
                         break;
                     case "solid-green":
                         this.jta.append("Running Solid Green\n");
-
-                        b.set(0, 0, 255, 0, 30);
-                        b.set(1, 0, 255, 0, 30);
-                        b.set(2, 0, 255, 0, 30);
-                        b.set(3, 0, 255, 0, 30);
-                        b.set(4, 0, 255, 0, 30);
-                        b.set(5, 0, 255, 0, 30);
-                        b.set(6, 0, 255, 0, 30);
-                        b.set(7, 0, 255, 0, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.green);
+                        cmd.execute();
                         break;
                     case "solid-blue":
                         this.jta.append("Running Solid Blue\n");
-
-                        b.set(0, 0, 0, 255, 30);
-                        b.set(1, 0, 0, 255, 30);
-                        b.set(2, 0, 0, 255, 30);
-                        b.set(3, 0, 0, 255, 30);
-                        b.set(4, 0, 0, 255, 30);
-                        b.set(5, 0, 0, 255, 30);
-                        b.set(6, 0, 0, 255, 30);
-                        b.set(7, 0, 0, 255, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.blue);
+                        cmd.execute();
                         break;
                     case "solid-yellow":
                         this.jta.append("Running Solid Yellow\n");
-
-                        b.set(0, 255, 255, 0, 30);
-                        b.set(1, 255, 255, 0, 30);
-                        b.set(2, 255, 255, 0, 30);
-                        b.set(3, 255, 255, 0, 30);
-                        b.set(4, 255, 255, 0, 30);
-                        b.set(5, 255, 255, 0, 30);
-                        b.set(6, 255, 255, 0, 30);
-                        b.set(7, 255, 255, 0, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.yellow);
+                        cmd.execute();
                         break;
                     case "solid-purple":
                         this.jta.append("Running Solid Purple\n");
-
-                        b.set(0, 128, 0, 128, 30);
-                        b.set(1, 128, 0, 128, 30);
-                        b.set(2, 128, 0, 128, 30);
-                        b.set(3, 128, 0, 128, 30);
-                        b.set(4, 128, 0, 128, 30);
-                        b.set(5, 128, 0, 128, 30);
-                        b.set(6, 128, 0, 128, 30);
-                        b.set(7, 128, 0, 128, 30);
-                        b.show();
+                        cmd = new SolidColor(b, PURPLE);
+                        cmd.execute();
                         break;
                     case "solid-white":
                         this.jta.append("Running Solid White\n");
-
-                        b.set(0, 255, 255, 255, 30);
-                        b.set(1, 255, 255, 255, 30);
-                        b.set(2, 255, 255, 255, 30);
-                        b.set(3, 255, 255, 255, 30);
-                        b.set(4, 255, 255, 255, 30);
-                        b.set(5, 255, 255, 255, 30);
-                        b.set(6, 255, 255, 255, 30);
-                        b.set(7, 255, 255, 255, 30);
-                        b.show();
+                        cmd = new SolidColor(b, Color.white);
+                        cmd.execute();
                         break;
                     case "seq-red":
                         this.jta.append("Running Sequence Red\n");

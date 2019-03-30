@@ -41,6 +41,7 @@ public class BlinkColor implements Command {
             }
         }
         b.setOff();
+        
         return String.format("Running Blink Color - R: %s G: %s B: %s", r, g, bl);
     }
 
