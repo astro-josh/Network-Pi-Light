@@ -6,8 +6,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTextArea;
 import Jimbo.Boards.com.pimoroni.Blinkt;
 
@@ -197,157 +195,61 @@ public class Invoker {
                         break;
                     case "seq-red":
                         this.jta.append("Running Sequence Red\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 255, 0, 0, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.red);
+                        cmd.execute();
                         break;
                     case "seq-green":
                         this.jta.append("Running Sequence Green\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 0, 255, 0, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.green);
+                        cmd.execute();
                         break;
                     case "seq-blue":
                         this.jta.append("Running Sequence Blue\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 0, 0, 255, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.blue);
+                        cmd.execute();
                         break;
                     case "seq-yellow":
                         this.jta.append("Running Sequence Yellow\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 255, 255, 0, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.yellow);
+                        cmd.execute();
                         break;
                     case "seq-white":
                         this.jta.append("Running Sequence White\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 255, 255, 255, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.white);
+                        cmd.execute();
                         break;
                     case "seq-purple":
                         this.jta.append("Running Sequence Purple\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 128, 0, 128, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, PURPLE);
+                        cmd.execute();
                         break;
                     case "seq-cyan":
                         this.jta.append("Running Sequence Cyan\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 0, 255, 255, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.cyan);
+                        cmd.execute();
                         break;
                     case "seq-magenta":
                         this.jta.append("Running Sequence Magenta\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 255, 0, 255, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.magenta);
+                        cmd.execute();
                         break;
                     case "seq-pink":
                         this.jta.append("Running Sequence Pink\n");
-
-                        for (int i = 0; i < 3; i++) {
-                            for (int j = 0; j < 8; ++j) {
-                                b.set(j, 255, 20, 147, 30);
-                                b.show();
-                                Thread.sleep(200);
-                                b.setOff();
-                                b.show();
-                                Thread.sleep(50);
-                            }
-                        }
-                        b.setOff();
+                        cmd = new SequenceColor(b, Color.pink);
+                        cmd.execute();
                         break;
                     case "clear":
                         this.jta.append("Clearing LEDs\n");
-
                         b.setOff();
                         break;
                     default:
                         this.jta.append("Command Not Recognized.\n");
-
                         break;
                 }
 
             }
         } catch (IOException e) {
 
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Invoker.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
 }
