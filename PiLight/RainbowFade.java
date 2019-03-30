@@ -2,8 +2,6 @@ package PiLight;
 
 import Jimbo.Boards.com.pimoroni.Blinkt;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -40,7 +38,7 @@ public class RainbowFade implements Command {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(RainbowFade.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
 
@@ -57,7 +55,7 @@ public class RainbowFade implements Command {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(RainbowFade.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
         }
