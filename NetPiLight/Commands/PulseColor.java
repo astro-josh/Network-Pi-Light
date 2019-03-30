@@ -10,30 +10,30 @@ import java.awt.Color;
  */
 public class PulseColor implements Command {
 
-    private final Blinkt b;
-    private final int rgb, r, g, bl;
+    private final Blinkt blinkt;
+    private final int rgb, red, green, blue;
 
     public PulseColor(Blinkt b, Color c) {
-        this.b = b;
+        blinkt = b;
         rgb = c.getRGB();
-        r = rgb >> 16 & 0xFF;
-        g = rgb >> 8 & 0xFF;
-        bl = rgb & 0XFF;
+        red = rgb >> 16 & 0xFF;
+        green = rgb >> 8 & 0xFF;
+        blue = rgb & 0XFF;
     }
 
     @Override
     public String execute() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 32; j++) {
-                b.set(0, r, g, bl, j);
-                b.set(1, r, g, bl, j);
-                b.set(2, r, g, bl, j);
-                b.set(3, r, g, bl, j);
-                b.set(4, r, g, bl, j);
-                b.set(5, r, g, bl, j);
-                b.set(6, r, g, bl, j);
-                b.set(7, r, g, bl, j);
-                b.show();
+                blinkt.set(0, red, green, blue, j);
+                blinkt.set(1, red, green, blue, j);
+                blinkt.set(2, red, green, blue, j);
+                blinkt.set(3, red, green, blue, j);
+                blinkt.set(4, red, green, blue, j);
+                blinkt.set(5, red, green, blue, j);
+                blinkt.set(6, red, green, blue, j);
+                blinkt.set(7, red, green, blue, j);
+                blinkt.show();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -42,15 +42,15 @@ public class PulseColor implements Command {
             }
 
             for (int k = 31; k >= 0; k--) {
-                b.set(0, r, g, bl, k);
-                b.set(1, r, g, bl, k);
-                b.set(2, r, g, bl, k);
-                b.set(3, r, g, bl, k);
-                b.set(4, r, g, bl, k);
-                b.set(5, r, g, bl, k);
-                b.set(6, r, g, bl, k);
-                b.set(7, r, g, bl, k);
-                b.show();
+                blinkt.set(0, red, green, blue, k);
+                blinkt.set(1, red, green, blue, k);
+                blinkt.set(2, red, green, blue, k);
+                blinkt.set(3, red, green, blue, k);
+                blinkt.set(4, red, green, blue, k);
+                blinkt.set(5, red, green, blue, k);
+                blinkt.set(6, red, green, blue, k);
+                blinkt.set(7, red, green, blue, k);
+                blinkt.show();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -58,9 +58,9 @@ public class PulseColor implements Command {
                 }
             }
         }
-        b.setOff();
+        blinkt.setOff();
 
-        return String.format("Running Pulse Color - R: %s G: %s B: %s", r, g, bl);
+        return String.format("Running Pulse Color - R: %s G: %s B: %s", red, green, blue);
     }
 
 }

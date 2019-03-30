@@ -10,40 +10,40 @@ import java.awt.Color;
  */
 public class BlinkColor implements Command {
 
-    private final Blinkt b;
-    private final int rgb, r, g, bl;
+    private final Blinkt blinkt;
+    private final int rgb, red, green, blue;
 
     public BlinkColor(Blinkt b, Color c) {
-        this.b = b;
+        blinkt = b;
         rgb = c.getRGB();
-        r = rgb >> 16 & 0xFF;
-        g = rgb >> 8 & 0xFF;
-        bl = rgb & 0XFF;
+        red = rgb >> 16 & 0xFF;
+        green = rgb >> 8 & 0xFF;
+        blue = rgb & 0XFF;
     }
 
     @Override
     public String execute() {
         for (int i = 0; i < 10; i++) {
-            b.set(0, r, g, bl, 30);
-            b.set(1, r, g, bl, 30);
-            b.set(2, r, g, bl, 30);
-            b.set(3, r, g, bl, 30);
-            b.set(4, r, g, bl, 30);
-            b.set(5, r, g, bl, 30);
-            b.set(6, r, g, bl, 30);
-            b.set(7, r, g, bl, 30);
-            b.show();
+            blinkt.set(0, red, green, blue, BRIGHTNESS);
+            blinkt.set(1, red, green, blue, BRIGHTNESS);
+            blinkt.set(2, red, green, blue, BRIGHTNESS);
+            blinkt.set(3, red, green, blue, BRIGHTNESS);
+            blinkt.set(4, red, green, blue, BRIGHTNESS);
+            blinkt.set(5, red, green, blue, BRIGHTNESS);
+            blinkt.set(6, red, green, blue, BRIGHTNESS);
+            blinkt.set(7, red, green, blue, BRIGHTNESS);
+            blinkt.show();
             try {
                 Thread.sleep(200);
-                b.setOff();
+                blinkt.setOff();
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
                 
             }
         }
-        b.setOff();
+        blinkt.setOff();
         
-        return String.format("Running Blink Color - R: %s G: %s B: %s", r, g, bl);
+        return String.format("Running Blink Color - R: %s G: %s B: %s", red, green, blue);
     }
 
 }

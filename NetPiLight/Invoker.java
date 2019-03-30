@@ -16,29 +16,32 @@ import Jimbo.Boards.com.pimoroni.Blinkt;
  */
 public class Invoker {
 
-    private static ServerSocket ss;
     private static Socket s;
+    private static ServerSocket ss;
     private static DataInputStream dataIn;
     private static DataOutputStream dataOut;
     private static Blinkt b;
     private String msgIn;
     private Command cmd;
-    private JTextArea jta;
+    private final JTextArea jta;
     private final Color PURPLE = new Color(128, 0, 128);
 
     public Invoker(JTextArea jta) {
-        b = new Blinkt();
-        msgIn = "";
         this.jta = jta;
-            
+        b = new Blinkt();
+    }
+
+    public void start() {
         try {
             ss = new ServerSocket(9001); // The port to use.
             s = ss.accept(); // Accepts the connection on specified port.
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
-            
+
             jta.append("Incoming Connection from: " + s.getRemoteSocketAddress() + "\n");
 
+            msgIn = "";
+            
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
 
@@ -136,7 +139,7 @@ public class Invoker {
                         break;
                     case "blink-yellow":
                         this.jta.append("Running Blink Yellow\n");
-                        cmd= new BlinkColor(b, Color.yellow);
+                        cmd = new BlinkColor(b, Color.yellow);
                         cmd.execute();
                         break;
                     case "blink-purple":

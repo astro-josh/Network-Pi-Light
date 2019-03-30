@@ -10,16 +10,16 @@ import java.io.IOException;
  * @author Joshua Alexander
  */
 public class Rainbow implements Command {
-    private final Blinkt b;
+    private final Blinkt blinkt;
     
     public Rainbow(Blinkt b) {
-        this.b = b;
+        blinkt = b;
     }
 
     @Override
     public String execute() {
         try {
-            ColourMatrixDemo.run(this.b);
+            ColourMatrixDemo.run(this.blinkt);
         } catch (InterruptedException | IOException ex) {
 
         }

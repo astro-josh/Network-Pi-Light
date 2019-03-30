@@ -9,33 +9,33 @@ import java.util.Random;
  * @author Joshua Alexander
  */
 public class RainbowFade implements Command {
-    private final Blinkt b;
+    private final Blinkt blinkt;
+    private final Random rand;
     
     public RainbowFade(Blinkt b) {
-        this.b = b;
+        blinkt = b;
+        rand = new Random();
     }
 
     @Override
     public String execute() {
-        int r, g, bl;
-        
-        Random rand = new Random();
+        int red, green, blue;
 
         for (int i = 0; i < 5; i++) {
-            r = rand.nextInt(128);
-            g = rand.nextInt(128);
-            bl = rand.nextInt(128);
+            red = rand.nextInt(128);
+            green = rand.nextInt(128);
+            blue = rand.nextInt(128);
 
             for (int j = 0; j < 32; j++) {
-                b.set(0, r, g, bl, j);
-                b.set(1, r, g, bl, j);
-                b.set(2, r, g, bl, j);
-                b.set(3, r, g, bl, j);
-                b.set(4, r, g, bl, j);
-                b.set(5, r, g, bl, j);
-                b.set(6, r, g, bl, j);
-                b.set(7, r, g, bl, j);
-                b.show();
+                blinkt.set(0, red, green, blue, j);
+                blinkt.set(1, red, green, blue, j);
+                blinkt.set(2, red, green, blue, j);
+                blinkt.set(3, red, green, blue, j);
+                blinkt.set(4, red, green, blue, j);
+                blinkt.set(5, red, green, blue, j);
+                blinkt.set(6, red, green, blue, j);
+                blinkt.set(7, red, green, blue, j);
+                blinkt.show();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -44,15 +44,15 @@ public class RainbowFade implements Command {
             }
 
             for (int k = 31; k >= 0; k--) {
-                b.set(0, r, g, bl, k);
-                b.set(1, r, g, bl, k);
-                b.set(2, r, g, bl, k);
-                b.set(3, r, g, bl, k);
-                b.set(4, r, g, bl, k);
-                b.set(5, r, g, bl, k);
-                b.set(6, r, g, bl, k);
-                b.set(7, r, g, bl, k);
-                b.show();
+                blinkt.set(0, red, green, blue, k);
+                blinkt.set(1, red, green, blue, k);
+                blinkt.set(2, red, green, blue, k);
+                blinkt.set(3, red, green, blue, k);
+                blinkt.set(4, red, green, blue, k);
+                blinkt.set(5, red, green, blue, k);
+                blinkt.set(6, red, green, blue, k);
+                blinkt.set(7, red, green, blue, k);
+                blinkt.show();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -60,7 +60,7 @@ public class RainbowFade implements Command {
                 }
             }
         }
-        b.setOff();
+        blinkt.setOff();
         
         return "Running Rainbow Fade";
     }

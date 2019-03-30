@@ -11,10 +11,10 @@ import NetPiLight.Command;
  */
 public class RGBBounce implements Command {
 
-    private final Blinkt b;
+    private final Blinkt blinkt;
 
     public RGBBounce(Blinkt b) {
-        this.b = b;
+        blinkt = b;
     }
 
     @Override
@@ -34,15 +34,15 @@ public class RGBBounce implements Command {
 
                 Colour c1 = new Colour(value1);
 
-                b.setPixel(new Point(j, 0), c1);
-                b.setPixel(new Point(k, 0), c1);
-                b.show();
+                blinkt.setPixel(new Point(j, 0), c1);
+                blinkt.setPixel(new Point(k, 0), c1);
+                blinkt.show();
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException ex) {
 
                 }
-                b.setOff();
+                blinkt.setOff();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -51,7 +51,7 @@ public class RGBBounce implements Command {
                 phase++;
             }
         }
-        b.setOff();
+        blinkt.setOff();
         
         return "Running RGB Bounce";
     }
