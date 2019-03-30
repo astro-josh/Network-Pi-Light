@@ -1,8 +1,8 @@
 package NetPiLight;
 
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -198,7 +198,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
     private void clearLedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLedBtnActionPerformed
         try {
             dataOut.writeUTF("clear");
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_clearLedBtnActionPerformed
@@ -211,7 +211,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
 
             
             dataOut.writeUTF("pulse-".concat(color));
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_pulseBtnActionPerformed
@@ -219,7 +219,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
     private void rainbowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainbowBtnActionPerformed
         try {
             dataOut.writeUTF("rainbow");
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_rainbowBtnActionPerformed
@@ -227,7 +227,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
     private void bounceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bounceBtnActionPerformed
         try {
             dataOut.writeUTF("rgb-bounce");
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_bounceBtnActionPerformed
@@ -239,7 +239,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
 
             dataOut.writeUTF("solid-".concat(color));
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
 
@@ -252,7 +252,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
 
             dataOut.writeUTF("blink-".concat(color));
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_blinkBtnActionPerformed
@@ -264,7 +264,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
 
             dataOut.writeUTF("seq-".concat(color));
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_seqBtnActionPerformed
@@ -272,7 +272,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             dataOut.writeUTF("rainbow-fade");
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -321,7 +321,7 @@ public class NetPiLight_Client extends javax.swing.JFrame {
                 msgIn = dataIn.readUTF();
                 jTextArea1.append(msgIn + "\n");
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
 
         }
 
