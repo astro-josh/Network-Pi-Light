@@ -35,16 +35,17 @@ public class Invoker {
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
             Server.taAppend("Incoming Connection from: " + s.getRemoteSocketAddress() + "\n");
+            dataOut.writeUTF("Server: Connected");
 
             msgIn = "";
-            
+            b = null;
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
 
                 switch (msgIn) {
                     case "rainbow":
                         Server.taAppend("Running Rainbow\n");
-                        //dataOut.writeUTF(msgOut);
+                        dataOut.writeUTF("Server: Running Rainbow");
                         cmd = new Rainbow(b);
                         cmd.execute();
                         break;
