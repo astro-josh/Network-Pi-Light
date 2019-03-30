@@ -1,4 +1,4 @@
-package PiLight;
+package NetPiLight;
 
 
 import java.io.DataInputStream;

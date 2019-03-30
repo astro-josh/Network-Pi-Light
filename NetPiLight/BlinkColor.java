@@ -1,4 +1,4 @@
-package PiLight;
+package NetPiLight;
 
 import Jimbo.Boards.com.pimoroni.Blinkt;
 import java.awt.Color;

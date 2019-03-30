@@ -1,28 +1,30 @@
-package PiLight;
+package NetPiLight;
 
 import Jimbo.Boards.com.pimoroni.Blinkt;
-import java.awt.Color;
+import java.util.Random;
 
 /**
  *
  * @author Joshua Alexander
  */
-public class PulseColor implements Command {
-
+public class RainbowFade implements Command {
     private final Blinkt b;
-    private final int rgb, r, g, bl;
-
-    public PulseColor(Blinkt b, Color c) {
+    
+    public RainbowFade(Blinkt b) {
         this.b = b;
-        rgb = c.getRGB();
-        r = rgb >> 16 & 0xFF;
-        g = rgb >> 8 & 0xFF;
-        bl = rgb & 0XFF;
     }
 
     @Override
     public String execute() {
-        for (int i = 0; i < 3; i++) {
+        int r, g, bl;
+        
+        Random rand = new Random();
+
+        for (int i = 0; i < 5; i++) {
+            r = rand.nextInt(128);
+            g = rand.nextInt(128);
+            bl = rand.nextInt(128);
+
             for (int j = 0; j < 32; j++) {
                 b.set(0, r, g, bl, j);
                 b.set(1, r, g, bl, j);
@@ -58,8 +60,8 @@ public class PulseColor implements Command {
             }
         }
         b.setOff();
-
-        return String.format("Running Pulse Color - R: %s G: %s B: %s", r, g, bl);
+        
+        return "Running Rainbow Fade";
     }
 
 }
