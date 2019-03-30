@@ -8,14 +8,15 @@ import java.awt.Color;
  * @author Joshua Alexander
  */
 public class PulseColor implements Command {
+
     private final Blinkt b;
     private final int rgb, r, g, bl;
 
     public PulseColor(Blinkt b, Color c) {
         this.b = b;
         rgb = c.getRGB();
-        r = rgb>>16 & 0xFF;
-        g = rgb>>8 & 0xFF;
+        r = rgb >> 16 & 0xFF;
+        g = rgb >> 8 & 0xFF;
         bl = rgb & 0XFF;
     }
 

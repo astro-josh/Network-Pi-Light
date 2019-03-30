@@ -108,174 +108,48 @@ public class Invoker {
                         break;
                     case "blink-cyan":
                         this.jta.append("Running Blink Cyan\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 0, 255, 255, 30);
-                            b.set(1, 0, 255, 255, 30);
-                            b.set(2, 0, 255, 255, 30);
-                            b.set(3, 0, 255, 255, 30);
-                            b.set(4, 0, 255, 255, 30);
-                            b.set(5, 0, 255, 255, 30);
-                            b.set(6, 0, 255, 255, 30);
-                            b.set(7, 0, 255, 255, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, Color.cyan);
+                        cmd.execute();
                         break;
                     case "blink-magenta":
                         this.jta.append("Running Blink Magenta\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 255, 0, 255, 30);
-                            b.set(1, 255, 0, 255, 30);
-                            b.set(2, 255, 0, 255, 30);
-                            b.set(3, 255, 0, 255, 30);
-                            b.set(4, 255, 0, 255, 30);
-                            b.set(5, 255, 0, 255, 30);
-                            b.set(6, 255, 0, 255, 30);
-                            b.set(7, 255, 0, 255, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, Color.magenta);
+                        cmd.execute();
                         break;
                     case "blink-pink":
                         this.jta.append("Running Blink Pink\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 255, 20, 147, 30);
-                            b.set(1, 255, 20, 147, 30);
-                            b.set(2, 255, 20, 147, 30);
-                            b.set(3, 255, 20, 147, 30);
-                            b.set(4, 255, 20, 147, 30);
-                            b.set(5, 255, 20, 147, 30);
-                            b.set(6, 255, 20, 147, 30);
-                            b.set(7, 255, 20, 147, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, Color.pink);
+                        cmd.execute();
                         break;
                     case "blink-red":
                         this.jta.append("Running Blink Red\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 255, 0, 0, 30);
-                            b.set(1, 255, 0, 0, 30);
-                            b.set(2, 255, 0, 0, 30);
-                            b.set(3, 255, 0, 0, 30);
-                            b.set(4, 255, 0, 0, 30);
-                            b.set(5, 255, 0, 0, 30);
-                            b.set(6, 255, 0, 0, 30);
-                            b.set(7, 255, 0, 0, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, Color.red);
+                        cmd.execute();
                         break;
                     case "blink-green":
                         this.jta.append("Running Blink Green\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 0, 255, 0, 30);
-                            b.set(1, 0, 255, 0, 30);
-                            b.set(2, 0, 255, 0, 30);
-                            b.set(3, 0, 255, 0, 30);
-                            b.set(4, 0, 255, 0, 30);
-                            b.set(5, 0, 255, 0, 30);
-                            b.set(6, 0, 255, 0, 30);
-                            b.set(7, 0, 255, 0, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, Color.green);
+                        cmd.execute();
                         break;
                     case "blink-blue":
                         this.jta.append("Running Blink Blue\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 0, 0, 255, 30);
-                            b.set(1, 0, 0, 255, 30);
-                            b.set(2, 0, 0, 255, 30);
-                            b.set(3, 0, 0, 255, 30);
-                            b.set(4, 0, 0, 255, 30);
-                            b.set(5, 0, 0, 255, 30);
-                            b.set(6, 0, 0, 255, 30);
-                            b.set(7, 0, 0, 255, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, Color.blue);
+                        cmd.execute();
                         break;
                     case "blink-yellow":
                         this.jta.append("Running Blink Yellow\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 255, 255, 0, 30);
-                            b.set(1, 255, 255, 0, 30);
-                            b.set(2, 255, 255, 0, 30);
-                            b.set(3, 255, 255, 0, 30);
-                            b.set(4, 255, 255, 0, 30);
-                            b.set(5, 255, 255, 0, 30);
-                            b.set(6, 255, 255, 0, 30);
-                            b.set(7, 255, 255, 0, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd= new BlinkColor(b, Color.yellow);
+                        cmd.execute();
                         break;
                     case "blink-purple":
                         this.jta.append("Running Blink Purple\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 128, 0, 128, 30);
-                            b.set(1, 128, 0, 128, 30);
-                            b.set(2, 128, 0, 128, 30);
-                            b.set(3, 128, 0, 128, 30);
-                            b.set(4, 128, 0, 128, 30);
-                            b.set(5, 128, 0, 128, 30);
-                            b.set(6, 128, 0, 128, 30);
-                            b.set(7, 128, 0, 128, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new BlinkColor(b, new Color(128, 0, 128));
+                        cmd.execute();
                         break;
                     case "blink-white":
                         this.jta.append("Running Blink White\n");
-
-                        for (int i = 0; i < 10; i++) {
-                            b.set(0, 255, 255, 255, 30);
-                            b.set(1, 255, 255, 255, 30);
-                            b.set(2, 255, 255, 255, 30);
-                            b.set(3, 255, 255, 255, 30);
-                            b.set(4, 255, 255, 255, 30);
-                            b.set(5, 255, 255, 255, 30);
-                            b.set(6, 255, 255, 255, 30);
-                            b.set(7, 255, 255, 255, 30);
-                            b.show();
-                            Thread.sleep(200);
-                            b.setOff();
-                            Thread.sleep(200);
-                        }
-                        b.setOff();
+                        cmd = new PulseColor(b, Color.white);
+                        cmd.execute();
                         break;
                     case "solid-red":
                         this.jta.append("Running Solid Red\n");
