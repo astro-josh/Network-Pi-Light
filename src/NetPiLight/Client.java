@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -209,7 +210,6 @@ public class Client extends javax.swing.JFrame {
         try {
             color = colorComboBox.getSelectedItem().toString().toLowerCase();
 
-            
             dataOut.writeUTF("pulse-".concat(color));
         } catch (IOException e) {
 
@@ -304,14 +304,20 @@ public class Client extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        final Client client = new Client();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Client().setVisible(true);
+
+                client.setVisible(true);
+
             }
         });
+        startConnection(client.jTextArea1);
 
+    }
+
+    private static void startConnection(JTextArea jta) {
         try {
             s = new Socket("127.0.0.1", 9001);
             dataIn = new DataInputStream(s.getInputStream());
@@ -320,12 +326,11 @@ public class Client extends javax.swing.JFrame {
 
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
-                jTextArea1.append(msgIn + "\n");
+                jta.append(msgIn);
             }
         } catch (IOException e) {
 
         }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -339,7 +344,7 @@ public class Client extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton pulseBtn;
     private javax.swing.JButton rainbowBtn;
     private javax.swing.JButton seqBtn;

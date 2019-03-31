@@ -7,11 +7,11 @@ import javax.swing.JTextArea;
  * @author Joshua Alexander
  */
 public class Server extends javax.swing.JFrame {
-
+    
     public Server() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -73,7 +73,7 @@ public class Server extends javax.swing.JFrame {
     private void clearLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLogBtnActionPerformed
         jTextArea1.setText("");
     }//GEN-LAST:event_clearLogBtnActionPerformed
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -100,27 +100,26 @@ public class Server extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        final Server server = new Server();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Server().setVisible(true);
+                server.setVisible(true);
             }
         });
-
-        Invoker invoker = new Invoker();
-        invoker.start(9001);
+        startConnection(server.jTextArea1);
     }
-
-    public static void taAppend(String str) {
-        jTextArea1.append(str);
+    
+    private static void startConnection(JTextArea jta) {
+        Invoker invoker = new Invoker(9001, jta);
+        invoker.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearLogBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
 }
