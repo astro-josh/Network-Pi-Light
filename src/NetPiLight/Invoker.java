@@ -28,9 +28,9 @@ public class Invoker {
         //b = new Blinkt();
     }
 
-    public void start() {
+    public void start(int port) {
         try {
-            ss = new ServerSocket(9001); // The port to use.
+            ss = new ServerSocket(port); // The port to use.
             s = ss.accept(); // Accepts the connection on specified port.
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());

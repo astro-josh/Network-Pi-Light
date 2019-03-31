@@ -109,7 +109,7 @@ public class Server extends javax.swing.JFrame {
         });
 
         Invoker invoker = new Invoker();
-        invoker.start();
+        invoker.start(9001);
     }
 
     public static void taAppend(String str) {
