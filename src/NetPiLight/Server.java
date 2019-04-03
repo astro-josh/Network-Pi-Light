@@ -1,5 +1,6 @@
 package NetPiLight;
 
+import Jimbo.Boards.com.pimoroni.Blinkt;
 import javax.swing.JTextArea;
 
 /**
@@ -111,7 +112,7 @@ public class Server extends javax.swing.JFrame {
     }
     
     private static void startConnection(JTextArea jta) {
-        Invoker invoker = new Invoker(9001, jta);
+        Invoker invoker = new Invoker(new Blinkt(),9001, jta);
         invoker.start();
     }
 

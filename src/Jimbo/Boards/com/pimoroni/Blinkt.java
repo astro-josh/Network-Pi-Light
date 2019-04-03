@@ -17,11 +17,11 @@
  */
 package Jimbo.Boards.com.pimoroni;
 
+import NetPiLight.MockGpioFactory;
+import NetPiLight.MockPin;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.RaspiPin;
-
 import Jimbo.Devices.APA102;
-
 import Jimbo.Graphics.Point;
 import Jimbo.Graphics.Colour;
 import Jimbo.Graphics.ColourMatrix;
@@ -39,8 +39,17 @@ public class Blinkt implements ColourMatrix {
         a = new APA102(GpioFactory.getInstance(), RaspiPin.GPIO_04, RaspiPin.GPIO_05, 8);
     }
 
+    public Blinkt(boolean debug) {
+        if (debug) {
+            a = new APA102(MockGpioFactory.getInstance(), MockPin.DIGITAL_BIDIRECTIONAL_PIN, MockPin.DIGITAL_OUTPUT_PIN, 8);
+        } else {
+            a = new APA102(GpioFactory.getInstance(), RaspiPin.GPIO_04, RaspiPin.GPIO_05, 8);
+        }
+    }
+
     /**
      * Set a pixel the generic way.
+     *
      *
      * @param p The pixel to set.
      * @param value The colour to set it to.

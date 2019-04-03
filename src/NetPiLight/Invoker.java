@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
  *
  * @author Joshua Alexander
  */
-public class Invoker extends Thread {
+public class Invoker {
 
     private static Socket s;
     private static ServerSocket ss;
@@ -27,13 +27,13 @@ public class Invoker extends Thread {
     private final int port;
     private final JTextArea jta;
 
-    public Invoker(int port, JTextArea jta) {
-        //b = new Blinkt();
+    public Invoker(Blinkt b, int port, JTextArea jta) {
+        this.b = b;
         this.port = port;
         this.jta = jta;
     }
     
-    @Override
+
     public void run() {
         start(port);
     }
@@ -48,7 +48,7 @@ public class Invoker extends Thread {
             dataOut.writeUTF("Server: Connected");
 
             msgIn = "";
-            b = null;
+            //b = null;
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
 
