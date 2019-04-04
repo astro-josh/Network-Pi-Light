@@ -1,4 +1,5 @@
 package bananapi;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package bananapi;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
@@ -40,19 +40,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This example code demonstrates how to perform simple GPIO
- * pin state reading on the BananaPi platform fro all pins.
+ * This example code demonstrates how to perform simple GPIO pin state reading
+ * on the BananaPi platform fro all pins.
  *
  * @author Robert Savage
  */
 public class GpioInputAllExample {
 
     /**
-     * [ARGUMENT/OPTION "--pull (up|down|off)" | "-l (up|down|off)" | "--up" | "--down" ]
-     * This example program accepts an optional argument for specifying pin pull resistance.
-     * Supported values: "up|down" (or simply "1|0").   If no value is specified in the command
-     * argument, then the pin pull resistance will be set to PULL_UP by default.
-     * -- EXAMPLES: "--pull up", "-pull down", "--pull off", "--up", "--down", "-pull 0", "--pull 1", "-l up", "-l down".
+     * [ARGUMENT/OPTION "--pull (up|down|off)" | "-l (up|down|off)" | "--up" |
+     * "--down" ] This example program accepts an optional argument for
+     * specifying pin pull resistance. Supported values: "up|down" (or simply
+     * "1|0"). If no value is specified in the command argument, then the pin
+     * pull resistance will be set to PULL_UP by default. -- EXAMPLES: "--pull
+     * up", "-pull down", "--pull off", "--up", "--down", "-pull 0", "--pull 1",
+     * "-l up", "-l down".
      *
      * @param args
      * @throws InterruptedException
@@ -84,7 +86,7 @@ public class GpioInputAllExample {
         // by default we will use gpio pin PULL-UP; however, if an argument
         // has been provided, then use the specified pull resistance
         PinPullResistance pull = CommandArgumentParser.getPinPullResistance(
-                PinPullResistance.PULL_UP,  // default pin pull resistance if no pull argument found
+                PinPullResistance.PULL_UP, // default pin pull resistance if no pull argument found
                 args);                      // argument array to search in
 
         // ####################################################################
@@ -92,7 +94,6 @@ public class GpioInputAllExample {
         // When provisioning a pin, use the BananaPiPin class.
         //
         // ####################################################################
-
         List<GpioPinDigitalInput> provisionedPins = new ArrayList<>();
 
         // provision GPIO input pins
@@ -101,8 +102,7 @@ public class GpioInputAllExample {
                 GpioPinDigitalInput provisionedPin = gpio.provisionDigitalInputPin(pin, pull);
                 provisionedPin.setShutdownOptions(true); // unexport pin on program shutdown
                 provisionedPins.add(provisionedPin);     // add provisioned pin to collection
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         }
@@ -114,11 +114,11 @@ public class GpioInputAllExample {
         console.emptyLine();
 
         // display pin states for all pins
-        for(GpioPinDigitalInput input : provisionedPins) {
+        for (GpioPinDigitalInput input : provisionedPins) {
             console.println(" [" + input.toString() + "] digital state is: " + ConsoleColor.conditional(
                     input.getState().isHigh(), // conditional expression
-                    ConsoleColor.GREEN,        // positive conditional color
-                    ConsoleColor.RED,          // negative conditional color
+                    ConsoleColor.GREEN, // positive conditional color
+                    ConsoleColor.RED, // negative conditional color
                     input.getState()));
         }
 

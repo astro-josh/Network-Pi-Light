@@ -1,4 +1,5 @@
 package bananapro;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package bananapro;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import java.io.IOException;
 
 import com.pi4j.io.i2c.I2CBus;
@@ -40,25 +40,18 @@ import com.pi4j.platform.PlatformManager;
 import com.pi4j.util.Console;
 
 /**
- * This example code demonstrates how to perform simple I2C
- * communication on the BananaPro.  For this example we will
- * connect to a 'TSL2561' LUX sensor.
+ * This example code demonstrates how to perform simple I2C communication on the
+ * BananaPro. For this example we will connect to a 'TSL2561' LUX sensor.
  *
- * Data Sheet:
- * https://www.adafruit.com/datasheets/TSL256x.pdf
+ * Data Sheet: https://www.adafruit.com/datasheets/TSL256x.pdf
  *
- * You should get something similar printed in the console
- * when executing this program:
+ * You should get something similar printed in the console when executing this
+ * program:
  *
- * > <--Pi4J--> I2C Example ... started.
- * > ... reading ID register from TSL2561
- * > TSL2561 ID = 0x50 (should be 0x50)
- * > ... powering up TSL2561
- * > ... reading DATA registers from TSL2561
- * > TSL2561 DATA 0 = 0x1e
- * > TSL2561 DATA 1 = 0x04
- * > ... powering down TSL2561
- * > Exiting I2CExample
+ * > <--Pi4J--> I2C Example ... started. > ... reading ID register from TSL2561
+ * > TSL2561 ID = 0x50 (should be 0x50) > ... powering up TSL2561 > ... reading
+ * DATA registers from TSL2561 > TSL2561 DATA 0 = 0x1e > TSL2561 DATA 1 = 0x04 >
+ * ... powering down TSL2561 > Exiting I2CExample
  *
  *
  * @author Robert Savage

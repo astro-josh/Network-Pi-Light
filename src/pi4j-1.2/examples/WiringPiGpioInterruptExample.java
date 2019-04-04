@@ -43,12 +43,12 @@ public class WiringPiGpioInterruptExample {
         GpioInterrupt.addListener(new GpioInterruptListener() {
             @Override
             public void pinStateChange(GpioInterruptEvent event) {
-                System.out.println("Raspberry Pi PIN [" + event.getPin() +"] is in STATE [" + event.getState() + "]");
+                System.out.println("Raspberry Pi PIN [" + event.getPin() + "] is in STATE [" + event.getState() + "]");
 
-                if(event.getPin() == 7) {
+                if (event.getPin() == 7) {
                     Gpio.digitalWrite(6, event.getStateValue());
                 }
-                if(event.getPin() == 0) {
+                if (event.getPin() == 0) {
                     Gpio.digitalWrite(5, event.getStateValue());
                 }
             }

@@ -34,7 +34,8 @@ import com.pi4j.util.Console;
 
 /**
  * <p>
- * This example code demonstrates how to setup a software emulated PWM pin using the RaspberryPi GPIO pins.
+ * This example code demonstrates how to setup a software emulated PWM pin using
+ * the RaspberryPi GPIO pins.
  * </p>
  *
  * @author Robert Savage
@@ -42,10 +43,10 @@ import com.pi4j.util.Console;
 public class SoftPwmExample {
 
     /**
-     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ]
-     * This example program accepts an optional argument for specifying the GPIO pin (by number)
-     * to use with this GPIO listener example. If no argument is provided, then GPIO #1 will be used.
-     * -- EXAMPLE: "--pin 4" or "-p 0".
+     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ] This example program accepts an
+     * optional argument for specifying the GPIO pin (by number) to use with
+     * this GPIO listener example. If no argument is provided, then GPIO #1 will
+     * be used. -- EXAMPLE: "--pin 4" or "-p 0".
      *
      * @param args
      * @throws InterruptedException
@@ -69,8 +70,8 @@ public class SoftPwmExample {
         // by default we will use gpio pin #01; however, if an argument
         // has been provided, then lookup the pin by address
         Pin pin = CommandArgumentParser.getPin(
-                RaspiPin.class,    // pin provider class to obtain pin instance from
-                RaspiPin.GPIO_01,  // default pin if no pin argument found
+                RaspiPin.class, // pin provider class to obtain pin instance from
+                RaspiPin.GPIO_01, // default pin if no pin argument found
                 args);             // argument array to search in
 
         // we will provision the pin as a software emulated PWM output

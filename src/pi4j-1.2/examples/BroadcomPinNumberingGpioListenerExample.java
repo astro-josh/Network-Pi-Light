@@ -34,9 +34,9 @@ import com.pi4j.util.Console;
 import com.pi4j.util.ConsoleColor;
 
 /**
- * This example code demonstrates how to setup a listener
- * for GPIO pin state changes on the RaspberryPi
- * using the Broadcom chipset GPIO pin numbering scheme.
+ * This example code demonstrates how to setup a listener for GPIO pin state
+ * changes on the RaspberryPi using the Broadcom chipset GPIO pin numbering
+ * scheme.
  *
  * @author Robert Savage
  */
@@ -81,11 +81,11 @@ public class BroadcomPinNumberingGpioListenerExample {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 // display pin state on console
-                console.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = " +
-                        ConsoleColor.conditional(
+                console.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = "
+                        + ConsoleColor.conditional(
                                 event.getState().isHigh(), // conditional expression
-                                ConsoleColor.GREEN,        // positive conditional color
-                                ConsoleColor.RED,          // negative conditional color
+                                ConsoleColor.GREEN, // positive conditional color
+                                ConsoleColor.RED, // negative conditional color
                                 event.getState()));        // text to display
             }
 

@@ -38,16 +38,18 @@ import com.pi4j.io.spi.SpiChannel;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for analog output pin using the MCP3008 ADC chip.
+ * This example code demonstrates how to setup a custom GpioProvider for analog
+ * output pin using the MCP3008 ADC chip.
  * </p>
  *
  * <p>
- * This GPIO provider implements the MCP3008 10-Bit Analog-to-Digital Converter (ADC) as native Pi4J GPIO pins.
+ * This GPIO provider implements the MCP3008 10-Bit Analog-to-Digital Converter
+ * (ADC) as native Pi4J GPIO pins.
  * </p>
  *
  * <p>
- * The MCP3008 is connected via SPI connection to the Raspberry Pi and provides 8 GPIO analog input pins.
+ * The MCP3008 is connected via SPI connection to the Raspberry Pi and provides
+ * 8 GPIO analog input pins.
  * </p>
  *
  * @author Christian Wehrli, Robert Savage
@@ -68,16 +70,15 @@ public class MCP3008GpioExample {
         // Provision gpio analog input pins for all channels of the MCP3008.
         // (you don't have to define them all if you only use a subset in your project)
         final GpioPinAnalogInput inputs[] = {
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH0, "MyAnalogInput-CH0"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH1, "MyAnalogInput-CH1"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH2, "MyAnalogInput-CH2"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH3, "MyAnalogInput-CH3"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH4, "MyAnalogInput-CH4"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH5, "MyAnalogInput-CH5"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH6, "MyAnalogInput-CH6"),
-                gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH7, "MyAnalogInput-CH7")
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH0, "MyAnalogInput-CH0"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH1, "MyAnalogInput-CH1"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH2, "MyAnalogInput-CH2"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH3, "MyAnalogInput-CH3"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH4, "MyAnalogInput-CH4"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH5, "MyAnalogInput-CH5"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH6, "MyAnalogInput-CH6"),
+            gpio.provisionAnalogInputPin(provider, MCP3008Pin.CH7, "MyAnalogInput-CH7")
         };
-
 
         // Define the amount that the ADC input conversion value must change before
         // a 'GpioPinAnalogValueChangeEvent' is raised.  This is used to prevent unnecessary
@@ -95,16 +96,14 @@ public class MCP3008GpioExample {
         provider.setMonitorInterval(250); // milliseconds
 
         // Print current analog input conversion values from each input channel
-        for(GpioPinAnalogInput input : inputs){
+        for (GpioPinAnalogInput input : inputs) {
             System.out.println("<INITIAL VALUE> [" + input.getName() + "] : RAW VALUE = " + input.getValue());
         }
 
         // Create an analog pin value change listener
-        GpioPinListenerAnalog listener = new GpioPinListenerAnalog()
-        {
+        GpioPinListenerAnalog listener = new GpioPinListenerAnalog() {
             @Override
-            public void handleGpioPinAnalogValueChangeEvent(GpioPinAnalogValueChangeEvent event)
-            {
+            public void handleGpioPinAnalogValueChangeEvent(GpioPinAnalogValueChangeEvent event) {
                 // get RAW value
                 double value = event.getValue();
 

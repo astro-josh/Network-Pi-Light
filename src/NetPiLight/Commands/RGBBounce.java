@@ -52,7 +52,7 @@ public class RGBBounce implements Command {
             }
         }
         blinkt.setOff();
-        
+
         return "Running RGB Bounce";
     }
 

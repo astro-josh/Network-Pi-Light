@@ -29,8 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.io.serial.*;
 import com.pi4j.util.CommandArgumentParser;
 import com.pi4j.util.Console;
@@ -39,20 +37,19 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * This example code demonstrates how to perform serial communications using the Raspberry Pi.
+ * This example code demonstrates how to perform serial communications using the
+ * Raspberry Pi.
  *
  * @author Robert Savage
  */
 public class SerialExample {
 
     /**
-     * This example program supports the following optional command arguments/options:
-     *   "--device (device-path)"                   [DEFAULT: /dev/ttyAMA0]
-     *   "--baud (baud-rate)"                       [DEFAULT: 38400]
-     *   "--data-bits (5|6|7|8)"                    [DEFAULT: 8]
-     *   "--parity (none|odd|even)"                 [DEFAULT: none]
-     *   "--stop-bits (1|2)"                        [DEFAULT: 1]
-     *   "--flow-control (none|hardware|software)"  [DEFAULT: none]
+     * This example program supports the following optional command
+     * arguments/options: "--device (device-path)" [DEFAULT: /dev/ttyAMA0]
+     * "--baud (baud-rate)" [DEFAULT: 38400] "--data-bits (5|6|7|8)" [DEFAULT:
+     * 8] "--parity (none|odd|even)" [DEFAULT: none] "--stop-bits (1|2)"
+     * [DEFAULT: 1] "--flow-control (none|hardware|software)" [DEFAULT: none]
      *
      * @param args
      * @throws InterruptedException
@@ -69,7 +66,6 @@ public class SerialExample {
         // Please see this blog article for instructions on how to disable
         // the OS console for this port:
         // https://www.cube-controls.com/2015/11/02/disable-serial-port-terminal-output-on-raspbian/
-
         // create Pi4J console wrapper/helper
         // (This is a utility class to abstract some of the boilerplate code)
         final Console console = new Console();
@@ -91,7 +87,6 @@ public class SerialExample {
                 // NOTE! - It is extremely important to read the data received from the
                 // serial port.  If it does not get read from the receive buffer, the
                 // buffer will continue to grow and consume memory.
-
                 // print out the data received to the console
                 try {
                     console.println("[HEX DATA]   " + event.getHexByteString());
@@ -115,14 +110,14 @@ public class SerialExample {
             //       model 3B may return "/dev/ttyS0" or "/dev/ttyAMA0" depending on
             //       environment configuration.
             config.device(SerialPort.getDefaultPort())
-                  .baud(Baud._38400)
-                  .dataBits(DataBits._8)
-                  .parity(Parity.NONE)
-                  .stopBits(StopBits._1)
-                  .flowControl(FlowControl.NONE);
+                    .baud(Baud._38400)
+                    .dataBits(DataBits._8)
+                    .parity(Parity.NONE)
+                    .stopBits(StopBits._1)
+                    .flowControl(FlowControl.NONE);
 
             // parse optional command argument options to override the default serial settings.
-            if(args.length > 0){
+            if (args.length > 0) {
                 config = CommandArgumentParser.getSerialConfig(config, args);
             }
 
@@ -131,12 +126,11 @@ public class SerialExample {
                     " We are sending ASCII data on the serial port every 1 second.",
                     " Data received on serial port will be displayed below.");
 
-
             // open the default serial device/port with the configuration settings
             serial.open(config);
 
             // continuous loop to keep the program running until the user terminates the program
-            while(console.isRunning()) {
+            while (console.isRunning()) {
                 try {
                     // write a formatted string to the serial transmit buffer
                     serial.write("CURRENT TIME: " + new Date().toString());
@@ -154,8 +148,7 @@ public class SerialExample {
 
                     // write a string terminating with CR+LF to the serial transmit buffer
                     serial.writeln("Third Line");
-                }
-                catch(IllegalStateException ex){
+                } catch (IllegalStateException ex) {
                     ex.printStackTrace();
                 }
 
@@ -163,8 +156,7 @@ public class SerialExample {
                 Thread.sleep(1000);
             }
 
-        }
-        catch(IOException ex) {
+        } catch (IOException ex) {
             console.println(" ==>> SERIAL SETUP FAILED : " + ex.getMessage());
             return;
         }

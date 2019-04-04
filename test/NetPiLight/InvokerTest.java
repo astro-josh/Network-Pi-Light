@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class InvokerTest {
 
-    private final int PORT = 9002;
+    private final int PORT = 9003;
     private final String ADDRESS = "127.0.0.1";
     private Socket s;
     private DataInputStream dataIn;
@@ -40,13 +40,15 @@ public class InvokerTest {
     @Before
     public void setUp() {
         jta = new JTextArea();
+
         Invoker invoker = new Invoker(new Blinkt(true), PORT, jta);
         invoker.run();
-        
+
         try {
             s = new Socket(ADDRESS, PORT);
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
+
         } catch (IOException ex) {
             fail("Failed to create test socket.");
         }
@@ -78,7 +80,7 @@ public class InvokerTest {
         try {
             dataIn.readUTF();
             dataOut.writeUTF("pulse-red");
-                        System.out.println(this.jta.getText());
+            System.out.println(this.jta.getText());
             assertEquals("Server: Connected", dataIn.readUTF());
 
         } catch (IOException ex) {

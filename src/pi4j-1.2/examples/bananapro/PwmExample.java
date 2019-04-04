@@ -1,4 +1,5 @@
 package bananapro;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package bananapro;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
@@ -36,13 +36,14 @@ import com.pi4j.util.Console;
 
 /**
  * <p>
- * This example code demonstrates how to setup a hardware supported PWM pin GpioProvider
- * on the BananaPro platform.
+ * This example code demonstrates how to setup a hardware supported PWM pin
+ * GpioProvider on the BananaPro platform.
  * </p>
  *
  * @author Robert Savage
  */
 public class PwmExample {
+
     /**
      * @param args the command line arguments
      * @throws InterruptedException
@@ -75,7 +76,6 @@ public class PwmExample {
         // When provisioning a pin, use the BananaProPin class.
         //
         // ####################################################################
-
         // the BananaPro supports a single hardware PWM pin on GPIO_01
         GpioPinPwmOutput pwm = gpio.provisionPwmOutputPin(BananaProPin.GPIO_01);
 
@@ -89,7 +89,6 @@ public class PwmExample {
         // set the PWM rate to 250
         pwm.setPwm(250);
         console.println("PWM rate is: " + pwm.getPwm());
-
 
         console.println("Press ENTER to set the PWM to a rate to 0 (stop PWM)");
         System.console().readLine();

@@ -1,4 +1,5 @@
 package bananapro;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package bananapro;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
 import com.pi4j.platform.PlatformManager;
@@ -38,8 +38,8 @@ import java.io.IOException;
 import java.text.ParseException;
 
 /**
- * This example code demonstrates how to access a few of the system information properties and
- * network information from the LeMaker BananaPro board.
+ * This example code demonstrates how to access a few of the system information
+ * properties and network information from the LeMaker BananaPro board.
  *
  * @author Robert Savage
  */
@@ -59,67 +59,117 @@ public class SystemInfoExample {
         System.out.println("----------------------------------------------------");
         System.out.println("PLATFORM INFO");
         System.out.println("----------------------------------------------------");
-        try{System.out.println("Platform Name     :  " + PlatformManager.getPlatform().getLabel());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Platform ID       :  " + PlatformManager.getPlatform().getId());}
-        catch(UnsupportedOperationException ex){}
+        try {
+            System.out.println("Platform Name     :  " + PlatformManager.getPlatform().getLabel());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Platform ID       :  " + PlatformManager.getPlatform().getId());
+        } catch (UnsupportedOperationException ex) {
+        }
         System.out.println("----------------------------------------------------");
         System.out.println("HARDWARE INFO");
         System.out.println("----------------------------------------------------");
-        try{System.out.println("Serial Number     :  " + SystemInfo.getSerial());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("CPU Revision      :  " + SystemInfo.getCpuRevision());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("CPU Architecture  :  " + SystemInfo.getCpuArchitecture());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("CPU Part          :  " + SystemInfo.getCpuPart());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("CPU Temperature   :  " + SystemInfo.getCpuTemperature());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("CPU Core Voltage  :  " + SystemInfo.getCpuVoltage());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("CPU Model Name    :  " + SystemInfo.getModelName());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Processor         :  " + SystemInfo.getProcessor());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Hardware          :  " + SystemInfo.getHardware());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Hardware Revision :  " + SystemInfo.getRevision());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Is Hard Float ABI :  " + SystemInfo.isHardFloatAbi());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Board Type        :  " + SystemInfo.getBoardType().name());}
-        catch(UnsupportedOperationException ex){}
+        try {
+            System.out.println("Serial Number     :  " + SystemInfo.getSerial());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("CPU Revision      :  " + SystemInfo.getCpuRevision());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("CPU Architecture  :  " + SystemInfo.getCpuArchitecture());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("CPU Part          :  " + SystemInfo.getCpuPart());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("CPU Temperature   :  " + SystemInfo.getCpuTemperature());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("CPU Core Voltage  :  " + SystemInfo.getCpuVoltage());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("CPU Model Name    :  " + SystemInfo.getModelName());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Processor         :  " + SystemInfo.getProcessor());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Hardware          :  " + SystemInfo.getHardware());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Hardware Revision :  " + SystemInfo.getRevision());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Is Hard Float ABI :  " + SystemInfo.isHardFloatAbi());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Board Type        :  " + SystemInfo.getBoardType().name());
+        } catch (UnsupportedOperationException ex) {
+        }
 
         System.out.println("----------------------------------------------------");
         System.out.println("MEMORY INFO");
         System.out.println("----------------------------------------------------");
-        try{System.out.println("Total Memory      :  " + SystemInfo.getMemoryTotal());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Used Memory       :  " + SystemInfo.getMemoryUsed());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Free Memory       :  " + SystemInfo.getMemoryFree());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Shared Memory     :  " + SystemInfo.getMemoryShared());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Memory Buffers    :  " + SystemInfo.getMemoryBuffers());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("Cached Memory     :  " + SystemInfo.getMemoryCached());}
-        catch(UnsupportedOperationException ex){}
+        try {
+            System.out.println("Total Memory      :  " + SystemInfo.getMemoryTotal());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Used Memory       :  " + SystemInfo.getMemoryUsed());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Free Memory       :  " + SystemInfo.getMemoryFree());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Shared Memory     :  " + SystemInfo.getMemoryShared());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Memory Buffers    :  " + SystemInfo.getMemoryBuffers());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("Cached Memory     :  " + SystemInfo.getMemoryCached());
+        } catch (UnsupportedOperationException ex) {
+        }
 
         System.out.println("----------------------------------------------------");
         System.out.println("OPERATING SYSTEM INFO");
         System.out.println("----------------------------------------------------");
-        try{System.out.println("OS Name           :  " + SystemInfo.getOsName());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("OS Version        :  " + SystemInfo.getOsVersion());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("OS Architecture   :  " + SystemInfo.getOsArch());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("OS Firmware Build :  " + SystemInfo.getOsFirmwareBuild());}
-        catch(UnsupportedOperationException ex){}
-        try{System.out.println("OS Firmware Date  :  " + SystemInfo.getOsFirmwareDate());}
-        catch(UnsupportedOperationException ex){}
+        try {
+            System.out.println("OS Name           :  " + SystemInfo.getOsName());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("OS Version        :  " + SystemInfo.getOsVersion());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("OS Architecture   :  " + SystemInfo.getOsArch());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("OS Firmware Build :  " + SystemInfo.getOsFirmwareBuild());
+        } catch (UnsupportedOperationException ex) {
+        }
+        try {
+            System.out.println("OS Firmware Date  :  " + SystemInfo.getOsFirmwareDate());
+        } catch (UnsupportedOperationException ex) {
+        }
 
         System.out.println("----------------------------------------------------");
         System.out.println("JAVA ENVIRONMENT INFO");
@@ -136,12 +186,15 @@ public class SystemInfoExample {
 
         // display some of the network information
         System.out.println("Hostname          :  " + NetworkInfo.getHostname());
-        for (String ipAddress : NetworkInfo.getIPAddresses())
+        for (String ipAddress : NetworkInfo.getIPAddresses()) {
             System.out.println("IP Addresses      :  " + ipAddress);
-        for (String fqdn : NetworkInfo.getFQDNs())
+        }
+        for (String fqdn : NetworkInfo.getFQDNs()) {
             System.out.println("FQDN              :  " + fqdn);
-        for (String nameserver : NetworkInfo.getNameservers())
+        }
+        for (String nameserver : NetworkInfo.getNameservers()) {
             System.out.println("Nameserver        :  " + nameserver);
+        }
 
         System.out.println();
     }

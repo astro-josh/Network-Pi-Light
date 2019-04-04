@@ -64,37 +64,37 @@ public class PCA9685GpioServoExample {
             printUsage();
             command = readCommand(scanner);
             switch (command) {
-                case 'c' : // Choose Channel
+                case 'c': // Choose Channel
                     example.chooseChannel(scanner);
                     break;
-                case 'n' : // Neutral Position
+                case 'n': // Neutral Position
                     example.approachNeutralPosition();
                     break;
-                case 'm' : // Move
+                case 'm': // Move
                     example.move(scanner);
                     break;
-                case 's' : // Sub Trim
+                case 's': // Sub Trim
                     example.subtrim(scanner);
                     break;
-                case 'r' : // Reverse
+                case 'r': // Reverse
                     example.reverse();
                     break;
-                case 't' : // Travel (adjust endpoints)
+                case 't': // Travel (adjust endpoints)
                     example.travel(scanner);
                     break;
-                case 'p' : // Sweep
+                case 'p': // Sweep
                     example.sweep(scanner);
                     break;
-                case 'i' : // Info
+                case 'i': // Info
                     example.info();
                     break;
-                case 'x' : // Exit
+                case 'x': // Exit
                     System.out.println("Servo Example - END.");
                     break;
-                case ' ' :
+                case ' ':
                     System.err.println("Invalid input.");
                     break;
-                default :
+                default:
                     System.err.println("Unknown command [" + command + "].");
                     break;
             }
@@ -423,22 +423,22 @@ public class PCA9685GpioServoExample {
     private GpioPinPwmOutput[] provisionPwmOutputs(final PCA9685GpioProvider gpioProvider) {
         GpioController gpio = GpioFactory.getInstance();
         GpioPinPwmOutput myOutputs[] = {
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_00, "Servo 00"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_01, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_02, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_03, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_04, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_05, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_06, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_07, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_08, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_09, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_10, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_11, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_12, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_13, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_14, "not used"),
-                gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_15, "not used")};
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_00, "Servo 00"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_01, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_02, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_03, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_04, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_05, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_06, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_07, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_08, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_09, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_10, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_11, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_12, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_13, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_14, "not used"),
+            gpio.provisionPwmOutputPin(gpioProvider, PCA9685Pin.PWM_15, "not used")};
         return myOutputs;
     }
 

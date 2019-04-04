@@ -32,7 +32,6 @@ public class Invoker {
         this.port = port;
         this.jta = jta;
     }
-    
 
     public void run() {
         start(port);
@@ -41,14 +40,16 @@ public class Invoker {
     private void start(int port) {
         try {
             ss = new ServerSocket(port); // The port to use.
+            System.out.println("before accept");
             s = ss.accept(); // Accepts the connection on specified port.
+            System.out.println("after accept");
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
             jta.append("Incoming Connection from: " + s.getRemoteSocketAddress() + "\n");
             dataOut.writeUTF("Server: Connected");
-
+            System.out.println("here inv1");
             msgIn = "";
-            //b = null;
+
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
 

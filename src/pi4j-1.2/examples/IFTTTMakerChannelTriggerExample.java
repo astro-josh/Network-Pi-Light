@@ -34,9 +34,9 @@ import com.pi4j.io.gpio.trigger.IFTTTMakerChannelTrigger;
 import com.pi4j.util.Console;
 
 /**
- * This example code demonstrates how to listen to a GPIO input pin
- * on the Raspberry Pi and use the IFTTT Maker Channel trigger to
- * send a triggered event to the IFTTT web service API.
+ * This example code demonstrates how to listen to a GPIO input pin on the
+ * Raspberry Pi and use the IFTTT Maker Channel trigger to send a triggered
+ * event to the IFTTT web service API.
  *
  * @author Robert Savage
  */
@@ -81,64 +81,64 @@ public class IFTTTMakerChannelTriggerExample {
         // (This is where the magic happens)
         // -----------------------------------------
         input.addTrigger(new IFTTTMakerChannelTrigger(
-                IFTTT_MAKER_CHANNEL_API_KEY,     // <<-- PROVIDE YOUR ACCOUNT SPECIFIC IFTTT MAKER CHANNEL API KEY
-                IFTTT_MAKER_CHANNEL_EVENT_NAME,  // <<-- PROVIDE THE IFTTT MAKER CHANNEL EVENT NAME (defined in your IFTTTT recipe)
-                PinState.HIGH,                   // <<-- OPTIONALLY DEFINE A SPECIFIC STATE TO TRIGGER ON
+                IFTTT_MAKER_CHANNEL_API_KEY, // <<-- PROVIDE YOUR ACCOUNT SPECIFIC IFTTT MAKER CHANNEL API KEY
+                IFTTT_MAKER_CHANNEL_EVENT_NAME, // <<-- PROVIDE THE IFTTT MAKER CHANNEL EVENT NAME (defined in your IFTTTT recipe)
+                PinState.HIGH, // <<-- OPTIONALLY DEFINE A SPECIFIC STATE TO TRIGGER ON
 
                 // OPTIONALLY REGISTER A TRIGGER CALLBACK LISTENER
                 // (Note: this callback parameter is not required for basic functionality)
                 new IFTTTMakerChannelTriggerListener() {
-                    @Override
-                    public boolean onTriggered(IFTTTMakerChannelTriggerEvent event) {
+            @Override
+            public boolean onTriggered(IFTTTMakerChannelTriggerEvent event) {
 
-                        // The IFTTT Maker Channel API accepts three value parameters (value1, value2, and value3)
-                        // By default, Pi4J applies the following values to each:
-                        //
-                        // "value1" = {pin-name}
-                        // "value2" = {pin-state-value} (as an Integer; 0==LOW, 1==HIGH)
-                        // "value3" = {json-payload}  Example:
-                        // {
-                        //    "pin": {
-                        //        "name": "MyInputPin",
-                        //        "address": "0",
-                        //        "provider": "RaspberryPi GPIO Provider",
-                        //        "mode": "input",
-                        //        "direction": "IN",
-                        //        "pull": "down"
-                        //    },
-                        //    "state": {
-                        //        "name": "HIGH",
-                        //        "value": "1",
-                        //        "is-high": "true",
-                        //        "is-low": "false"
-                        //    },
-                        //    "timestamp": "2016-04-15T17:32:49.666-0400"
-                        //}
-                        //
-                        // However, you can override any of these defaults in your callback listener by
-                        // applying new string values via the 'setValueX()' methods on the event object.
-                        //
-                        // Example:
-                        if(event.getValue2().equals("1")){
-                            event.setValue2("ON");
-                        } else{
-                            event.setValue2("OFF");
-                        }
+                // The IFTTT Maker Channel API accepts three value parameters (value1, value2, and value3)
+                // By default, Pi4J applies the following values to each:
+                //
+                // "value1" = {pin-name}
+                // "value2" = {pin-state-value} (as an Integer; 0==LOW, 1==HIGH)
+                // "value3" = {json-payload}  Example:
+                // {
+                //    "pin": {
+                //        "name": "MyInputPin",
+                //        "address": "0",
+                //        "provider": "RaspberryPi GPIO Provider",
+                //        "mode": "input",
+                //        "direction": "IN",
+                //        "pull": "down"
+                //    },
+                //    "state": {
+                //        "name": "HIGH",
+                //        "value": "1",
+                //        "is-high": "true",
+                //        "is-low": "false"
+                //    },
+                //    "timestamp": "2016-04-15T17:32:49.666-0400"
+                //}
+                //
+                // However, you can override any of these defaults in your callback listener by
+                // applying new string values via the 'setValueX()' methods on the event object.
+                //
+                // Example:
+                if (event.getValue2().equals("1")) {
+                    event.setValue2("ON");
+                } else {
+                    event.setValue2("OFF");
+                }
 
-                        // display event trigger details on screen
-                        console.println(" --> IFTTT MAKER CHANNEL EVENT TRIGGER");
-                        console.println("     - GPIO PIN            : " + event.getPin());
-                        console.println("     - PIN STATE           : " + event.getState());
-                        console.println("     - IFTTT EVENT NAME    : " + event.getEventName());
-                        console.println("     - IFTTT EVENT VALUE 1 : " + event.getValue1());
-                        console.println("     - IFTTT EVENT VALUE 2 : " + event.getValue2());
-                        console.println("     - IFTTT EVENT VALUE 3 : " + event.getValue3());
-                        console.emptyLine();
+                // display event trigger details on screen
+                console.println(" --> IFTTT MAKER CHANNEL EVENT TRIGGER");
+                console.println("     - GPIO PIN            : " + event.getPin());
+                console.println("     - PIN STATE           : " + event.getState());
+                console.println("     - IFTTT EVENT NAME    : " + event.getEventName());
+                console.println("     - IFTTT EVENT VALUE 1 : " + event.getValue1());
+                console.println("     - IFTTT EVENT VALUE 2 : " + event.getValue2());
+                console.println("     - IFTTT EVENT VALUE 3 : " + event.getValue3());
+                console.emptyLine();
 
-                        // MAKE SURE TO RETURN 'true' TO CONTINUE WITH THE IFTTT MAKER CHANNEL API CALL
-                        // (you can optionally return 'false' if you want to abort the IFTTT API call)
-                        return true;
-                    }
+                // MAKE SURE TO RETURN 'true' TO CONTINUE WITH THE IFTTT MAKER CHANNEL API CALL
+                // (you can optionally return 'false' if you want to abort the IFTTT API call)
+                return true;
+            }
         }));
 
         // set shutdown state for this pin: unexport the pin

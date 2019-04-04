@@ -38,25 +38,18 @@ import com.pi4j.platform.PlatformAlreadyAssignedException;
 import com.pi4j.util.Console;
 
 /**
- * This example code demonstrates how to perform simple I2C
- * communication on the Raspberry Pi.  For this example we will
- * connect to a 'TSL2561' LUX sensor.
+ * This example code demonstrates how to perform simple I2C communication on the
+ * Raspberry Pi. For this example we will connect to a 'TSL2561' LUX sensor.
  *
- * Data Sheet:
- * https://www.adafruit.com/datasheets/TSL256x.pdf
+ * Data Sheet: https://www.adafruit.com/datasheets/TSL256x.pdf
  *
- * You should get something similar printed in the console
- * when executing this program:
+ * You should get something similar printed in the console when executing this
+ * program:
  *
- * > <--Pi4J--> I2C Example ... started.
- * > ... reading ID register from TSL2561
- * > TSL2561 ID = 0x50 (should be 0x50)
- * > ... powering up TSL2561
- * > ... reading DATA registers from TSL2561
- * > TSL2561 DATA 0 = 0x1e
- * > TSL2561 DATA 1 = 0x04
- * > ... powering down TSL2561
- * > Exiting bananapi.I2CExample
+ * > <--Pi4J--> I2C Example ... started. > ... reading ID register from TSL2561
+ * > TSL2561 ID = 0x50 (should be 0x50) > ... powering up TSL2561 > ... reading
+ * DATA registers from TSL2561 > TSL2561 DATA 0 = 0x1e > TSL2561 DATA 1 = 0x04 >
+ * ... powering down TSL2561 > Exiting bananapi.I2CExample
  *
  *
  * @author Robert Savage
@@ -69,14 +62,14 @@ public class I2CExample {
     //public static final int TSL2561_ADDR = 0x49; // address pin connected to VDD
 
     // TSL2561 registers
-    public static final byte TSL2561_REG_ID = (byte)0x8A;
-    public static final byte TSL2561_REG_DATA_0 = (byte)0x8C;
-    public static final byte TSL2561_REG_DATA_1 = (byte)0x8E;
-    public static final byte TSL2561_REG_CONTROL = (byte)0x80;
+    public static final byte TSL2561_REG_ID = (byte) 0x8A;
+    public static final byte TSL2561_REG_DATA_0 = (byte) 0x8C;
+    public static final byte TSL2561_REG_DATA_1 = (byte) 0x8E;
+    public static final byte TSL2561_REG_CONTROL = (byte) 0x80;
 
     // TSL2561 power control values
-    public static final byte TSL2561_POWER_UP = (byte)0x03;
-    public static final byte TSL2561_POWER_DOWN = (byte)0x00;
+    public static final byte TSL2561_POWER_UP = (byte) 0x03;
+    public static final byte TSL2561_POWER_DOWN = (byte) 0x00;
 
     /**
      * Program Main Entry Point
@@ -111,7 +104,7 @@ public class I2CExample {
         for (int number = I2CBus.BUS_0; number <= I2CBus.BUS_17; ++number) {
             try {
                 @SuppressWarnings("unused")
-				I2CBus bus = I2CFactory.getInstance(number);
+                I2CBus bus = I2CFactory.getInstance(number);
                 console.println("Supported I2C bus " + number + " found");
             } catch (IOException exception) {
                 console.println("I/O error on I2C bus " + number + " occurred");

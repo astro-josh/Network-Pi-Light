@@ -37,7 +37,6 @@ import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
 
-
 public class I2CWiiMotionPlusExample {
 
     /**
@@ -138,7 +137,7 @@ public class I2CWiiMotionPlusExample {
 
         public void init() {
             try {
-                initDevice.write(0xfe, (byte)0x04);
+                initDevice.write(0xfe, (byte) 0x04);
             } catch (IOException ignore) {
                 ignore.printStackTrace();
             }
@@ -151,7 +150,6 @@ public class I2CWiiMotionPlusExample {
             if (res != 6) {
                 throw new RuntimeException("Read failure - got only " + res + " bytes from WiiMotionPlus");
             }
-
 
             ThreeAxis ret = new ThreeAxis();
 
@@ -167,7 +165,9 @@ public class I2CWiiMotionPlusExample {
 
         private int asInt(byte b) {
             int i = b;
-            if (i < 0) { i = i + 256; }
+            if (i < 0) {
+                i = i + 256;
+            }
             return i;
         }
 

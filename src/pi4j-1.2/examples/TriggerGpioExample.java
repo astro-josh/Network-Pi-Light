@@ -29,8 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import java.util.concurrent.Callable;
 
 import com.pi4j.io.gpio.GpioController;
@@ -46,7 +44,8 @@ import com.pi4j.io.gpio.trigger.GpioSetStateTrigger;
 import com.pi4j.io.gpio.trigger.GpioSyncStateTrigger;
 
 /**
- * This example code demonstrates how to setup simple triggers for GPIO pins on the Raspberry Pi.
+ * This example code demonstrates how to setup simple triggers for GPIO pins on
+ * the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -61,7 +60,7 @@ public class TriggerGpioExample {
 
         // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
         final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
-                                                  PinPullResistance.PULL_DOWN);
+                PinPullResistance.PULL_DOWN);
 
         System.out.println(" ... complete the GPIO #02 circuit and see the triggers take effect.");
 
@@ -70,7 +69,7 @@ public class TriggerGpioExample {
             gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "LED #1", PinState.LOW),
             gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "LED #2", PinState.LOW),
             gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "LED #3", PinState.LOW)
-          };
+        };
 
         // create a gpio control trigger on the input pin ; when the input goes HIGH, also set gpio pin #04 to HIGH
         myButton.addTrigger(new GpioSetStateTrigger(PinState.HIGH, myLed[0], PinState.HIGH));

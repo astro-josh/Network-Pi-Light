@@ -27,14 +27,14 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.util.CommandArgumentParser;
 import com.pi4j.util.Console;
 
 /**
  * <p>
- * This example code demonstrates how to setup a hardware supported PWM pin GpioProvider
+ * This example code demonstrates how to setup a hardware supported PWM pin
+ * GpioProvider
  * </p>
  *
  * @author Robert Savage
@@ -42,10 +42,10 @@ import com.pi4j.util.Console;
 public class PwmExample {
 
     /**
-     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ]
-     * This example program accepts an optional argument for specifying the GPIO pin (by number)
-     * to use with this GPIO listener example. If no argument is provided, then GPIO #1 will be used.
-     * -- EXAMPLE: "--pin 4" or "-p 0".
+     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ] This example program accepts an
+     * optional argument for specifying the GPIO pin (by number) to use with
+     * this GPIO listener example. If no argument is provided, then GPIO #1 will
+     * be used. -- EXAMPLE: "--pin 4" or "-p 0".
      *
      * @param args
      * @throws InterruptedException
@@ -71,8 +71,8 @@ public class PwmExample {
         // by default we will use gpio pin #01; however, if an argument
         // has been provided, then lookup the pin by address
         Pin pin = CommandArgumentParser.getPin(
-                RaspiPin.class,    // pin provider class to obtain pin instance from
-                RaspiPin.GPIO_01,  // default pin if no pin argument found
+                RaspiPin.class, // pin provider class to obtain pin instance from
+                RaspiPin.GPIO_01, // default pin if no pin argument found
                 args);             // argument array to search in
 
         GpioPinPwmOutput pwm = gpio.provisionPwmOutputPin(pin);
@@ -93,7 +93,6 @@ public class PwmExample {
         // set the PWM rate to 250
         pwm.setPwm(250);
         console.println("PWM rate is: " + pwm.getPwm());
-
 
         console.println("Press ENTER to set the PWM to a rate to 0 (stop PWM)");
         System.console().readLine();

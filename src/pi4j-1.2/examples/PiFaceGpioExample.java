@@ -28,8 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.gpio.extension.piface.PiFaceGpioProvider;
 import com.pi4j.gpio.extension.piface.PiFacePin;
 import com.pi4j.io.gpio.GpioController;
@@ -44,19 +42,20 @@ import java.io.IOException;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for GPIO pin state control and monitoring.
+ * This example code demonstrates how to setup a custom GpioProvider for GPIO
+ * pin state control and monitoring.
  * </p>
  *
  * <p>
- * This example implements the MCP23017 GPIO expansion board.
- * More information about the board can be found here: *
+ * This example implements the MCP23017 GPIO expansion board. More information
+ * about the board can be found here: *
  * http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf
  * </p>
  *
  * <p>
  * The MCP23017 is connected via I2C connection to the Raspberry Pi and provides
- * 16 GPIO pins that can be used for either digital input or digital output pins.
+ * 16 GPIO pins that can be used for either digital input or digital output
+ * pins.
  * </p>
  *
  * @author Robert Savage
@@ -75,15 +74,15 @@ public class PiFaceGpioExample {
 
         // provision gpio input pins from PiFaceGpioProvider
         GpioPinDigitalInput myInputs[] = {
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_00),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_01),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_02),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_03),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_04),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_05),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_06),
-                gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_07)
-            };
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_00),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_01),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_02),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_03),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_04),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_05),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_06),
+            gpio.provisionDigitalInputPin(gpioProvider, PiFacePin.INPUT_07)
+        };
 
         // create and register gpio pin listener
         gpio.addListener(new GpioPinListenerDigital() {
@@ -104,8 +103,7 @@ public class PiFaceGpioExample {
             gpio.provisionDigitalOutputPin(gpioProvider, PiFacePin.OUTPUT_04),
             gpio.provisionDigitalOutputPin(gpioProvider, PiFacePin.OUTPUT_05),
             gpio.provisionDigitalOutputPin(gpioProvider, PiFacePin.OUTPUT_06),
-            gpio.provisionDigitalOutputPin(gpioProvider, PiFacePin.OUTPUT_07),
-          };
+            gpio.provisionDigitalOutputPin(gpioProvider, PiFacePin.OUTPUT_07),};
 
         // keep program running for 20 seconds
         for (int count = 0; count < 10; count++) {
@@ -122,4 +120,3 @@ public class PiFaceGpioExample {
         System.out.println("Exiting PiFaceGpioExample");
     }
 }
-

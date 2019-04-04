@@ -29,8 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
@@ -38,9 +36,8 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
 /**
- * This example code provides a continuous GPIO pin state
- * changes on the Raspberry Pi to allow measurement of
- * frequency.
+ * This example code provides a continuous GPIO pin state changes on the
+ * Raspberry Pi to allow measurement of frequency.
  *
  * @author Robert Savage
  */
@@ -57,7 +54,7 @@ public class FrequencyGpioExample {
         final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW);
 
         // continuous loop
-        while(true) {
+        while (true) {
             pin.setState(true);
             pin.setState(false);
         }

@@ -43,14 +43,14 @@ public class WiringPiSerialExample {
         }
 
         // infinite loop
-        while(true) {
+        while (true) {
 
             // send test ASCII message
             Serial.serialPuts(fd, "TEST\r\n");
 
             // display data received to console
             int dataavail = Serial.serialDataAvail(fd);
-            while(dataavail > 0) {
+            while (dataavail > 0) {
                 byte data = Serial.serialGetByte(fd);
                 System.out.print(data);
                 dataavail = Serial.serialDataAvail(fd);

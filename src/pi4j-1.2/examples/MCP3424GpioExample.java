@@ -27,7 +27,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import java.io.IOException;
 
 import com.pi4j.gpio.extension.mcp.MCP3424GpioProvider;
@@ -43,19 +42,20 @@ import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 
 /**
  * <p>
- * This example code demonstrates how to setup a custom GpioProvider
- * for GPIO pin state control and monitoring.
+ * This example code demonstrates how to setup a custom GpioProvider for GPIO
+ * pin state control and monitoring.
  * </p>
  *
  * <p>
- * This example implements the MCP3424 GPIO expansion board.
- * More information about the board can be found here: *
+ * This example implements the MCP3424 GPIO expansion board. More information
+ * about the board can be found here: *
  * http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf
  * </p>
  *
  * <p>
  * The MCP3424 is connected via I2C connection to the Raspberry Pi and provides
- * 16 GPIO pins that can be used for either digital input or digital output pins.
+ * 16 GPIO pins that can be used for either digital input or digital output
+ * pins.
  * </p>
  *
  * @author Alexander Falkenstern
@@ -73,10 +73,10 @@ public class MCP3424GpioExample {
         final MCP3424GpioProvider provider = new MCP3424GpioProvider(I2CBus.BUS_1, 0x6C, 18, 1);
 
         // provision gpio input pins from MCP3424
-        GpioPinAnalogInput inputs[] = { gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH0, "Channel-0"),
-                gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH1, "Channel-1"),
-                gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH2, "Channel-2"),
-                gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH3, "Channel-3") };
+        GpioPinAnalogInput inputs[] = {gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH0, "Channel-0"),
+            gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH1, "Channel-1"),
+            gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH2, "Channel-2"),
+            gpio.provisionAnalogInputPin(provider, MCP3424Pin.GPIO_CH3, "Channel-3")};
 
         // Define the amount that the ADC input conversion value must change before
         // a 'GpioPinAnalogValueChangeEvent' is raised.  This is used to prevent unnecessary
@@ -85,7 +85,7 @@ public class MCP3424GpioExample {
         provider.setEventThreshold(0, inputs); // all inputs; alternatively you can set thresholds on each input discretely
 
         // Print current analog input conversion values from each input channel
-        for(GpioPinAnalogInput input : inputs){
+        for (GpioPinAnalogInput input : inputs) {
             System.out.print("<INITIAL VALUE> [" + input.getName() + "] : RAW VALUE = " + input.getValue());
             System.out.println(" -> " + provider.getAnalogValue(input.getPin()) + " V");
         }
@@ -94,13 +94,13 @@ public class MCP3424GpioExample {
         gpio.addListener(new GpioPinListenerAnalog() {
             @Override
             public void handleGpioPinAnalogValueChangeEvent(GpioPinAnalogValueChangeEvent event) {
-            	// get pin
-            	GpioPin pin = event.getPin();
+                // get pin
+                GpioPin pin = event.getPin();
 
-            	// get RAW value
+                // get RAW value
                 double value = event.getValue();
 
-            	// get Volt value
+                // get Volt value
                 double analog = provider.getAnalogValue(pin.getPin());
 
                 // display output

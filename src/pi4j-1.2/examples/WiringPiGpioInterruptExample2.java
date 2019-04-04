@@ -49,9 +49,9 @@ public class WiringPiGpioInterruptExample2 {
         }
 
         // configure pins as input pins
-        Gpio.pinMode(0, Gpio.INPUT) ;
-        Gpio.pinMode(1, Gpio.INPUT) ;
-        Gpio.pinMode(2, Gpio.INPUT) ;
+        Gpio.pinMode(0, Gpio.INPUT);
+        Gpio.pinMode(1, Gpio.INPUT);
+        Gpio.pinMode(2, Gpio.INPUT);
 
         // configure pins with pull down resistance
         Gpio.pullUpDnControl(0, Gpio.PUD_DOWN);
@@ -64,7 +64,6 @@ public class WiringPiGpioInterruptExample2 {
         // EACH GPIO PIN CAN ONLY BE CONFIGURED WITH A SINGLE EDGE TYPE AT ANY GIVEN TIME.
         // YOU CAN USE THE 'INT_EDGE_BOTH' IF YOU WISH TO CATCH BOTH CASES IN A SINGLE CALLBACK.
         //
-
         // example: single callback for discrete FALLING edge for pin 0
         Gpio.wiringPiISR(0, Gpio.INT_EDGE_FALLING, new GpioInterruptCallback() {
             @Override
@@ -96,7 +95,7 @@ public class WiringPiGpioInterruptExample2 {
 
         private String direction = "UKNOWN";
 
-        public SampleCallbackClass(String direction){
+        public SampleCallbackClass(String direction) {
             this.direction = direction;
         }
 

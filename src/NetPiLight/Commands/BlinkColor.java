@@ -38,11 +38,11 @@ public class BlinkColor implements Command {
                 blinkt.setOff();
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
-                
+
             }
         }
         blinkt.setOff();
-        
+
         return String.format("Running Blink Color - R: %s G: %s B: %s", red, green, blue);
     }
 

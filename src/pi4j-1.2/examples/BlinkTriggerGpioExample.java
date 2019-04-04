@@ -29,7 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
@@ -41,7 +40,8 @@ import com.pi4j.io.gpio.trigger.GpioBlinkStateTrigger;
 import com.pi4j.io.gpio.trigger.GpioBlinkStopStateTrigger;
 
 /**
- * This example code demonstrates how to setup blinking triggers for GPIO pins on the Raspberry Pi.
+ * This example code demonstrates how to setup blinking triggers for GPIO pins
+ * on the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -56,7 +56,7 @@ public class BlinkTriggerGpioExample {
 
         // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
         final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
-                                                  PinPullResistance.PULL_DOWN);
+                PinPullResistance.PULL_DOWN);
 
         System.out.println(" ... complete the GPIO #02 circuit and see the blink trigger take effect.");
 
@@ -70,7 +70,7 @@ public class BlinkTriggerGpioExample {
         myButton.addTrigger(new GpioBlinkStopStateTrigger(PinState.LOW, myLed));
 
         // keep program running until user aborts (CTRL-C)
-        while(true) {
+        while (true) {
             Thread.sleep(500);
         }
 

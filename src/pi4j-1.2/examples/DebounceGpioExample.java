@@ -29,7 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
@@ -37,8 +36,8 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import java.util.Date;
 
 /**
- * This example code demonstrates how to setup a listener
- * for GPIO pin state changes on the Raspberry Pi.
+ * This example code demonstrates how to setup a listener for GPIO pin state
+ * changes on the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -79,9 +78,9 @@ public class DebounceGpioExample {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 // display pin state on console
-                System.out.println("[" + new Date() +
-                        "] --> GPIO PIN STATE CHANGE: " +
-                        event.getPin() + " = " + event.getState());
+                System.out.println("[" + new Date()
+                        + "] --> GPIO PIN STATE CHANGE: "
+                        + event.getPin() + " = " + event.getState());
             }
 
         });
@@ -89,7 +88,7 @@ public class DebounceGpioExample {
         System.out.println(" ... complete the GPIO #02 circuit and see the listener feedback here in the console.");
 
         // keep program running until user aborts (CTRL-C)
-        while(true) {
+        while (true) {
             Thread.sleep(500);
         }
 

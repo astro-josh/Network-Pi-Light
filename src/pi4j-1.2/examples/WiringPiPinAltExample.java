@@ -28,7 +28,6 @@
  */
 import com.pi4j.wiringpi.Gpio;
 
-
 public class WiringPiPinAltExample {
 
     public static void main(String args[]) throws InterruptedException {
@@ -41,18 +40,16 @@ public class WiringPiPinAltExample {
         }
 
         // NOTE, this example does not really do anything visible, its just an usage example of settings ALT pin modes
-
         // iterate through all the available pin modes
-        Gpio.pinMode (7, Gpio.INPUT);
-        Gpio.pinMode (7, Gpio.OUTPUT);
-        Gpio.pinMode (7, Gpio.ALT0);
-        Gpio.pinMode (7, Gpio.ALT1);
-        Gpio.pinMode (7, Gpio.ALT2);
-        Gpio.pinMode (7, Gpio.ALT3);
-        Gpio.pinMode (7, Gpio.ALT4);
-        Gpio.pinMode (7, Gpio.ALT5);
+        Gpio.pinMode(7, Gpio.INPUT);
+        Gpio.pinMode(7, Gpio.OUTPUT);
+        Gpio.pinMode(7, Gpio.ALT0);
+        Gpio.pinMode(7, Gpio.ALT1);
+        Gpio.pinMode(7, Gpio.ALT2);
+        Gpio.pinMode(7, Gpio.ALT3);
+        Gpio.pinMode(7, Gpio.ALT4);
+        Gpio.pinMode(7, Gpio.ALT5);
 
         System.out.println("Exiting WiringPiPinAltExample");
     }
 }
-

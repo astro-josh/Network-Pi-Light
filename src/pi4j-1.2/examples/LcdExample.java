@@ -57,36 +57,34 @@ public class LcdExample {
         final GpioController gpio = GpioFactory.getInstance();
 
         // initialize LCD
-        final GpioLcdDisplay lcd = new GpioLcdDisplay(LCD_ROWS,    // number of row supported by LCD
-                                                LCD_COLUMNS,       // number of columns supported by LCD
-                                                RaspiPin.GPIO_11,  // LCD RS pin
-                                                RaspiPin.GPIO_10,  // LCD strobe pin
-                                                RaspiPin.GPIO_00,  // LCD data bit 1
-                                                RaspiPin.GPIO_01,  // LCD data bit 2
-                                                RaspiPin.GPIO_02,  // LCD data bit 3
-                                                RaspiPin.GPIO_03); // LCD data bit 4
+        final GpioLcdDisplay lcd = new GpioLcdDisplay(LCD_ROWS, // number of row supported by LCD
+                LCD_COLUMNS, // number of columns supported by LCD
+                RaspiPin.GPIO_11, // LCD RS pin
+                RaspiPin.GPIO_10, // LCD strobe pin
+                RaspiPin.GPIO_00, // LCD data bit 1
+                RaspiPin.GPIO_01, // LCD data bit 2
+                RaspiPin.GPIO_02, // LCD data bit 3
+                RaspiPin.GPIO_03); // LCD data bit 4
 
         // provision gpio pins as input pins with its internal pull up resistor enabled
         final GpioPinDigitalInput myButtons[] = {
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "B1", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_07, "B2", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, "B3", PinPullResistance.PULL_UP),
-                gpio.provisionDigitalInputPin(RaspiPin.GPIO_12, "B4", PinPullResistance.PULL_UP)
-                };
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "B1", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_07, "B2", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, "B3", PinPullResistance.PULL_UP),
+            gpio.provisionDigitalInputPin(RaspiPin.GPIO_12, "B4", PinPullResistance.PULL_UP)
+        };
 
         // create and register gpio pin listener
         gpio.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                if(event.getState() == PinState.LOW){
-                    lcd.writeln(LCD_ROW_2,  event.getPin().getName() + " PRESSED" , LCDTextAlignment.ALIGN_CENTER);
-                }
-                else {
-                    lcd.writeln(LCD_ROW_2,  event.getPin().getName() + " RELEASED" , LCDTextAlignment.ALIGN_CENTER);
+                if (event.getState() == PinState.LOW) {
+                    lcd.writeln(LCD_ROW_2, event.getPin().getName() + " PRESSED", LCDTextAlignment.ALIGN_CENTER);
+                } else {
+                    lcd.writeln(LCD_ROW_2, event.getPin().getName() + " RELEASED", LCDTextAlignment.ALIGN_CENTER);
                 }
             }
         }, myButtons);
-
 
         // clear LCD
         lcd.clear();
@@ -99,8 +97,7 @@ public class LcdExample {
         lcd.write(LCD_ROW_2, "----------------");
 
         // line data replacement
-        for(int index = 0; index < 5; index++)
-        {
+        for (int index = 0; index < 5; index++) {
             lcd.write(LCD_ROW_2, "----------------");
             Thread.sleep(500);
             lcd.write(LCD_ROW_2, "****************");
@@ -109,16 +106,18 @@ public class LcdExample {
         lcd.write(LCD_ROW_2, "----------------");
 
         // single character data replacement
-        for(int index = 0; index < lcd.getColumnCount(); index++) {
+        for (int index = 0; index < lcd.getColumnCount(); index++) {
             lcd.write(LCD_ROW_2, index, ">");
-            if(index > 0)
+            if (index > 0) {
                 lcd.write(LCD_ROW_2, index - 1, "-");
+            }
             Thread.sleep(300);
         }
-        for(int index = lcd.getColumnCount()-1; index >= 0 ; index--) {
+        for (int index = lcd.getColumnCount() - 1; index >= 0; index--) {
             lcd.write(LCD_ROW_2, index, "<");
-            if(index < lcd.getColumnCount()-1)
+            if (index < lcd.getColumnCount() - 1) {
                 lcd.write(LCD_ROW_2, index + 1, "-");
+            }
             Thread.sleep(300);
         }
 
@@ -151,9 +150,9 @@ public class LcdExample {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 
         // update time
-        while(true) {
+        while (true) {
             // write time to line 2 on LCD
-            if(gpio.isHigh(myButtons)) {
+            if (gpio.isHigh(myButtons)) {
                 lcd.writeln(LCD_ROW_2, formatter.format(new Date()), LCDTextAlignment.ALIGN_CENTER);
             }
             Thread.sleep(1000);
@@ -164,4 +163,3 @@ public class LcdExample {
         // gpio.shutdown();   <--- implement this method call if you wish to terminate the Pi4J GPIO controller
     }
 }
-

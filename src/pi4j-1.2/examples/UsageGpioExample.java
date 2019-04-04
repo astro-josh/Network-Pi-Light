@@ -28,7 +28,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import java.util.concurrent.Callable;
 
 // START SNIPPET: usage-import-snippet
@@ -53,9 +52,9 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.io.gpio.event.PinEventType;
 
 // END SNIPPET: usage-import-snippet
-
 /**
- * This example code demonstrates how to setup simple triggers for GPIO pins on the Raspberry Pi.
+ * This example code demonstrates how to setup simple triggers for GPIO pins on
+ * the Raspberry Pi.
  *
  * @author Robert Savage
  */
@@ -73,16 +72,16 @@ public class UsageGpioExample {
         // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
         // (configure pin edge to both rising and falling to get notified for HIGH and LOW state
         // changes)
-        GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,             // PIN NUMBER
-                                                                     "MyButton",                   // PIN FRIENDLY NAME (optional)
-                                                                     PinPullResistance.PULL_DOWN); // PIN RESISTANCE (optional)
+        GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, // PIN NUMBER
+                "MyButton", // PIN FRIENDLY NAME (optional)
+                PinPullResistance.PULL_DOWN); // PIN RESISTANCE (optional)
 
         // END SNIPPET: usage-provision-input-pin-snippet
         // START SNIPPET: usage-provision-output-pin-snippet
         // provision gpio pins #04 as an output pin and make sure is is set to LOW at startup
-        GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04,   // PIN NUMBER
-                                                                   "My LED",           // PIN FRIENDLY NAME (optional)
-                                                                   PinState.LOW);      // PIN STARTUP STATE (optional)
+        GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, // PIN NUMBER
+                "My LED", // PIN FRIENDLY NAME (optional)
+                PinState.LOW);      // PIN STARTUP STATE (optional)
         // END SNIPPET: usage-provision-output-pin-snippet
 
         // START SNIPPET: usage-shutdown-pin-snippet
@@ -137,8 +136,9 @@ public class UsageGpioExample {
         // gpio.shutdown();   <--- implement this method call if you wish to terminate the Pi4J GPIO controller
     }
 
- //START SNIPPET: usage-listener-snippet
+    //START SNIPPET: usage-listener-snippet
     public static class GpioUsageExampleListener implements GpioPinListenerDigital {
+
         @Override
         public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
             // display pin state on console
@@ -146,5 +146,5 @@ public class UsageGpioExample {
                     + event.getState());
         }
     }
- // END SNIPPET: usage-listener-snippet
+    // END SNIPPET: usage-listener-snippet
 }

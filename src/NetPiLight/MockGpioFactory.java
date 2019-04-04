@@ -28,26 +28,26 @@ package NetPiLight;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import NetPiLight.*;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.impl.GpioControllerImpl;
 
 /**
  * <p>
- * This factory class provides a static method to create new 'GpioController' instances.
+ * This factory class provides a static method to create new 'GpioController'
+ * instances.
  * </p>
  *
  * <p>
- * Before using the Pi4J library, you need to ensure that the Java VM in configured with access to
- * the following system libraries:
+ * Before using the Pi4J library, you need to ensure that the Java VM in
+ * configured with access to the following system libraries:
  * <ul>
  * <li>pi4j</li>
  * <li>wiringPi</li>
  * </ul>
- * <blockquote> This library depends on the wiringPi native system library.</br> (developed by
- * Gordon Henderson @ <a href="http://wiringpi.com/">http://wiringpi.com/</a>)
+ * <blockquote> This library depends on the wiringPi native system library.</br>
+ * (developed by Gordon Henderson @
+ * <a href="http://wiringpi.com/">http://wiringpi.com/</a>)
  * </blockquote>
  * </p>
  *
@@ -76,7 +76,6 @@ public class MockGpioFactory {
         // return a new instance of the GPIO controller
         return new GpioControllerImpl(getMockProvider());
     }
-
 
     public static MockGpioProvider getMockProvider() {
         // if a provider has not been created, then create a new instance

@@ -8,11 +8,11 @@ import javax.swing.JTextArea;
  * @author Joshua Alexander
  */
 public class Server extends javax.swing.JFrame {
-    
+
     public Server() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,7 +74,7 @@ public class Server extends javax.swing.JFrame {
     private void clearLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLogBtnActionPerformed
         jTextArea1.setText("");
     }//GEN-LAST:event_clearLogBtnActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -110,10 +110,10 @@ public class Server extends javax.swing.JFrame {
         });
         startConnection(server.jTextArea1);
     }
-    
+
     private static void startConnection(JTextArea jta) {
-        Invoker invoker = new Invoker(new Blinkt(),9001, jta);
-        invoker.start();
+        Invoker invoker = new Invoker(new Blinkt(), 9001, jta);
+        invoker.run();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

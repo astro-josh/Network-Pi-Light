@@ -30,9 +30,8 @@
 import com.pi4j.io.gpio.*;
 
 /**
- * This example code demonstrates how to perform simple state
- * control of a GPIO pin on the Raspberry Pi
- * using the Broadcom chipset GPIO pin numbering scheme.
+ * This example code demonstrates how to perform simple state control of a GPIO
+ * pin on the Raspberry Pi using the Broadcom chipset GPIO pin numbering scheme.
  *
  * @author Robert Savage
  */

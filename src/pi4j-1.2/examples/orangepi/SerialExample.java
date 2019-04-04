@@ -1,4 +1,5 @@
 package orangepi;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,8 +28,6 @@ package orangepi;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.io.serial.*;
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
@@ -40,21 +39,20 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * This example code demonstrates how to perform serial communications using the OrangePi.
- * (see 'OrangePiSerial' for constant definitions for OrangePi Serial Port addresses.)
+ * This example code demonstrates how to perform serial communications using the
+ * OrangePi. (see 'OrangePiSerial' for constant definitions for OrangePi Serial
+ * Port addresses.)
  *
  * @author Robert Savage
  */
 public class SerialExample {
 
     /**
-     * This example program supports the following optional command arguments/options:
-     *   "--device (device-path)"                   [DEFAULT: /dev/ttyAMA0]
-     *   "--baud (baud-rate)"                       [DEFAULT: 38400]
-     *   "--data-bits (5|6|7|8)"                    [DEFAULT: 8]
-     *   "--parity (none|odd|even)"                 [DEFAULT: none]
-     *   "--stop-bits (1|2)"                        [DEFAULT: 1]
-     *   "--flow-control (none|hardware|software)"  [DEFAULT: none]
+     * This example program supports the following optional command
+     * arguments/options: "--device (device-path)" [DEFAULT: /dev/ttyAMA0]
+     * "--baud (baud-rate)" [DEFAULT: 38400] "--data-bits (5|6|7|8)" [DEFAULT:
+     * 8] "--parity (none|odd|even)" [DEFAULT: none] "--stop-bits (1|2)"
+     * [DEFAULT: 1] "--flow-control (none|hardware|software)" [DEFAULT: none]
      *
      * @param args
      * @throws InterruptedException
@@ -91,7 +89,6 @@ public class SerialExample {
                 // NOTE! - It is extremely important to read the data received from the
                 // serial port.  If it does not get read from the receive buffer, the
                 // buffer will continue to grow and consume memory.
-
                 // print out the data received to the console
                 try {
                     console.println("[HEX DATA]   " + event.getHexByteString());
@@ -121,7 +118,7 @@ public class SerialExample {
                     .flowControl(FlowControl.NONE);
 
             // parse optional command argument options to override the default serial settings.
-            if(args.length > 0){
+            if (args.length > 0) {
                 config = CommandArgumentParser.getSerialConfig(config, args);
             }
 
@@ -130,12 +127,11 @@ public class SerialExample {
                     " We are sending ASCII data on the serial port every 1 second.",
                     " Data received on serial port will be displayed below.");
 
-
             // open the default serial device/port with the configuration settings
             serial.open(config);
 
             // continuous loop to keep the program running until the user terminates the program
-            while(console.isRunning()) {
+            while (console.isRunning()) {
                 try {
                     // write a formatted string to the serial transmit buffer
                     serial.write("CURRENT TIME: " + new Date().toString());
@@ -153,8 +149,7 @@ public class SerialExample {
 
                     // write a string terminating with CR+LF to the serial transmit buffer
                     serial.writeln("Third Line");
-                }
-                catch(IllegalStateException ex){
+                } catch (IllegalStateException ex) {
                     ex.printStackTrace();
                 }
 
@@ -162,11 +157,9 @@ public class SerialExample {
                 Thread.sleep(1000);
             }
 
-        }
-        catch(IOException ex) {
+        } catch (IOException ex) {
             console.println(" ==>> SERIAL SETUP FAILED : " + ex.getMessage());
             return;
         }
     }
 }
-

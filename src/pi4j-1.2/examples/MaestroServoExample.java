@@ -30,9 +30,9 @@ import com.pi4j.component.servo.ServoProvider;
 import com.pi4j.component.servo.impl.MaestroServoDriver;
 import com.pi4j.component.servo.impl.MaestroServoProvider;
 
-
 /**
  * Test program for the Pololu Maestro series of Servo Controllers.
+ *
  * @see MaestroServoProvider for details.
  *
  * @author Bob Brodt (rbrodt@gmail.com)
@@ -45,17 +45,16 @@ public class MaestroServoExample {
         MaestroServoDriver servo0 = (MaestroServoDriver) servoProvider.getServoDriver(servoProvider.getDefinedServoPins().get(0));
         long start = System.currentTimeMillis();
 
-		int min = servo0.getMinValue();
-		int max = servo0.getMaxValue();
-		servo0.setAcceleration(30);
+        int min = servo0.getMinValue();
+        int max = servo0.getMaxValue();
+        servo0.setAcceleration(30);
 
         while (System.currentTimeMillis() - start < 120000) { // 2 minutes
-           	servo0.setServoPulseWidth(min);
+            servo0.setServoPulseWidth(min);
             Thread.sleep(1500);
-           	servo0.setServoPulseWidth(max);
+            servo0.setServoPulseWidth(max);
             Thread.sleep(1500);
         }
         System.out.println("Exiting MaestroServoExample");
     }
 }
-

@@ -1,4 +1,5 @@
 package odroid.c1;
+
 /*
  * #%L
  * **********************************************************************
@@ -27,7 +28,6 @@ package odroid.c1;
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
@@ -39,28 +39,30 @@ import com.pi4j.util.Console;
 import com.pi4j.util.ConsoleColor;
 
 /**
- * This example code demonstrates how to setup a listener
- * for GPIO pin state changes on the Odroid C1/C1+ platform.
+ * This example code demonstrates how to setup a listener for GPIO pin state
+ * changes on the Odroid C1/C1+ platform.
  *
- * The internal resistance is set to PULL UP by default. So when
- * connecting the GPIO pin to a ground pin, you should see the
- * GpioPinListenerDigital fire the event.
+ * The internal resistance is set to PULL UP by default. So when connecting the
+ * GPIO pin to a ground pin, you should see the GpioPinListenerDigital fire the
+ * event.
  *
  * @author Robert Savage
  */
 public class GpioListenExample {
 
     /**
-     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ]
-     * This example program accepts an optional argument for specifying the GPIO pin (by number)
-     * to use with this GPIO listener example. If no argument is provided, then GPIO #1 will be used.
-     * -- EXAMPLE: "--pin 4" or "-p 0".
+     * [ARGUMENT/OPTION "--pin (#)" | "-p (#)" ] This example program accepts an
+     * optional argument for specifying the GPIO pin (by number) to use with
+     * this GPIO listener example. If no argument is provided, then GPIO #1 will
+     * be used. -- EXAMPLE: "--pin 4" or "-p 0".
      *
-     * [ARGUMENT/OPTION "--pull (up|down|off)" | "-l (up|down|off)" | "--up" | "--down" ]
-     * This example program accepts an optional argument for specifying pin pull resistance.
-     * Supported values: "up|down" (or simply "1|0").   If no value is specified in the command
-     * argument, then the pin pull resistance will be set to PULL_UP by default.
-     * -- EXAMPLES: "--pull up", "-pull down", "--pull off", "--up", "--down", "-pull 0", "--pull 1", "-l up", "-l down".
+     * [ARGUMENT/OPTION "--pull (up|down|off)" | "-l (up|down|off)" | "--up" |
+     * "--down" ] This example program accepts an optional argument for
+     * specifying pin pull resistance. Supported values: "up|down" (or simply
+     * "1|0"). If no value is specified in the command argument, then the pin
+     * pull resistance will be set to PULL_UP by default. -- EXAMPLES: "--pull
+     * up", "-pull down", "--pull off", "--up", "--down", "-pull 0", "--pull 1",
+     * "-l up", "-l down".
      *
      * @param args
      * @throws InterruptedException
@@ -91,7 +93,6 @@ public class GpioListenExample {
 
         // the Odroid C1/C1+ device only supports up to 4 GPIO pin edge interrupt
         // therefore only 4 GPIO pins can be configured with GPIO input event listeners
-
         // --------------------
         // !! ATTENTION !!
         // --------------------
@@ -110,18 +111,17 @@ public class GpioListenExample {
         //    When provisioning a pin, use the OdroidC1Pin class.
         //
         // ####################################################################
-
         // by default we will use gpio pin #01; however, if an argument
         // has been provided, then lookup the pin by address
         Pin pin = CommandArgumentParser.getPin(
-                    OdroidC1Pin.class,    // pin provider class to obtain pin instance from
-                    OdroidC1Pin.GPIO_01,  // default pin if no pin argument found
-                    args);                // argument array to search in
+                OdroidC1Pin.class, // pin provider class to obtain pin instance from
+                OdroidC1Pin.GPIO_01, // default pin if no pin argument found
+                args);                // argument array to search in
 
         // by default we will use gpio pin PULL-UP; however, if an argument
         // has been provided, then use the specified pull resistance
         PinPullResistance pull = CommandArgumentParser.getPinPullResistance(
-                PinPullResistance.PULL_UP,  // default pin pull resistance if no pull argument found
+                PinPullResistance.PULL_UP, // default pin pull resistance if no pull argument found
                 args);                      // argument array to search in
 
         // provision gpio pin as an input pin with its internal pull up resistor set
@@ -142,11 +142,11 @@ public class GpioListenExample {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 // display pin state on console
-                console.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = " +
-                        ConsoleColor.conditional(
+                console.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = "
+                        + ConsoleColor.conditional(
                                 event.getState().isHigh(), // conditional expression
-                                ConsoleColor.GREEN,        // positive conditional color
-                                ConsoleColor.RED,          // negative conditional color
+                                ConsoleColor.GREEN, // positive conditional color
+                                ConsoleColor.RED, // negative conditional color
                                 event.getState()));        // text to display
             }
 

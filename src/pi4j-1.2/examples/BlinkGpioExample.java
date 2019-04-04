@@ -29,8 +29,6 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * #L%
  */
-
-
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
@@ -41,9 +39,8 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 /**
- * This example code demonstrates how to perform simple
- * blinking LED logic of a GPIO pin on the Raspberry Pi
- * using the Pi4J library.
+ * This example code demonstrates how to perform simple blinking LED logic of a
+ * GPIO pin on the Raspberry Pi using the Pi4J library.
  *
  * @author Robert Savage
  */
@@ -65,17 +62,16 @@ public class BlinkGpioExample {
 
         // create and register gpio pin listener
         myButton.addListener(new GpioPinListenerDigital() {
-                @Override
-                public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                    // when button is pressed, speed up the blink rate on LED #2
-                    if(event.getState().isHigh()){
-                      led2.blink(200);
-                    }
-                    else{
-                      led2.blink(1000);
-                    }
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                // when button is pressed, speed up the blink rate on LED #2
+                if (event.getState().isHigh()) {
+                    led2.blink(200);
+                } else {
+                    led2.blink(1000);
                 }
-            });
+            }
+        });
 
         // continuously blink the led every 1/2 second for 15 seconds
         led1.blink(500, 15000);
@@ -87,7 +83,7 @@ public class BlinkGpioExample {
         System.out.println(" ... PRESS <CTRL-C> TO STOP THE PROGRAM.");
 
         // keep program running until user aborts (CTRL-C)
-        while(true) {
+        while (true) {
             Thread.sleep(500);
         }
 
