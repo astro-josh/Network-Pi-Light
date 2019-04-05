@@ -8,7 +8,7 @@ import java.awt.Color;
  *
  * @author Joshua Alexander
  */
-public class SequenceColor implements Command {
+public class SequenceColor implements Command, Runnable {
 
     private final Blinkt blinkt;
     private final int rgb, red, green, blue;
@@ -22,7 +22,7 @@ public class SequenceColor implements Command {
     }
 
     @Override
-    public String execute() {
+    public void run() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 8; ++j) {
                 blinkt.set(j, red, green, blue, BRIGHTNESS);
@@ -39,6 +39,5 @@ public class SequenceColor implements Command {
         }
         blinkt.setOff();
 
-        return String.format("Running Solid Color - R: %s G: %s B: %s", red, green, blue);
     }
 }

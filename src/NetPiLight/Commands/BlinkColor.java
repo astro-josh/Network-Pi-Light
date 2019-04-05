@@ -8,7 +8,7 @@ import java.awt.Color;
  *
  * @author Joshua Alexander
  */
-public class BlinkColor implements Command {
+public class BlinkColor implements Command, Runnable {
 
     private final Blinkt blinkt;
     private final int rgb, red, green, blue;
@@ -22,7 +22,7 @@ public class BlinkColor implements Command {
     }
 
     @Override
-    public String execute() {
+    public void run() {
         for (int i = 0; i < 10; i++) {
             blinkt.set(0, red, green, blue, BRIGHTNESS);
             blinkt.set(1, red, green, blue, BRIGHTNESS);
@@ -43,7 +43,6 @@ public class BlinkColor implements Command {
         }
         blinkt.setOff();
 
-        return String.format("Running Blink Color - R: %s G: %s B: %s", red, green, blue);
     }
 
 }

@@ -9,7 +9,7 @@ import NetPiLight.Command;
  *
  * @author Joshua Alexander
  */
-public class RGBBounce implements Command {
+public class RGBBounce implements Command, Runnable {
 
     private final Blinkt blinkt;
 
@@ -18,7 +18,7 @@ public class RGBBounce implements Command {
     }
 
     @Override
-    public String execute() {
+    public void run() {
         int phase = 0;
         final double max_distance = 8;
 
@@ -53,7 +53,6 @@ public class RGBBounce implements Command {
         }
         blinkt.setOff();
 
-        return "Running RGB Bounce";
     }
 
 }

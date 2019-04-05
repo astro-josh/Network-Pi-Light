@@ -9,7 +9,7 @@ import java.io.IOException;
  *
  * @author Joshua Alexander
  */
-public class Rainbow implements Command {
+public class Rainbow implements Command, Runnable {
 
     private final Blinkt blinkt;
 
@@ -18,14 +18,12 @@ public class Rainbow implements Command {
     }
 
     @Override
-    public String execute() {
+    public void run() {
         try {
             ColourMatrixDemo.run(this.blinkt);
         } catch (InterruptedException | IOException ex) {
 
         }
-
-        return "Running Rainbow.";
     }
 
 }

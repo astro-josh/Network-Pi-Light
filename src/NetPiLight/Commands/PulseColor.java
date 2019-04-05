@@ -8,7 +8,7 @@ import java.awt.Color;
  *
  * @author Joshua Alexander
  */
-public class PulseColor implements Command {
+public class PulseColor implements Command, Runnable{
 
     private final Blinkt blinkt;
     private final int rgb, red, green, blue;
@@ -22,7 +22,7 @@ public class PulseColor implements Command {
     }
 
     @Override
-    public String execute() {
+    public void run() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 32; j++) {
                 blinkt.set(0, red, green, blue, j);
@@ -60,7 +60,6 @@ public class PulseColor implements Command {
         }
         blinkt.setOff();
 
-        return String.format("Running Pulse Color - R: %s G: %s B: %s", red, green, blue);
     }
 
 }

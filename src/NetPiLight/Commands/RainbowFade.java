@@ -8,7 +8,7 @@ import java.util.Random;
  *
  * @author Joshua Alexander
  */
-public class RainbowFade implements Command {
+public class RainbowFade implements Command, Runnable {
 
     private final Blinkt blinkt;
     private final Random rand;
@@ -19,7 +19,7 @@ public class RainbowFade implements Command {
     }
 
     @Override
-    public String execute() {
+    public void run() {
         int red, green, blue;
 
         for (int i = 0; i < 5; i++) {
@@ -63,7 +63,6 @@ public class RainbowFade implements Command {
         }
         blinkt.setOff();
 
-        return "Running Rainbow Fade";
     }
 
 }
