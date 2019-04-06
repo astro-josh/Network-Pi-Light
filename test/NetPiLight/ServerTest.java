@@ -84,8 +84,12 @@ public class ServerTest {
     public void testValidCommands() throws IOException, InterruptedException {
         // array of commands, array of responses from commands in jtextarea
         System.out.println("\ntestValidCommands");
+        serverTextArea.setText("");
         dataOut.writeUTF("pulse-red");
         Thread.sleep(1000);
+        dataOut.writeUTF("pulse-white");
+        Thread.sleep(1000);
+        System.out.println(serverTextArea.getText());
     }
 
     /**
