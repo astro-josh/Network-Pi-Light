@@ -306,12 +306,8 @@ public class ClientGUI extends javax.swing.JFrame {
         //</editor-fold>
         final ClientGUI client = new ClientGUI();
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                client.setVisible(true);
-
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            client.setVisible(true);
         });
         startConnection(client.jTextArea1);
 
@@ -326,7 +322,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
             while (!msgIn.equals("exit")) {
                 msgIn = dataIn.readUTF();
-                jta.append(msgIn);
+                jta.append(msgIn + "\n");
             }
         } catch (IOException e) {
 

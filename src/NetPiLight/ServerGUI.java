@@ -104,10 +104,8 @@ public class ServerGUI extends javax.swing.JFrame {
         //</editor-fold>
         final ServerGUI serverGUI = new ServerGUI();
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                serverGUI.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            serverGUI.setVisible(true);
         });
         startConnection(serverGUI.jTextArea1);
     }

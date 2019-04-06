@@ -45,7 +45,7 @@ class ClientWorker implements Runnable {
         while (true) {
             try {
                 String msg = dataIn.readUTF();
-                textArea.append("Recieved Command: " + msg);
+                textArea.append("Client: " + msg + "\n");
                 invoke(msg);
             } catch (IOException ex) {
                 System.out.println(ex);
