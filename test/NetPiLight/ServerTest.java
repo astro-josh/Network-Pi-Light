@@ -47,8 +47,6 @@ public class ServerTest {
 
     @After
     public void tearDown() throws IOException {
-        dataIn.close();
-        dataOut.close();
         s.close();
         server.finalize();
         pool.shutdown();
@@ -69,7 +67,7 @@ public class ServerTest {
         Assert.assertEquals("Server: Connected", actualMessage);
 
         String expected = "Incoming Connection from: /127.0.0.1";
-                Thread.sleep(1000);
+        Thread.sleep(1000);
         boolean isExpected = serverTextArea.getText().contains(expected);
 
         Assert.assertTrue(isExpected);

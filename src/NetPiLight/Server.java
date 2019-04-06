@@ -3,6 +3,7 @@ package NetPiLight;
 import Jimbo.Boards.com.pimoroni.Blinkt;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.SocketException;
 import javax.swing.JTextArea;
 
 /**
@@ -14,7 +15,6 @@ public class Server {
     private final ServerSocket server;
     private final JTextArea jta;
     private final Blinkt blinkt;
-   
 
     public Server(Blinkt blinkt, int port, JTextArea jta) throws IOException {
         this.jta = jta;
@@ -29,8 +29,11 @@ public class Server {
                 worker = new ClientWorker(server.accept(), jta, blinkt);
                 Thread t = new Thread(worker);
                 t.start();
-            } catch (IOException ex) {
+            } catch (SocketException ex) {
                 System.out.println("Connection Closed");
+            } catch (IOException ex) {
+                System.out.println(ex);
+                ex.printStackTrace();
                 break;
             }
         }
