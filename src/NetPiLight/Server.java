@@ -42,6 +42,7 @@ public class Server {
             server.close();
         } catch (IOException ex) {
             System.out.println("Could not close socket");
+            ex.printStackTrace();
         }
     }
 }

@@ -39,16 +39,23 @@ class ClientWorker implements Runnable {
             textArea.append("Incoming Connection from: " + client.getRemoteSocketAddress() + "\n");
         } catch (IOException ex) {
             System.out.println(ex);
+            ex.printStackTrace();
             System.exit(-1);
         }
 
-        while (client.isConnected()) {
+        while (!client.isClosed()) {
             try {
-                String msg = dataIn.readUTF();
-                textArea.append("Client: " + msg + "\n");
-                invoke(msg);
+                String msg = null;
+                if (dataIn.available() > 0) {
+                    msg = dataIn.readUTF();
+                    textArea.append("Client: " + msg + "\n");
+                    invoke(msg);
+                } else {
+                    break;
+                }
             } catch (IOException ex) {
                 System.out.println(ex);
+                ex.printStackTrace();
                 break;
             }
         }

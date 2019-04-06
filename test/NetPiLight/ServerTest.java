@@ -47,6 +47,9 @@ public class ServerTest {
 
     @After
     public void tearDown() throws IOException {
+        dataIn.close();
+        dataOut.close();
+        s.close();
         server.finalize();
         pool.shutdown();
     }
@@ -59,36 +62,49 @@ public class ServerTest {
      */
     @Test
     public void testStart() throws IOException, InterruptedException {
+        System.out.println("\ntestStart");
         String actualMessage;
 
         actualMessage = dataIn.readUTF();
         Assert.assertEquals("Server: Connected", actualMessage);
 
         String expected = "Incoming Connection from: /127.0.0.1";
+                Thread.sleep(1000);
         boolean isExpected = serverTextArea.getText().contains(expected);
+
         Assert.assertTrue(isExpected);
 
-        s.close();
     }
 
     /**
      * Test of sending commands, of class Server.
+     *
+     * @throws java.io.IOException
+     * @throws java.lang.InterruptedException
      */
     @Test
     public void testValidCommands() throws IOException, InterruptedException {
         // array of commands, array of responses from commands in jtextarea
-        System.out.println("testValidCommands");
+        System.out.println("\ntestValidCommands");
         dataOut.writeUTF("pulse-red");
         Thread.sleep(1000);
-        System.out.print(serverTextArea.getText());
     }
 
     /**
      * Test of finalize method, of class Server.
+     *
+     * @throws java.io.IOException
+     * @throws java.lang.InterruptedException
      */
     @Test
-    public void testInvalidCommands() {
-        // test an unknow command
+    public void testInvalidCommand() throws IOException, InterruptedException {
+        System.out.println("\ntestInvalidCommand");
+        dataOut.writeUTF("invalid");
+        Thread.sleep(1000);
+
+        String expected = "Command Not Recognized.";
+        String[] responses = serverTextArea.getText().split("\n");
+        Assert.assertEquals(expected, responses[responses.length - 1]);
     }
 
 }
