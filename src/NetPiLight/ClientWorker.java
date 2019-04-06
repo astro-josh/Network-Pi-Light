@@ -38,17 +38,18 @@ class ClientWorker implements Runnable {
             dataOut.writeUTF("Server: Connected");
             textArea.append("Incoming Connection from: " + client.getRemoteSocketAddress() + "\n");
         } catch (IOException ex) {
-            System.out.println("I/O failed");
+            System.out.println(ex);
             System.exit(-1);
         }
 
-        while (true) {
+        while (client.isConnected()) {
             try {
                 String msg = dataIn.readUTF();
                 textArea.append("Client: " + msg + "\n");
                 invoke(msg);
             } catch (IOException ex) {
                 System.out.println(ex);
+                break;
             }
         }
     }

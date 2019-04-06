@@ -1,7 +1,6 @@
 package NetPiLight;
 
 import Jimbo.Boards.com.pimoroni.Blinkt;
-import java.awt.Color;
 import java.io.IOException;
 import java.net.ServerSocket;
 import javax.swing.JTextArea;
@@ -25,13 +24,14 @@ public class Server {
 
     public void start() {
         ClientWorker worker;
-        while (true) {
+        while (!server.isClosed()) {
             try {
                 worker = new ClientWorker(server.accept(), jta, blinkt);
                 Thread t = new Thread(worker);
                 t.start();
             } catch (IOException ex) {
-                System.out.println(ex);
+                System.out.println("Connection Closed");
+                break;
             }
         }
     }

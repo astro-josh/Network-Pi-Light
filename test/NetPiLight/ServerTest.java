@@ -10,9 +10,7 @@ import java.util.concurrent.Executors;
 import javax.swing.JTextArea;
 import org.junit.Assert;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -21,30 +19,35 @@ import org.junit.Test;
  */
 public class ServerTest {
 
-    private final int PORT = 9001;
     private Socket s;
     private Server server;
+    private JTextArea serverTextArea;
     private DataInputStream dataIn;
     private DataOutputStream dataOut;
-    private final ExecutorService pool = Executors.newFixedThreadPool(5);
+
+    private final int PORT = 9001;
+    private final ExecutorService pool = Executors.newSingleThreadExecutor();
 
     public ServerTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() throws IOException {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
+        serverTextArea = new JTextArea();
+        server = new Server(new Blinkt(true), PORT, serverTextArea);
+
+        pool.execute(() -> {
+            server.start();
+        });
+
+        s = new Socket("127.0.0.1", PORT);
+        dataIn = new DataInputStream(s.getInputStream());
+        dataOut = new DataOutputStream(s.getOutputStream());
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws IOException {
+        server.finalize();
         pool.shutdown();
     }
 
@@ -57,33 +60,27 @@ public class ServerTest {
     @Test
     public void testStart() throws IOException, InterruptedException {
         String actualMessage;
-        JTextArea serverTextArea = new JTextArea();
-        server = new Server(new Blinkt(true), PORT, serverTextArea);
-
-        pool.execute(() -> {
-            server.start();
-        });
-
-        s = new Socket("127.0.0.1", PORT);
-        dataIn = new DataInputStream(s.getInputStream());
-        dataOut = new DataOutputStream(s.getOutputStream());
 
         actualMessage = dataIn.readUTF();
         Assert.assertEquals("Server: Connected", actualMessage);
-        serverTextArea.setText("");
-        
-        dataOut.writeUTF("pulse-red");
-        Thread.sleep(1000);
-        System.out.print(serverTextArea.getText());
+
+        String expected = "Incoming Connection from: /127.0.0.1";
+        boolean isExpected = serverTextArea.getText().contains(expected);
+        Assert.assertTrue(isExpected);
+
         s.close();
     }
-    
+
     /**
      * Test of sending commands, of class Server.
      */
     @Test
-    public void testValidCommands() {
+    public void testValidCommands() throws IOException, InterruptedException {
         // array of commands, array of responses from commands in jtextarea
+        System.out.println("testValidCommands");
+        dataOut.writeUTF("pulse-red");
+        Thread.sleep(1000);
+        System.out.print(serverTextArea.getText());
     }
 
     /**
