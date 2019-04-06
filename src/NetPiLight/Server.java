@@ -15,7 +15,7 @@ public class Server {
     private final ServerSocket server;
     private final JTextArea jta;
     private final Blinkt blinkt;
-    private final Color PURPLE = new Color(128, 0, 128);
+   
 
     public Server(Blinkt blinkt, int port, JTextArea jta) throws IOException {
         this.jta = jta;

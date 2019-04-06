@@ -32,12 +32,12 @@ class ClientWorker implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println("starting client" + client);
+            System.out.println("Starting Client Connection " + client);
             dataIn = new DataInputStream(client.getInputStream());
             dataOut = new DataOutputStream(client.getOutputStream());
             dataOut.writeUTF("Server: Connected");
             textArea.append("Incoming Connection from: " + client.getRemoteSocketAddress() + "\n");
-        } catch (IOException e) {
+        } catch (IOException ex) {
             System.out.println("I/O failed");
             System.exit(-1);
         }
