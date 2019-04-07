@@ -8,7 +8,7 @@ import java.awt.Color;
  *
  * @author Joshua Alexander
  */
-public class PulseColor implements Command, Runnable{
+public class PulseColor implements Command, Runnable {
 
     private final Blinkt blinkt;
     private final int rgb, red, green, blue;

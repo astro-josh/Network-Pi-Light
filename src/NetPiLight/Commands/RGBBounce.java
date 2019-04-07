@@ -28,9 +28,7 @@ public class RGBBounce implements Command, Runnable {
 
                 double value1 = 360 * (1 - fraction) + phase;
 
-                if (value1 > 360) {
-                    value1 -= 360;
-                }
+                value1 %= 360;
 
                 Colour c1 = new Colour(value1);
 
