@@ -309,6 +309,7 @@ public class ClientGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             client.setVisible(true);
         });
+
         startConnection(client.jTextArea1);
 
     }
@@ -320,12 +321,13 @@ public class ClientGUI extends javax.swing.JFrame {
             dataOut = new DataOutputStream(s.getOutputStream());
             String msgIn = "";
 
-            while (!msgIn.equals("exit")) {
+            while (!s.isClosed()) {
                 msgIn = dataIn.readUTF();
                 jta.append(msgIn + "\n");
             }
-        } catch (IOException e) {
-
+        } catch (IOException ex) {
+            System.out.println(ex);
+            ex.printStackTrace();
         }
     }
 

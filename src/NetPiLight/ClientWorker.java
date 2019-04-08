@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import javax.swing.JTextArea;
 
 /**
@@ -16,15 +17,16 @@ import javax.swing.JTextArea;
  * @author Joshua Alexander
  */
 class ClientWorker implements Runnable {
-
+    
+    private Runnable cmd;
+    private DataInputStream dataIn;
+    private DataOutputStream dataOut;
+    private Future future;
     private final Socket client;
     private final JTextArea textArea;
     private final Blinkt blinkt;
     private final Color PURPLE = new Color(128, 0, 128);
     private final ExecutorService pool = Executors.newSingleThreadExecutor();
-    private DataInputStream dataIn;
-    private DataOutputStream dataOut;
-    private Runnable cmd;
 
     ClientWorker(Socket client, JTextArea textArea, Blinkt blinkt) {
         this.client = client;
@@ -45,6 +47,8 @@ class ClientWorker implements Runnable {
             ex.printStackTrace();
             System.exit(-1);
         }
+        
+
 
         while (!client.isClosed()) {
             try {
@@ -52,8 +56,6 @@ class ClientWorker implements Runnable {
                     String msg = dataIn.readUTF();
                     textArea.append("Client: " + msg + "\n");
                     invoke(msg);
-                } else {
-                    break;
                 }
             } catch (IOException ex) {
                 System.out.println(ex);
@@ -64,6 +66,10 @@ class ClientWorker implements Runnable {
     }
 
     private void invoke(String msgIn) throws IOException {
+        if (future != null && !future.isDone()) {
+            future.cancel(true);
+        }
+        
         switch (msgIn) {
             case "rainbow":
                 textArea.append("Running Rainbow\n");
@@ -231,7 +237,7 @@ class ClientWorker implements Runnable {
                 break;
         }
         if (cmd != null) {
-                    pool.submit(cmd);
+            future = pool.submit(cmd);
         }
     }
 

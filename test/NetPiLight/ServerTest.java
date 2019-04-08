@@ -103,7 +103,7 @@ public class ServerTest {
         System.out.println("\ntestInvalidCommand");
         dataOut.writeUTF("invalid");
         Thread.sleep(1000);
-
+        System.out.println(serverTextArea.getText());
         String expected = "Command Not Recognized.";
         String[] responses = serverTextArea.getText().split("\n");
         Assert.assertEquals(expected, responses[responses.length - 1]);

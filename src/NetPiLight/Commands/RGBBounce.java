@@ -24,6 +24,7 @@ public class RGBBounce implements Command, Runnable {
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0, k = 7; j < 8 && k >= 0; j++, k--) {
+                System.out.println(j);
                 double fraction = j / max_distance;
 
                 double value1 = 360 * (1 - fraction) + phase;
