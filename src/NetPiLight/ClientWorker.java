@@ -68,6 +68,7 @@ class ClientWorker implements Runnable {
     private void invoke(String msgIn) throws IOException {
         if (future != null && !future.isDone()) {
             future.cancel(true);
+            System.out.println("interrupt");
         }
         
         switch (msgIn) {
@@ -78,162 +79,202 @@ class ClientWorker implements Runnable {
                 break;
             case "rainbow-fade":
                 textArea.append("Running Rainbow Fade\n");
+                dataOut.writeUTF("Server: Running Rainbow Fade");
                 cmd = new RainbowFade(blinkt);
                 break;
             case "rgb-bounce":
                 textArea.append("Running RGB Bounce\n");
+                dataOut.writeUTF("Server: Running RGB Bounce");
                 cmd = new RGBBounce(blinkt);
                 break;
             case "pulse-white":
-                textArea.append("Running White Pulse\n");
+                textArea.append("Running Pulse White\n");
+                dataOut.writeUTF("Server: Running Pulse White");
                 cmd = new PulseColor(blinkt, Color.white);
                 break;
             case "pulse-purple":
-                textArea.append("Running Purple Pulse\n");
+                textArea.append("Running Pulse Purple\n");
+                dataOut.writeUTF("Server: Running Pulse Purple");
                 cmd = new PulseColor(blinkt, PURPLE);
                 break;
             case "pulse-red":
-                textArea.append("Running Red Pulse\n");
+                textArea.append("Running Pulse Red\n");
+                dataOut.writeUTF("Server: Running Pulse Red");
                 cmd = new PulseColor(blinkt, Color.red);
                 break;
             case "pulse-blue":
-                textArea.append("Running Blue Pulse\n");
+                textArea.append("Running Pusle Blue\n");
+                dataOut.writeUTF("Server: Running Pusle Blue");
                 cmd = new PulseColor(blinkt, Color.blue);
                 break;
             case "pulse-green":
-                textArea.append("Running Green Pulse\n");
+                textArea.append("Running Pulse Green\n");
+                dataOut.writeUTF("Server: Running Pulse Green");
                 cmd = new PulseColor(blinkt, Color.green);
                 break;
             case "pulse-yellow":
                 textArea.append("Running Yellow Pulse\n");
+                dataOut.writeUTF("Server: Running Pulse Yellow");
                 cmd = new PulseColor(blinkt, Color.yellow);
                 break;
             case "pulse-cyan":
-                textArea.append("Running Cyan Pulse\n");
+                textArea.append("Running Pulse Cyan\n");
+                dataOut.writeUTF("Server: Running Pulse Cyan");
                 cmd = new PulseColor(blinkt, Color.cyan);
                 break;
             case "pulse-magenta":
-                textArea.append("Running Magenta Pulse\n");
+                textArea.append("Running Pulse Magenta\n");
+                dataOut.writeUTF("Server: Running Pulse Magenta");
                 cmd = new PulseColor(blinkt, Color.magenta);
                 break;
             case "pulse-pink":
-                textArea.append("Running Pink Pulse\n");
+                textArea.append("Running Pulse Pink\n");
+                dataOut.writeUTF("Server: Running Pulse Pink");
                 cmd = new PulseColor(blinkt, Color.pink);
                 break;
             case "blink-cyan":
                 textArea.append("Running Blink Cyan\n");
+                dataOut.writeUTF("Server: Running Blink Cyan");
                 cmd = new BlinkColor(blinkt, Color.cyan);
                 break;
             case "blink-magenta":
                 textArea.append("Running Blink Magenta\n");
+                dataOut.writeUTF("Server: Running Blink Magenta");
                 cmd = new BlinkColor(blinkt, Color.magenta);
                 break;
             case "blink-pink":
                 textArea.append("Running Blink Pink\n");
+                dataOut.writeUTF("Server: Running Blink Pink");
                 cmd = new BlinkColor(blinkt, Color.pink);
                 break;
             case "blink-red":
                 textArea.append("Running Blink Red\n");
+                dataOut.writeUTF("Server: Running Blink Red");
                 cmd = new BlinkColor(blinkt, Color.red);
                 break;
             case "blink-green":
                 textArea.append("Running Blink Green\n");
+                dataOut.writeUTF("Server: Running Blink Green");
                 cmd = new BlinkColor(blinkt, Color.green);
                 break;
             case "blink-blue":
                 textArea.append("Running Blink Blue\n");
+                dataOut.writeUTF("Server: Running Blink Blue");
                 cmd = new BlinkColor(blinkt, Color.blue);
                 break;
             case "blink-yellow":
                 textArea.append("Running Blink Yellow\n");
+                dataOut.writeUTF("Server: Running Blink Yellow");
                 cmd = new BlinkColor(blinkt, Color.yellow);
                 break;
             case "blink-purple":
                 textArea.append("Running Blink Purple\n");
+                dataOut.writeUTF("Server: Running Blink Purple");
                 cmd = new BlinkColor(blinkt, PURPLE);
                 break;
             case "blink-white":
                 textArea.append("Running Blink White\n");
+                dataOut.writeUTF("Server: Running Blink White");
                 cmd = new PulseColor(blinkt, Color.white);
                 break;
             case "solid-red":
                 textArea.append("Running Solid Red\n");
+                dataOut.writeUTF("Server: Running Solid Red");
                 cmd = new SolidColor(blinkt, Color.red);
                 break;
             case "solid-cyan":
                 textArea.append("Running Solid Cyan\n");
+                dataOut.writeUTF("Server: Running Solid Cyan");
                 cmd = new SolidColor(blinkt, Color.cyan);
                 break;
             case "solid-magenta":
                 textArea.append("Running Solid Magenta\n");
+                dataOut.writeUTF("Server: Running Solid Magenta");
                 cmd = new SolidColor(blinkt, Color.magenta);
                 break;
             case "solid-pink":
                 textArea.append("Running Solid Pink\n");
+                dataOut.writeUTF("Server: Running Solid Pink");
                 cmd = new SolidColor(blinkt, Color.pink);
                 break;
             case "solid-green":
                 textArea.append("Running Solid Green\n");
+                dataOut.writeUTF("Server: Running Solid Green");
                 cmd = new SolidColor(blinkt, Color.green);
                 break;
             case "solid-blue":
                 textArea.append("Running Solid Blue\n");
+                dataOut.writeUTF("Server: Running Solid Blue");
                 cmd = new SolidColor(blinkt, Color.blue);
                 break;
             case "solid-yellow":
                 textArea.append("Running Solid Yellow\n");
+                dataOut.writeUTF("Server: Running Solid Yellow");
                 cmd = new SolidColor(blinkt, Color.yellow);
                 break;
             case "solid-purple":
                 textArea.append("Running Solid Purple\n");
+                dataOut.writeUTF("Server: Running Solid Purple");
                 cmd = new SolidColor(blinkt, PURPLE);
                 break;
             case "solid-white":
                 textArea.append("Running Solid White\n");
+                dataOut.writeUTF("Server: Running Solid White");
                 cmd = new SolidColor(blinkt, Color.white);
                 break;
             case "seq-red":
                 textArea.append("Running Sequence Red\n");
+                dataOut.writeUTF("Server: Running Sequence Red");
                 cmd = new SequenceColor(blinkt, Color.red);
                 break;
             case "seq-green":
                 textArea.append("Running Sequence Green\n");
+                dataOut.writeUTF("Server: Running Sequence Green");
                 cmd = new SequenceColor(blinkt, Color.green);
                 break;
             case "seq-blue":
                 textArea.append("Running Sequence Blue\n");
+                dataOut.writeUTF("Server: Running Sequence Blue");
                 cmd = new SequenceColor(blinkt, Color.blue);
                 break;
             case "seq-yellow":
                 textArea.append("Running Sequence Yellow\n");
+                dataOut.writeUTF("Server: Running Sequence Yellow");
                 cmd = new SequenceColor(blinkt, Color.yellow);
                 break;
             case "seq-white":
                 textArea.append("Running Sequence White\n");
+                dataOut.writeUTF("Server: Running Sequence White");
                 cmd = new SequenceColor(blinkt, Color.white);
                 break;
             case "seq-purple":
                 textArea.append("Running Sequence Purple\n");
+                dataOut.writeUTF("Server: Running Sequence Purple");
                 cmd = new SequenceColor(blinkt, PURPLE);
                 break;
             case "seq-cyan":
                 textArea.append("Running Sequence Cyan\n");
+                dataOut.writeUTF("Server: Running Sequence Cyan");
                 cmd = new SequenceColor(blinkt, Color.cyan);
                 break;
             case "seq-magenta":
                 textArea.append("Running Sequence Magenta\n");
+                dataOut.writeUTF("Server: Running Sequence Magenta");
                 cmd = new SequenceColor(blinkt, Color.magenta);
                 break;
             case "seq-pink":
                 textArea.append("Running Sequence Pink\n");
+                dataOut.writeUTF("Server: Running Sequence Pink");
                 cmd = new SequenceColor(blinkt, Color.pink);
                 break;
             case "clear":
                 textArea.append("Clearing LEDs\n");
+                dataOut.writeUTF("Server: Clearing LEDs");
                 blinkt.setOff();
                 break;
             default:
                 textArea.append("Command Not Recognized.\n");
+                dataOut.writeUTF("Server: Command Not Recognized");
                 break;
         }
         if (cmd != null) {
