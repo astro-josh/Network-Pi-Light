@@ -38,6 +38,7 @@ public class PulseColor implements Command, Runnable {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
+                    blinkt.setOff();
                     break outerloop;
                 }
             }
