@@ -23,6 +23,7 @@ public class PulseColor implements Command, Runnable {
 
     @Override
     public void run() {
+        outerloop:
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 32; j++) {
                 blinkt.set(0, red, green, blue, j);
@@ -37,7 +38,7 @@ public class PulseColor implements Command, Runnable {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-
+                    break outerloop;
                 }
             }
 
@@ -54,12 +55,12 @@ public class PulseColor implements Command, Runnable {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-
+                    blinkt.setOff();
+                    break outerloop;
                 }
             }
         }
         blinkt.setOff();
 
     }
-
 }

@@ -32,6 +32,5 @@ public class SolidColor implements Command, Runnable {
         blinkt.set(6, red, green, blue, BRIGHTNESS);
         blinkt.set(7, red, green, blue, BRIGHTNESS);
         blinkt.show();
-
     }
 }

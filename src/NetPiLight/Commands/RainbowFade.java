@@ -40,7 +40,8 @@ public class RainbowFade implements Command, Runnable {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-
+                    blinkt.setOff();
+                    break;
                 }
             }
 
@@ -57,12 +58,12 @@ public class RainbowFade implements Command, Runnable {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-
+                    blinkt.setOff();
+                    break;
                 }
             }
         }
         blinkt.setOff();
 
     }
-
 }

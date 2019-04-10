@@ -23,6 +23,7 @@ public class SequenceColor implements Command, Runnable {
 
     @Override
     public void run() {
+        outerloop:
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 8; ++j) {
                 blinkt.set(j, red, green, blue, BRIGHTNESS);
@@ -33,7 +34,8 @@ public class SequenceColor implements Command, Runnable {
                     blinkt.show();
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
-
+                    blinkt.setOff();
+                    break outerloop;
                 }
             }
         }

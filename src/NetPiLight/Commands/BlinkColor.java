@@ -38,11 +38,11 @@ public class BlinkColor implements Command, Runnable {
                 blinkt.setOff();
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
-
+                blinkt.setOff();
+                break;
             }
         }
         blinkt.setOff();
 
     }
-
 }
