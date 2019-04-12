@@ -115,7 +115,7 @@ class ClientWorker implements Runnable {
                 break;
             case "pulse-blue":
                 java.awt.EventQueue.invokeLater(() -> {
-                    textArea.append("Running Pusle Blue\n");
+                    textArea.append("Running Pulse Blue\n");
                 });
                 dataOut.writeUTF("Server: Running Pusle Blue");
                 cmd = new PulseColor(blinkt, Color.blue);
@@ -129,7 +129,7 @@ class ClientWorker implements Runnable {
                 break;
             case "pulse-yellow":
                 java.awt.EventQueue.invokeLater(() -> {
-                    textArea.append("Running Yellow Pulse\n");
+                    textArea.append("Running Pulse Yellow\n");
                 });
                 dataOut.writeUTF("Server: Running Pulse Yellow");
                 cmd = new PulseColor(blinkt, Color.yellow);

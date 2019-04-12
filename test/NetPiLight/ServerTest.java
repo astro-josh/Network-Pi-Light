@@ -5,6 +5,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.swing.JTextArea;
@@ -82,14 +88,32 @@ public class ServerTest {
      */
     @Test
     public void testValidCommands() throws IOException, InterruptedException {
-        // array of commands, array of responses from commands in jtextarea
         System.out.println("\ntestValidCommands");
-        serverTextArea.setText("");
-        dataOut.writeUTF("pulse-red");
-        Thread.sleep(1000);
-        dataOut.writeUTF("pulse-white");
-        Thread.sleep(1000);
-        System.out.println(serverTextArea.getText());
+
+        Hashtable hash = new Hashtable();
+        hash.put("pulse-red", "Client: pulse-red\nRunning Pulse Red\n");
+        hash.put("pulse-yellow", "Client: pulse-yellow\nRunning Pulse Yellow\n");
+        hash.put("rgb-bounce", "Client: rgb-bounce\nRunning RGB Bounce\n");
+        hash.put("blink-blue", "Client: blink-blue\nRunning Blink Blue\n");
+        hash.put("solid-white", "Client: solid-white\nRunning Solid White\n");
+        hash.put("seq-purple", "Client: seq-purple\nRunning Sequence Purple\n");
+        hash.put("rainbow-fade", "Client: rainbow-fade\nRunning Rainbow Fade\n");
+
+        Iterator it = hash.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+
+            serverTextArea.setText("");
+            Thread.sleep(500);
+            dataOut.writeUTF(pair.getKey().toString());
+            Thread.sleep(1000);
+            
+            System.out.println(serverTextArea.getText());
+            // boolean result = someString.matches("stores.*store.*product.*");
+            Assert.assertEquals(pair.getValue(), serverTextArea.getText());
+        }
+
     }
 
     /**
