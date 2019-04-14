@@ -5,9 +5,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -16,8 +13,8 @@ import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JTextArea;
-import org.junit.Assert;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +29,6 @@ public class ServerTest {
     private JTextArea serverTextArea;
     private DataInputStream dataIn;
     private DataOutputStream dataOut;
-
     private final int PORT = 9001;
     private final ExecutorService pool = Executors.newSingleThreadExecutor();
 

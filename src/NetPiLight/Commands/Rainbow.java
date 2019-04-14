@@ -4,7 +4,6 @@ import Jimbo.Boards.com.pimoroni.Blinkt;
 import Jimbo.Graphics.ColourMatrixDemo;
 import NetPiLight.Command;
 import java.io.IOException;
-import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -22,9 +21,10 @@ public class Rainbow implements Command, Runnable {
     public void run() {
         try {
             ColourMatrixDemo.run(this.blinkt);
-        } catch (InterruptedException | IOException ex) {
-
+        } catch (IOException ex) {
+            System.out.println(ex);
+        } catch (InterruptedException ex) {
+            
         }
     }
-
 }
