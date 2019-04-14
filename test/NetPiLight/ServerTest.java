@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JTextArea;
 import org.junit.Assert;
 import org.junit.After;
@@ -77,7 +79,6 @@ public class ServerTest {
         boolean isExpected = serverTextArea.getText().contains(expected);
 
         Assert.assertTrue(isExpected);
-
     }
 
     /**
@@ -91,7 +92,7 @@ public class ServerTest {
         System.out.println("\ntestValidCommands");
 
         Hashtable hash = new Hashtable();
-        hash.put("pulse-red", "Client: pulse-red\nRunning Pulse Red\n");
+        hash.put("pulse-red", "Incoming Connection from: /127.0.0.1(.*)\nClient: pulse-red\nRunning Pulse Red\n");
         hash.put("pulse-yellow", "Client: pulse-yellow\nRunning Pulse Yellow\n");
         hash.put("rgb-bounce", "Client: rgb-bounce\nRunning RGB Bounce\n");
         hash.put("blink-blue", "Client: blink-blue\nRunning Blink Blue\n");
@@ -105,15 +106,14 @@ public class ServerTest {
             Map.Entry pair = (Map.Entry) it.next();
 
             serverTextArea.setText("");
-            Thread.sleep(500);
             dataOut.writeUTF(pair.getKey().toString());
             Thread.sleep(1000);
-            
-            System.out.println(serverTextArea.getText());
-            // boolean result = someString.matches("stores.*store.*product.*");
-            Assert.assertEquals(pair.getValue(), serverTextArea.getText());
-        }
 
+            Pattern pattern = Pattern.compile(pair.getValue().toString(), Pattern.DOTALL);
+            Matcher matcher = pattern.matcher(serverTextArea.getText());
+            boolean matchFound = matcher.matches();
+            Assert.assertTrue(matchFound);
+        }
     }
 
     /**
@@ -132,5 +132,4 @@ public class ServerTest {
         String[] responses = serverTextArea.getText().split("\n");
         Assert.assertEquals(expected, responses[responses.length - 1]);
     }
-
 }
