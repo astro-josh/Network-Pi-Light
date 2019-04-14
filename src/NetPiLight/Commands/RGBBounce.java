@@ -23,7 +23,7 @@ public class RGBBounce implements Command, Runnable {
         int phase = 0;
         double fraction, value1;
         Colour c1;
-        
+
         outerloop:
         for (int i = 0; i < 4; i++) {
             for (int j = 0, k = 7; j < 8 && k >= 0; j++, k--) {
@@ -36,7 +36,7 @@ public class RGBBounce implements Command, Runnable {
                 blinkt.setPixel(new Point(j, 0), c1);
                 blinkt.setPixel(new Point(k, 0), c1);
                 blinkt.show();
-                
+
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException ex) {
