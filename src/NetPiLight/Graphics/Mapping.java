@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Graphics;
+package NetPiLight.Graphics;
 
 /**
  * This defines the generic mapping class hierarchy. It takes an input Point and

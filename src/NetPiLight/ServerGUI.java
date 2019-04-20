@@ -1,6 +1,5 @@
 package NetPiLight;
 
-import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
 import java.io.IOException;
 import javax.swing.JTextArea;
 

@@ -1,7 +1,7 @@
 package NetPiLight.Commands;
 
-import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
-import NetPiLight.Jimbo.Graphics.ColourMatrixDemo;
+import NetPiLight.Blinkt;
+import NetPiLight.Graphics.ColourMatrixDemo;
 import NetPiLight.Command;
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ public class Rainbow implements Command, Runnable {
         } catch (IOException ex) {
             System.out.println(ex);
         } catch (InterruptedException ex) {
-            
+
         }
     }
 }

@@ -15,22 +15,18 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Graphics;
+package NetPiLight.Graphics;
 
 /**
- * This class swaps the X and Y coordinates over.
+ * The class performs a "snake" mapping of a point. This is very useful when the
+ * wiring of pixels is a little "unusual". It flips the X value but only on
+ * alternate lines. This allows a layout such as:
  *
- * So:
- *
- * 04 05 06 07 00 01 02 03
- *
- * becomes:
- *
- * 03 07 02 06 01 05 00 04
+ * 15 14 13 12 08 09 10 11 07 06 05 04 00 01 02 03
  *
  * @author Jim Darby.
  */
-public class SwapXY extends Mapping {
+public class Snake extends Mapping {
 
     /**
      * Create a mapping given the width and height of the input. Note that the
@@ -40,8 +36,8 @@ public class SwapXY extends Mapping {
      * @param width The input width.
      * @param height The input height.
      */
-    public SwapXY(int width, int height) {
-        super(new Point(width - 1, height - 1), new Point(height - 1, width - 1));
+    public Snake(int width, int height) {
+        super(new Point(width - 1, height - 1));
     }
 
     /**
@@ -50,12 +46,12 @@ public class SwapXY extends Mapping {
      *
      * @param before The previous mapping.
      */
-    public SwapXY(Mapping before) {
-        super(before, new Point(before.getOutMax().getY(), before.getOutMax().getX()));
+    public Snake(Mapping before) {
+        super(before, before.getOutMax());
     }
 
     /**
-     * Perform a mapping. This swaps the X and Y values over.
+     * Perform a mapping. The flips odd numbered X lines.
      *
      * @param p The input point.
      * @return The mapped result.
@@ -68,7 +64,7 @@ public class SwapXY extends Mapping {
 
         validateIn(p);
 
-        final Point result = new Point(p.getY(), p.getX());
+        final Point result = ((p.getY() & 1) != 0) ? new Point(getInMax().getX() - p.getX(), p.getY()) : p;
 
         validateOut(result);
 
@@ -82,7 +78,7 @@ public class SwapXY extends Mapping {
      */
     @Override
     public String toString() {
-        String result = "SwapXY in " + getInMax() + " out " + getOutMax();
+        String result = "Snake from " + getInMax() + " to " + getOutMax();
 
         if (before != null) {
             result = before.toString() + ' ' + result;

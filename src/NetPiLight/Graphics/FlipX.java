@@ -15,16 +15,16 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Graphics;
+package NetPiLight.Graphics;
 
 /**
- * This class flips the Y coordinates of a point around. So if the input y range
- * is 0 to n the mapped Y point will be n - y. The X coordinate remains the
+ * This class flips the X coordinates of a point around. So if the input x range
+ * is 0 to n the mapped X point will be n - x. The y coordinate remains the
  * same.
  *
  * @author Jim Darby
  */
-public class FlipY extends Mapping {
+public class FlipX extends Mapping {
 
     /**
      * Create a mapping given the width and height of the input. Note that the
@@ -34,7 +34,7 @@ public class FlipY extends Mapping {
      * @param width The input width.
      * @param height The input height.
      */
-    public FlipY(int width, int height) {
+    public FlipX(int width, int height) {
         super(new Point(width - 1, height - 1));
     }
 
@@ -44,13 +44,13 @@ public class FlipY extends Mapping {
      *
      * @param before The previous mapping.
      */
-    public FlipY(Mapping before) {
+    public FlipX(Mapping before) {
         super(before, before.getOutMax());
     }
 
     /**
-     * Perform a mapping. Given a point p at (X,Y) it returns a point with the Y
-     * coordinate reversed (i.e. with Y in the range [0,n] it returns n - y. X
+     * Perform a mapping. Given a point p at (X,Y) it returns a point with the X
+     * coordinate reversed (i.e. with X in the range [0,n] it returns n - x. Y
      * remains unchanged.
      *
      * @param p The input point.
@@ -64,7 +64,7 @@ public class FlipY extends Mapping {
 
         validateIn(p);
 
-        final Point result = new Point(p.getX(), getInMax().getY() - p.getY());
+        final Point result = new Point(getInMax().getX() - p.getX(), p.getY());
 
         validateOut(result);
 
@@ -78,7 +78,7 @@ public class FlipY extends Mapping {
      */
     @Override
     public String toString() {
-        String result = "FlipY from " + getInMax() + " to " + getOutMax();
+        String result = "FlipX from " + getInMax() + " to " + getOutMax();
 
         if (before != null) {
             result = before.toString() + ' ' + result;

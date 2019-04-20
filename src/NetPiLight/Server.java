@@ -1,6 +1,5 @@
 package NetPiLight;
 
-import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.SocketException;

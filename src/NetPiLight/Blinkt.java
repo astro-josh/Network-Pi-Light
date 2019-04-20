@@ -15,17 +15,14 @@
  * License along with this software; if not, If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Boards.com.pimoroni;
+package NetPiLight;
 
-import NetPiLight.MockGpioFactory;
-import NetPiLight.MockPin;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.RaspiPin;
-import NetPiLight.Jimbo.Devices.APA102;
-import NetPiLight.Jimbo.Graphics.Point;
-import NetPiLight.Jimbo.Graphics.Colour;
-import NetPiLight.Jimbo.Graphics.ColourMatrix;
-import NetPiLight.Jimbo.Graphics.ColourMatrixDemo;
+import NetPiLight.Graphics.Point;
+import NetPiLight.Graphics.Colour;
+import NetPiLight.Graphics.ColourMatrix;
+import NetPiLight.Graphics.ColourMatrixDemo;
 import java.io.IOException;
 
 /**

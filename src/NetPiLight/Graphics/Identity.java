@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Graphics;
+package NetPiLight.Graphics;
 
 /**
  * This class flips the X coordinates of a point around. So if the input x range
@@ -24,7 +24,7 @@ package NetPiLight.Jimbo.Graphics;
  *
  * @author Jim Darby
  */
-public class FlipX extends Mapping {
+public class Identity extends Mapping {
 
     /**
      * Create a mapping given the width and height of the input. Note that the
@@ -34,7 +34,7 @@ public class FlipX extends Mapping {
      * @param width The input width.
      * @param height The input height.
      */
-    public FlipX(int width, int height) {
+    public Identity(int width, int height) {
         super(new Point(width - 1, height - 1));
     }
 
@@ -44,14 +44,12 @@ public class FlipX extends Mapping {
      *
      * @param before The previous mapping.
      */
-    public FlipX(Mapping before) {
+    public Identity(Mapping before) {
         super(before, before.getOutMax());
     }
 
     /**
-     * Perform a mapping. Given a point p at (X,Y) it returns a point with the X
-     * coordinate reversed (i.e. with X in the range [0,n] it returns n - x. Y
-     * remains unchanged.
+     * Perform a mapping. This performs no actual action on the Point!
      *
      * @param p The input point.
      * @return The mapped result.
@@ -64,7 +62,7 @@ public class FlipX extends Mapping {
 
         validateIn(p);
 
-        final Point result = new Point(getInMax().getX() - p.getX(), p.getY());
+        final Point result = p;
 
         validateOut(result);
 
@@ -78,7 +76,7 @@ public class FlipX extends Mapping {
      */
     @Override
     public String toString() {
-        String result = "FlipX from " + getInMax() + " to " + getOutMax();
+        String result = "Identity from " + getInMax() + " to " + getOutMax();
 
         if (before != null) {
             result = before.toString() + ' ' + result;

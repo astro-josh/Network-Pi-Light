@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Graphics;
+package NetPiLight.Graphics;
 
 /**
  * This class represents a point on the x,y plane. It's held as a purely integer

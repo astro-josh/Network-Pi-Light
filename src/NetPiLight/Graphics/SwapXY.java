@@ -15,16 +15,22 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package NetPiLight.Jimbo.Graphics;
+package NetPiLight.Graphics;
 
 /**
- * This class flips the X coordinates of a point around. So if the input x range
- * is 0 to n the mapped X point will be n - x. The y coordinate remains the
- * same.
+ * This class swaps the X and Y coordinates over.
  *
- * @author Jim Darby
+ * So:
+ *
+ * 04 05 06 07 00 01 02 03
+ *
+ * becomes:
+ *
+ * 03 07 02 06 01 05 00 04
+ *
+ * @author Jim Darby.
  */
-public class Identity extends Mapping {
+public class SwapXY extends Mapping {
 
     /**
      * Create a mapping given the width and height of the input. Note that the
@@ -34,8 +40,8 @@ public class Identity extends Mapping {
      * @param width The input width.
      * @param height The input height.
      */
-    public Identity(int width, int height) {
-        super(new Point(width - 1, height - 1));
+    public SwapXY(int width, int height) {
+        super(new Point(width - 1, height - 1), new Point(height - 1, width - 1));
     }
 
     /**
@@ -44,12 +50,12 @@ public class Identity extends Mapping {
      *
      * @param before The previous mapping.
      */
-    public Identity(Mapping before) {
-        super(before, before.getOutMax());
+    public SwapXY(Mapping before) {
+        super(before, new Point(before.getOutMax().getY(), before.getOutMax().getX()));
     }
 
     /**
-     * Perform a mapping. This performs no actual action on the Point!
+     * Perform a mapping. This swaps the X and Y values over.
      *
      * @param p The input point.
      * @return The mapped result.
@@ -62,7 +68,7 @@ public class Identity extends Mapping {
 
         validateIn(p);
 
-        final Point result = p;
+        final Point result = new Point(p.getY(), p.getX());
 
         validateOut(result);
 
@@ -76,7 +82,7 @@ public class Identity extends Mapping {
      */
     @Override
     public String toString() {
-        String result = "Identity from " + getInMax() + " to " + getOutMax();
+        String result = "SwapXY in " + getInMax() + " out " + getOutMax();
 
         if (before != null) {
             result = before.toString() + ' ' + result;
