@@ -316,7 +316,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private static void startConnection(JTextArea jta) {
         try {
-            s = new Socket("127.0.0.1", 9001);
+            s = new Socket("192.168.0.40", 9001);
             dataIn = new DataInputStream(s.getInputStream());
             dataOut = new DataOutputStream(s.getOutputStream());
             String msgIn = "";

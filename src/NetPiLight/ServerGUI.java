@@ -112,7 +112,7 @@ public class ServerGUI extends javax.swing.JFrame {
     }
 
     private static void startConnection(JTextArea jta) throws IOException {
-        Server server = new Server(new Blinkt(true), 9001, jta);
+        Server server = new Server(new Blinkt(), 9001, jta);
         server.start();
     }
 
