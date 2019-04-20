@@ -1,6 +1,6 @@
 package NetPiLight;
 
-import Jimbo.Boards.com.pimoroni.Blinkt;
+import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

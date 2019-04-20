@@ -1,8 +1,8 @@
 package NetPiLight.Commands;
 
-import Jimbo.Boards.com.pimoroni.Blinkt;
-import Jimbo.Graphics.Colour;
-import Jimbo.Graphics.Point;
+import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
+import NetPiLight.Jimbo.Graphics.Colour;
+import NetPiLight.Jimbo.Graphics.Point;
 import NetPiLight.Command;
 
 /**

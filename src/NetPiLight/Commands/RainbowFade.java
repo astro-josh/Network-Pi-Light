@@ -1,6 +1,6 @@
 package NetPiLight.Commands;
 
-import Jimbo.Boards.com.pimoroni.Blinkt;
+import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
 import NetPiLight.Command;
 import java.util.Random;
 

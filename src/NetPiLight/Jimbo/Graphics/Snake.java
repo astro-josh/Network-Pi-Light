@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package Jimbo.Graphics;
+package NetPiLight.Jimbo.Graphics;
 
 /**
  * The class performs a "snake" mapping of a point. This is very useful when the

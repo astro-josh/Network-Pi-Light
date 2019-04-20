@@ -15,7 +15,7 @@
  * License along with this software; if not, If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package Jimbo.Devices;
+package NetPiLight.Jimbo.Devices;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
@@ -23,10 +23,10 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.RaspiPin;
 
-import Jimbo.Graphics.Colour;
-import Jimbo.Graphics.ColourMatrix;
-import Jimbo.Graphics.ColourMatrixDemo;
-import Jimbo.Graphics.Point;
+import NetPiLight.Jimbo.Graphics.Colour;
+import NetPiLight.Jimbo.Graphics.ColourMatrix;
+import NetPiLight.Jimbo.Graphics.ColourMatrixDemo;
+import NetPiLight.Jimbo.Graphics.Point;
 
 import java.io.IOException;
 

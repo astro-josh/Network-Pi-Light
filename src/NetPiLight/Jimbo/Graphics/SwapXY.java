@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package Jimbo.Graphics;
+package NetPiLight.Jimbo.Graphics;
 
 /**
  * This class swaps the X and Y coordinates over.

@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package Jimbo.Graphics;
+package NetPiLight.Jimbo.Graphics;
 
 /**
  * This interface describes a matrix of monochrome Pixels.

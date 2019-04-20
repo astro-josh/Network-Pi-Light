@@ -1,6 +1,6 @@
 package NetPiLight;
 
-import Jimbo.Boards.com.pimoroni.Blinkt;
+import NetPiLight.Jimbo.Boards.com.pimoroni.Blinkt;
 import NetPiLight.Commands.*;
 import java.awt.Color;
 import java.io.DataInputStream;

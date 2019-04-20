@@ -15,7 +15,7 @@
  * License along with this library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package Jimbo.Graphics;
+package NetPiLight.Jimbo.Graphics;
 
 import java.io.IOException;
 

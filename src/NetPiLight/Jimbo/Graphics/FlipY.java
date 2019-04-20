@@ -15,7 +15,7 @@
  * License along with this library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
-package Jimbo.Graphics;
+package NetPiLight.Jimbo.Graphics;
 
 /**
  * This class flips the Y coordinates of a point around. So if the input y range
