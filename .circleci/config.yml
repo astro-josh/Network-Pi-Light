@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: circleci/java:8-jdk
 
     steps:
       - checkout
@@ -12,14 +12,12 @@ jobs:
       # - restore_cache:
       #     key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
 
-      - run: mvn dependency:go-offline
+      - run: ant
 
       # - save_cache:
       #     paths:
       #       - ~/.m2
       #     key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-
-      - run: mvn package
 
       - store_test_results:
           path: target/surefire-reports
